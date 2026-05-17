@@ -1,4 +1,9 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   stories: ["../stories/**/*.stories.@(ts|tsx)", "../src/**/*.stories.@(ts|tsx)"],
@@ -16,6 +21,15 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true,
+  },
+  async viteFinal(config) {
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: resolve(__dirname, "../node_modules/react"),
+      "react-dom": resolve(__dirname, "../node_modules/react-dom"),
+    };
+    return config;
   },
 };
 

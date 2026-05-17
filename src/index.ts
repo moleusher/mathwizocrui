@@ -62,3 +62,16 @@ export type { TopBarProps } from "./components/TopBar";
 
 export { AppLayout } from "./components/AppLayout";
 export type { AppLayoutProps } from "./components/AppLayout";
+
+// v0.10.0 新建组件
+export { ProjectCard } from "./components/ProjectCard";
+export type { ProjectCardProps, DashboardStatus } from "./components/ProjectCard";
+
+export { CardActions } from "./components/CardActions";
+export type { CardActionsProps } from "./components/CardActions";
+
+export { IntentActions } from "./components/IntentActions";
+export type { IntentActionsProps } from "./components/IntentActions";
+
+export { ClassroomProgress } from "./components/ClassroomProgress";
+export type { ClassroomProgressProps, StageState, ClassroomStage } from "./components/ClassroomProgress";

@@ -2,9 +2,22 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
+import { copyFileSync } from "fs";
 
 export default defineConfig({
-  plugins: [tailwindcss(), react()],
+  plugins: [
+    tailwindcss(),
+    react(),
+    {
+      name: "copy-styles",
+      closeBundle() {
+        copyFileSync(
+          resolve(__dirname, "src/tokens/globals.css"),
+          resolve(__dirname, "dist/styles.css"),
+        );
+      },
+    },
+  ],
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),

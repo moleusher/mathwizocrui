@@ -44,11 +44,12 @@ npm run lint         # tsc --noEmit
 
 | Category | Components |
 |----------|-----------|
-| Generic UI | MathButton, MathBadge, EmptyState |
+| Generic UI | MathButton, MathBadge, EmptyState, CardActions |
 | Status/Display | StatusBadge, MarkdownViewer, FormulaRenderer |
 | Image/OCR | ImageUpload, ImagePreview, ImagePagination |
-| Analysis | QuestionCard, QuestionList, AnalysisTabs |
+| Analysis | QuestionCard, QuestionList, AnalysisTabs, IntentActions |
 | Pipeline | PipelineStageCard, BlockLegend, BlockOverlay |
+| Dashboard | ProjectCard, ClassroomProgress |
 | Layout | TopBar, AppLayout |
 
 Also re-exports HeroUI components (Button, Card, Badge, ProgressBar, etc.).
@@ -63,7 +64,12 @@ import "@mathwiz/ui-ocr/styles.css";
 
 ## Changelog
 
-### 0.1.1 (2026-05-16)
+### 0.1.2 (2026-05-17)
+
+- Add 4 new components: ProjectCard, CardActions, IntentActions, ClassroomProgress.
+- Fix `styles.css` missing from build output (copy plugin in vite.config.ts).
+- Exclude test files from production bundle (tsconfig exclude patterns).
+- Update version and README.
 
 - Update package version and dependencies.
 - Add CLAUDE.md for AI-assisted development.

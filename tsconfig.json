@@ -36,6 +36,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "stories"
+    "stories",
+    "src/**/*.{test,spec}.{ts,tsx}"
   ]
 }

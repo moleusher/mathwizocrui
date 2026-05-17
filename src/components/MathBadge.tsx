@@ -11,20 +11,21 @@ export interface MathBadgeProps extends React.ComponentProps<"span"> {
   dot?: boolean;
 }
 
+// ── Variant styles using --color-* CSS variables ──
 const variantStyles: Record<MathBadgeVariant, string> = {
-  default: "bg-(--color-brand-100) text-(--color-brand-700)",
-  success: "bg-emerald-100 text-emerald-700",
-  warning: "bg-amber-100 text-amber-700",
-  error: "bg-red-100 text-red-700",
-  info: "bg-sky-100 text-sky-700",
+  default: "bg-[var(--color-brand-500)]/10 text-[var(--color-brand-500)]",
+  success: "bg-[var(--color-success)]/10 text-[var(--color-success)]",
+  warning: "bg-[var(--color-warning)]/10 text-[var(--color-warning)]",
+  error: "bg-[var(--color-error)]/10 text-[var(--color-error)]",
+  info: "bg-[var(--color-info)]/10 text-[var(--color-info)]",
 };
 
 const dotColors: Record<MathBadgeVariant, string> = {
-  default: "bg-(--color-brand-500)",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  error: "bg-red-500",
-  info: "bg-sky-500",
+  default: "bg-[var(--color-brand-500)]",
+  success: "bg-[var(--color-success)]",
+  warning: "bg-[var(--color-warning)]",
+  error: "bg-[var(--color-error)]",
+  info: "bg-[var(--color-info)]",
 };
 
 const sizeStyles: Record<MathBadgeSize, string> = {

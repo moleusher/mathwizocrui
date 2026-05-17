@@ -1,6 +1,6 @@
 {
   "name": "@mathwiz/ui-ocr",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Math-OCR Component Library — React 19 · HeroUI 3 · Tailwind 4 · Storybook 10",
   "type": "module",
@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && find dist -name '*.test.*' -delete && vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
