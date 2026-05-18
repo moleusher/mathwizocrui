@@ -79,7 +79,7 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
               type="button"
               onClick={onViewPrompt}
               className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
-                bg-[var(--color-brand-500)] text-[var(--color-bg)]
+                bg-[var(--color-brand-500)] text-[var(--color-primary-foreground)]
                 hover:bg-[var(--color-brand-700)] transition-colors duration-200
                 focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
             >
@@ -105,7 +105,7 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
           data-state="idle"
           onClick={onStartAnalysis}
           className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
-            bg-[var(--color-brand-500)] text-[var(--color-bg)]
+            bg-[var(--color-brand-500)] text-[var(--color-primary-foreground)]
             hover:bg-[var(--color-brand-700)] transition-colors duration-200
             focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
         >

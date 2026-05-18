@@ -1,6 +1,6 @@
 ---
 name: "@mathwiz/ui-ocr"
-version: 0.1.1
+version: 0.1.4
 description: Math-OCR Component Library
 status: alpha
 tech:
@@ -44,12 +44,12 @@ npm run lint         # tsc --noEmit
 
 | Category | Components |
 |----------|-----------|
-| Generic UI | MathButton, MathBadge, EmptyState, CardActions |
+| Generic UI | MathButton, MathBadge, EmptyState, ~~CardActions~~ (deprecated) |
 | Status/Display | StatusBadge, MarkdownViewer, FormulaRenderer |
 | Image/OCR | ImageUpload, ImagePreview, ImagePagination |
 | Analysis | QuestionCard, QuestionList, AnalysisTabs, IntentActions |
 | Pipeline | PipelineStageCard, BlockLegend, BlockOverlay |
-| Dashboard | ProjectCard, ClassroomProgress |
+| Dashboard | ProjectCard (Dropdown: OCR解析/查看进度/重新上传/删除), ClassroomProgress |
 | Layout | TopBar, AppLayout |
 
 Also re-exports HeroUI components (Button, Card, Badge, ProgressBar, etc.).
@@ -63,6 +63,17 @@ import "@mathwiz/ui-ocr/styles.css";
 ```
 
 ## Changelog
+
+### 0.1.4 (2026-05-18)
+
+- **ProjectCard**: Replace CardActions + actions slot with HeroUI Dropdown.
+  - Dropdown items: OCR解析, 查看进度, 重新上传, 删除项目.
+  - Context-aware — items show/hide based on `dashboardStatus`.
+  - Icons via `@gravity-ui/icons` (EllipsisVertical, TrashBin).
+- **CardActions** marked as `@deprecated` — use ProjectCard Dropdown instead.
+- Install `@heroui/styles` for HeroUI v3 + Tailwind 4 CSS integration.
+- Updated Storybook stories and tests for new Dropdown API.
+- Bump version to 0.1.4.
 
 ### 0.1.2 (2026-05-17)
 

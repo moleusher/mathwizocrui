@@ -79,10 +79,10 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
                 className={cn(
                   "text-xs font-mono font-semibold",
                   totalScore === maxScore
-                    ? "text-emerald-600"
+                    ? "text-[var(--color-success)]"
                     : totalScore >= maxScore * 0.6
-                      ? "text-amber-600"
-                      : "text-red-600",
+                      ? "text-[var(--color-warning)]"
+                      : "text-[var(--color-error)]",
                 )}
               >
                 {totalScore}/{maxScore}
@@ -123,10 +123,10 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
                         className={cn(
                           "h-full rounded-full transition-all",
                           d.score === d.maxScore
-                            ? "bg-emerald-500"
+                            ? "bg-[var(--color-success)]"
                             : d.score > 0
-                              ? "bg-(--color-primary)"
-                              : "bg-red-400",
+                              ? "bg-[var(--color-primary)]"
+                              : "bg-[var(--color-error)]",
                         )}
                         style={{ width: `${(d.score / Math.max(d.maxScore, 1)) * 100}%` }}
                       />

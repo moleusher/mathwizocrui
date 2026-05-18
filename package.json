@@ -1,6 +1,6 @@
 {
   "name": "@mathwiz/ui-ocr",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": false,
   "description": "Math-OCR Component Library — React 19 · HeroUI 3 · Tailwind 4 · Storybook 10",
   "type": "module",
@@ -29,7 +29,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "3.0.5",
+    "@heroui/styles": "^3.0.5",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.4.0"
   },

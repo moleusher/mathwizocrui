@@ -73,6 +73,7 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
         >
           {tabs.map((tab) => (
             <button
+              type="button"
               key={tab.id}
               role="tab"
               aria-selected={activeId === tab.id}

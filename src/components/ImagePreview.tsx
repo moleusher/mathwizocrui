@@ -99,7 +99,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         {hasError && (
           <div className="absolute inset-0 flex items-center justify-center">
             {errorContent || (
-              <div className="text-sm text-red-500">Failed to load image</div>
+              <div className="text-sm text-[var(--color-error)]">Failed to load image</div>
             )}
           </div>
         )}
@@ -125,29 +125,35 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         {zoomable && zoom > 1 && (
           <div className="absolute top-2 right-2 flex gap-1">
             <button
+              type="button"
+              aria-label="Zoom out"
               onClick={(e) => {
                 e.stopPropagation();
                 setZoom((z) => Math.max(1, z - 0.5));
               }}
-              className="size-7 flex items-center justify-center rounded bg-white/80 text-xs font-bold shadow-sm hover:bg-white"
+              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
             >
               −
             </button>
             <button
+              type="button"
+              aria-label="Reset zoom"
               onClick={(e) => {
                 e.stopPropagation();
                 resetZoom();
               }}
-              className="size-7 flex items-center justify-center rounded bg-white/80 text-xs shadow-sm hover:bg-white"
+              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
             >
               {Math.round(zoom * 100)}%
             </button>
             <button
+              type="button"
+              aria-label="Zoom in"
               onClick={(e) => {
                 e.stopPropagation();
                 setZoom((z) => Math.min(maxZoom, z + 0.5));
               }}
-              className="size-7 flex items-center justify-center rounded bg-white/80 text-xs font-bold shadow-sm hover:bg-white"
+              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
             >
               +
             </button>

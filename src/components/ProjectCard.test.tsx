@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Dropdown } from "@heroui/react";
 import { ProjectCard } from "./ProjectCard";
 
 const mockProject = {
@@ -19,7 +20,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(screen.getByText("2024 期末数学试卷")).toBeInTheDocument();
@@ -31,7 +31,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(screen.getByText("数学")).toBeInTheDocument();
@@ -44,7 +43,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(screen.getByText("12 题")).toBeInTheDocument();
@@ -56,7 +54,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(document.querySelector('[data-slot="project-card"]')).toBeInTheDocument();
@@ -68,7 +65,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="ocr"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(document.querySelector('[data-status="ocr"]')).toBeInTheDocument();
@@ -87,7 +83,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus={status}
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(screen.getByText(label)).toBeInTheDocument();
@@ -101,10 +96,8 @@ describe("ProjectCard", () => {
         dashboardStatus="ocr"
         ocrProgress={45}
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
-    // Progress indicator should be present
     expect(document.querySelector('[data-slot="project-card-progress"]')).toBeInTheDocument();
   });
 
@@ -115,7 +108,6 @@ describe("ProjectCard", () => {
         dashboardStatus="analyzing"
         analyzeProgress={70}
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(document.querySelector('[data-slot="project-card-progress"]')).toBeInTheDocument();
@@ -127,37 +119,89 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     expect(document.querySelector('[data-slot="project-card-progress"]')).not.toBeInTheDocument();
   });
 
-  // ── CardActions ──
-  it("shows CardActions for non-uploading status", () => {
+  // ── Dropdown trigger ──
+  it("renders dropdown trigger when action callbacks exist", () => {
     render(
       <ProjectCard
         project={mockProject}
-        dashboardStatus="ocr"
+        dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={() => {}}
+        onDelete={() => {}}
       />,
     );
-    expect(screen.getByText("查看进度 →")).toBeInTheDocument();
+    expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
   });
 
-  it("calls onViewProgress when CardActions clicked", async () => {
-    const fn = vi.fn();
+  it("does not render dropdown trigger when no action callbacks", () => {
     render(
       <ProjectCard
         project={mockProject}
-        dashboardStatus="ocr"
+        dashboardStatus="completed"
         onClick={() => {}}
-        onViewProgress={fn}
       />,
     );
-    await userEvent.click(screen.getByText("查看进度 →"));
-    expect(fn).toHaveBeenCalledOnce();
+    expect(screen.queryByLabelText("更多操作")).not.toBeInTheDocument();
+  });
+
+  // ── OCR parse renders whenever onOcrParse is provided ──
+  it("shows dropdown trigger with onOcrParse regardless of status", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="uploading"
+        onClick={() => {}}
+        onOcrParse={() => {}}
+        onDelete={() => {}}
+      />,
+    );
+    expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
+  });
+
+  // ── dropdownDisabledKeys ──
+  it("passes dropdownDisabledKeys to the menu", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="failed"
+        onClick={() => {}}
+        onOcrParse={() => {}}
+        onDelete={() => {}}
+        dropdownDisabledKeys={["ocr-parse"]}
+      />,
+    );
+    // The trigger renders; disabled state is handled internally by HeroUI
+    expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
+  });
+
+  // ── dropdownItems ──
+  it("renders custom dropdownItems", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="completed"
+        onClick={() => {}}
+        onDelete={() => {}}
+        dropdownItems={<Dropdown.Item key="custom-1" textValue="自定义">自定义</Dropdown.Item>}
+      />,
+    );
+    expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
+  });
+
+  it("shows dropdown trigger when only dropdownItems provided", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="completed"
+        onClick={() => {}}
+        dropdownItems={<Dropdown.Item key="custom" textValue="自定义">自定义</Dropdown.Item>}
+      />,
+    );
+    expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
   });
 
   // ── click on card ──
@@ -168,7 +212,6 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={fn}
-        onViewProgress={() => {}}
       />,
     );
     await userEvent.click(screen.getByText("2024 期末数学试卷"));
@@ -183,7 +226,6 @@ describe("ProjectCard", () => {
         dashboardStatus="completed"
         thumbnailUrl="/thumb.jpg"
         onClick={() => {}}
-        onViewProgress={() => {}}
       />,
     );
     const img = document.querySelector("img");

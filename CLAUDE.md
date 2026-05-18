@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-`@math-ocr/ui` (`@mathwiz/ui-ocr` v0.1.1) — a standalone, reusable React 19 component library for the Math-OCR project. Built with HeroUI 3, Tailwind CSS 4, Storybook 10, TypeScript 5.9, Vite 8.
+`@math-ocr/ui` (`@mathwiz/ui-ocr` v0.1.4) — a standalone, reusable React 19 component library for the Math-OCR project. Built with HeroUI 3, Tailwind CSS 4, Storybook 10, TypeScript 5.9, Vite 8.
 
 ## Build & Test Commands
 
@@ -22,15 +22,16 @@ npm run preview          # vite preview
 
 ## Code Architecture
 
-### Layout — 17 components in `src/components/`
+### Layout — 18 components in `src/components/`
 
 | Category | Components |
 |----------|-----------|
-| Generic UI | MathButton (5 variants, 4 sizes, loading), MathBadge (5 variants, dot indicator), EmptyState (compound: Root/Icon/Title/Description/Action) |
+| Generic UI | MathButton (5 variants, 4 sizes, loading), MathBadge (5 variants, dot indicator), EmptyState (compound: Root/Icon/Title/Description/Action), ~~CardActions~~ (deprecated) |
 | Status/Display | StatusBadge (6 pipeline states, pulse animation, compact mode), MarkdownViewer (zero-dep markdown→HTML), FormulaRenderer (LaTeX inline/block) |
 | Image/OCR | ImageUpload (drag-drop/click/paste, preview, validation), ImagePreview (scroll-zoom 1x-3x, drag-pan), ImagePagination (smart ellipsis) |
-| Analysis | QuestionCard (collapsible, score dimensions, progress bars), QuestionList, AnalysisTabs (horizontal/vertical, controlled/uncontrolled) |
+| Analysis | QuestionCard (collapsible, score dimensions, progress bars), QuestionList, AnalysisTabs (horizontal/vertical, controlled/uncontrolled), IntentActions |
 | Pipeline | PipelineStageCard (step indicator, progress bar, elapsed, dimmed), BlockLegend, BlockOverlay (percentage positioning, active highlight) |
+| Dashboard | ProjectCard (HeroUI Dropdown: OCR解析/查看进度/重新上传/删除), ClassroomProgress (4-stage pipeline UI) |
 | Layout | TopBar (left/center/right slots), AppLayout (sidebar + topbar + content, collapsible sidebar) |
 
 ### Component Patterns
@@ -43,11 +44,11 @@ npm run preview          # vite preview
 
 ### Exports — `src/index.ts`
 
-Barrel file re-exports all 17 components + their Props types, plus selected HeroUI components (Button, Card, Badge, ProgressBar, etc.).
+Barrel file re-exports all 18 components + their Props types, plus selected HeroUI components (Button, Card, Badge, ProgressBar, etc.).
 
 ### Design Tokens — `src/tokens/globals.css`
 
-Tailwind 4 `@import "tailwindcss"` + custom OKLCH color tokens (`--color-brand-50` through `-900`, `--color-primary`, `--color-surface`, radii, shadows). Light/dark themes via `.dark` class. Custom `@utility math-block`.
+Tailwind 4 `@import "tailwindcss"` + `@import "@heroui/styles"` + custom OKLCH color tokens (`--color-brand-50` through `-900`, `--color-primary`, `--color-surface`, radii, shadows). Light/dark themes via `.dark` class. Custom `@utility math-block`.
 
 ### Utility — `src/utils/cn.ts`
 
@@ -69,7 +70,7 @@ Tailwind 4 `@import "tailwindcss"` + custom OKLCH color tokens (`--color-brand-5
 
 | File | Purpose |
 |------|---------|
-| `vite.config.ts` | Library mode (ESM), tailwindcss + react plugins, external deps |
+| `vite.config.ts` | Library mode (ESM), tailwindcss + react plugins; externals: react, @heroui/react, @heroui/styles, @gravity-ui/icons |
 | `tsconfig.json` | Strict, bundler resolution, ES2022, path alias `@/` → `./src/` |
 | `vitest.config.ts` | jsdom + react plugin + path alias |
 | `.storybook/main.ts` | Stories glob, addons, autodocs |

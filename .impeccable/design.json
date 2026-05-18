@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-18T19:30:00.000Z",
+  "title": "Design System: @mathwiz/ui-ocr",
+  "extensions": {
+    "colorMeta": {
+      "brand-50":      { "role": "neutral",  "displayName": "Wisteria Mist",     "canonical": "oklch(0.97 0.01 250)",    "tonalRamp": ["oklch(0.18 0.05 250)","oklch(0.25 0.08 250)","oklch(0.35 0.11 250)","oklch(0.45 0.14 250)","oklch(0.55 0.16 250)","oklch(0.65 0.12 250)","oklch(0.75 0.08 250)","oklch(0.85 0.05 250)","oklch(0.93 0.02 250)","oklch(0.97 0.01 250)"] },
+      "surface":        { "role": "neutral",  "displayName": "Paper White",      "canonical": "oklch(0.99 0.001 250)",   "tonalRamp": [] },
+      "surface-raised": { "role": "neutral",  "displayName": "White",            "canonical": "oklch(1 0 0)",            "tonalRamp": [] },
+      "border":         { "role": "neutral",  "displayName": "Cloud Border",     "canonical": "oklch(0.88 0.01 250)",    "tonalRamp": [] },
+      "text":           { "role": "neutral",  "displayName": "Ink Black",        "canonical": "oklch(0.15 0.01 250)",    "tonalRamp": [] },
+      "text-muted":     { "role": "neutral",  "displayName": "Grey Ink",         "canonical": "oklch(0.45 0.01 250)",    "tonalRamp": [] },
+      "success":        { "role": "semantic", "displayName": "Jade Green",       "canonical": "oklch(0.55 0.18 145)",    "tonalRamp": [] },
+      "info":           { "role": "semantic", "displayName": "Azure Blue",       "canonical": "oklch(0.6 0.12 250)",     "tonalRamp": [] },
+      "warning":        { "role": "semantic", "displayName": "Amber Gold",       "canonical": "oklch(0.65 0.18 75)",     "tonalRamp": [] },
+      "error":          { "role": "semantic", "displayName": "Vermilion Red",    "canonical": "oklch(0.55 0.2 25)",      "tonalRamp": [] }
+    },
+    "typographyMeta": {
+      "body":  { "displayName": "Body",  "purpose": "All primary reading content — card descriptions, question text, dashboard summaries." },
+      "label": { "displayName": "Label", "purpose": "Button text, status badges, table headers, small UI labels. Always 12px." },
+      "title": { "displayName": "Title", "purpose": "Card headings, section titles — one step above body, used sparingly." },
+      "mono":  { "displayName": "Mono",  "purpose": "Score fractions (12/15), progress percentages, data values requiring precise alignment." }
+    },
+    "shadows": [
+      { "name": "shadow-sm", "value": "0 1px 2px rgba(0,0,0,0.05)",   "purpose": "Hover lift for interactive cards — barely perceptible, just enough to signal affordance." },
+      { "name": "shadow-md", "value": "0 4px 6px -1px rgba(0,0,0,0.07)", "purpose": "Dropdown menus, popovers, floating panels." },
+      { "name": "shadow-lg", "value": "0 10px 25px -3px rgba(0,0,0,0.08)", "purpose": "Dialog modals, notification toasts." }
+    ],
+    "motion": [
+      { "name": "duration-fast", "value": "150ms", "purpose": "Hover states, color transitions, opacity changes." },
+      { "name": "duration-normal", "value": "200ms", "purpose": "Default transition duration for UI interactions." },
+      { "name": "duration-slow", "value": "500ms", "purpose": "Progress bar fills, expand/collapse animations." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action. Purple fill, white text. Used for primary actions: upload, confirm, submit.",
+      "html": "<button class=\"ds-btn-primary\">上传试卷</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 4px 16px; background-color: var(--color-brand-500); color: #fff; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.875rem; font-weight: 500; line-height: 1.4; border: none; border-radius: 8px; cursor: pointer; transition: filter 150ms, opacity 150ms; } .ds-btn-primary:hover { filter: brightness(0.9); } .ds-btn-primary:active { filter: brightness(0.75); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; } .ds-btn-primary:disabled { pointer-events: none; opacity: 0.5; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Subtle purple-tinted background. Used for secondary actions that need a purple association without full emphasis.",
+      "html": "<button class=\"ds-btn-secondary\">查看进度</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 4px 16px; background-color: var(--color-brand-100); color: var(--color-brand-700); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 150ms, filter 150ms; } .ds-btn-secondary:hover { background-color: var(--color-brand-200); } .ds-btn-secondary:active { background-color: var(--color-brand-300); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Stroked, transparent fill. Used for browsing files, cancel, or when a ghost action needs a visible boundary.",
+      "html": "<button class=\"ds-btn-outline\">浏览文件</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 4px 16px; background-color: transparent; color: var(--color-text); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.875rem; font-weight: 500; border: 1px solid var(--color-border); border-radius: 8px; cursor: pointer; transition: background-color 150ms, border-color 150ms; } .ds-btn-outline:hover { background-color: var(--color-brand-50); } .ds-btn-outline:active { background-color: var(--color-brand-100); } .ds-btn-outline:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "No fill, no border. Used for toolbar icons, inline controls, or the lightest touch action.",
+      "html": "<button class=\"ds-btn-ghost\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M6 9l6 6 6-6\"/></svg> 展开</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 4px 16px; background-color: transparent; color: var(--color-text); font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: background-color 150ms; } .ds-btn-ghost:hover { background-color: var(--color-brand-50); } .ds-btn-ghost:active { background-color: var(--color-brand-100); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }"
+    },
+    {
+      "name": "Destructive Button",
+      "kind": "button",
+      "refersTo": "button-destructive",
+      "description": "Red fill for destructive actions: delete project, remove file. Used sparingly and always with confirmation.",
+      "html": "<button class=\"ds-btn-destructive\">删除项目</button>",
+      "css": ".ds-btn-destructive { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 4px 16px; background-color: var(--color-error); color: #fff; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 8px; cursor: pointer; transition: opacity 150ms, filter 150ms; } .ds-btn-destructive:hover { opacity: 0.9; } .ds-btn-destructive:active { opacity: 0.8; } .ds-btn-destructive:focus-visible { outline: 2px solid var(--color-error); outline-offset: 2px; }"
+    },
+    {
+      "name": "StatusBadge — Active State",
+      "kind": "chip",
+      "refersTo": "status-badge",
+      "description": "Pill-shaped badge showing pipeline status. Active states (running, uploading, ocr) get a dot + pulse animation.",
+      "html": "<span class=\"ds-badge ds-badge-running\"><span class=\"ds-badge-dot ds-badge-dot-running\"></span> 识别中</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 2px 10px; border-radius: 9999px; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.75rem; font-weight: 500; border: 1px solid; line-height: 1.4; } .ds-badge-running { background-color: rgba(140, 120, 240, 0.1); border-color: rgba(140, 120, 240, 0.2); color: rgb(140, 120, 240); } .ds-badge-completed { background-color: rgba(80, 200, 120, 0.1); border-color: rgba(80, 200, 120, 0.2); color: rgb(80, 200, 120); } .ds-badge-failed { background-color: rgba(200, 80, 80, 0.1); border-color: rgba(200, 80, 80, 0.2); color: rgb(200, 80, 80); } .ds-badge-pending { background-color: rgba(200, 180, 50, 0.1); border-color: rgba(200, 180, 50, 0.2); color: rgb(200, 180, 50); } .ds-badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; } .ds-badge-dot-running { background-color: rgb(140, 120, 240); animation: ds-pulse 2s ease-in-out infinite; } .ds-badge-dot-completed { background-color: rgb(80, 200, 120); } .ds-badge-dot-failed { background-color: rgb(200, 80, 80); } .ds-badge-dot-pending { background-color: rgb(200, 180, 50); } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }"
+    },
+    {
+      "name": "StatusBadge — Completed State",
+      "kind": "chip",
+      "refersTo": "status-badge",
+      "description": "Badge in completed state — green dot, green text. No pulse, final state.",
+      "html": "<span class=\"ds-badge ds-badge-completed\"><span class=\"ds-badge-dot ds-badge-dot-completed\"></span> Complete</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 2px 10px; border-radius: 9999px; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.75rem; font-weight: 500; border: 1px solid; } .ds-badge-completed { background-color: rgba(80, 200, 120, 0.1); border-color: rgba(80, 200, 120, 0.2); color: rgb(80, 200, 120); } .ds-badge-dot-completed { width: 6px; height: 6px; border-radius: 50%; background-color: rgb(80, 200, 120); display: inline-block; }"
+    },
+    {
+      "name": "ProjectCard",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Dashboard project card. Horizontal layout: thumbnail, metadata, status, and actions dropdown.",
+      "html": "<div class=\"ds-card\" tabindex=\"0\" role=\"button\"><div class=\"ds-card-thumb\"><div class=\"ds-card-thumb-placeholder\">📄</div></div><div class=\"ds-card-body\"><div class=\"ds-card-title\">2024 期末试卷</div><div class=\"ds-card-meta\"><span>数学</span><span> · </span><span>六年级</span><span> · </span><span>25 题</span></div></div><div class=\"ds-card-end\"><span class=\"ds-badge ds-badge-running\"><span class=\"ds-badge-dot-running\"></span> 识别中</span></div></div>",
+      "css": ".ds-card { display: flex; align-items: center; gap: 12px; padding: 12px; background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05); transition: box-shadow 200ms, border-color 200ms; } .ds-card:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07); border-color: var(--color-brand-500); } .ds-card:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; } .ds-card-thumb { width: 48px; height: 64px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background-color: var(--color-border); } .ds-card-thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--color-text-muted); } .ds-card-body { flex: 1; min-width: 0; } .ds-card-title { font-size: 0.875rem; font-weight: 500; color: var(--color-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-card-meta { font-size: 0.75rem; color: var(--color-text-muted); margin-top: 2px; } .ds-card-end { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; } .ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; border: 1px solid; } .ds-badge-running { background-color: rgba(140, 120, 240, 0.1); border-color: rgba(140, 120, 240, 0.2); color: rgb(140, 120, 240); } .ds-badge-dot-running { width: 6px; height: 6px; border-radius: 50%; background-color: rgb(140, 120, 240); display: inline-block; animation: ds-pulse 2s ease-in-out infinite; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }"
+    },
+    {
+      "name": "ImageUpload — Empty Dropzone",
+      "kind": "custom",
+      "refersTo": "card-default",
+      "description": "Dashed-border drop zone for file upload. Click or drag-and-drop to select files.",
+      "html": "<div class=\"ds-dropzone\"><svg class=\"ds-dropzone-icon\" width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17 8 12 3 7 8\"/><line x1=\"12\" x2=\"12\" y1=\"3\" y2=\"15\"/></svg><div class=\"ds-dropzone-text\"><p class=\"ds-dropzone-label\">Drop files here or click to browse</p><p class=\"ds-dropzone-hint\">Supports PDF, PNG, JPEG (max 50MB)</p></div><button class=\"ds-btn-outline\">浏览文件</button></div>",
+      "css": ".ds-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px; border: 2px dashed var(--color-border); border-radius: 12px; background-color: var(--color-surface); cursor: pointer; transition: border-color 150ms, background-color 150ms; } .ds-dropzone:hover { border-color: var(--color-brand-300); } .ds-dropzone-icon { color: var(--color-text-muted); transition: color 150ms; } .ds-dropzone:hover .ds-dropzone-icon { color: var(--color-brand-500); } .ds-dropzone-text { text-align: center; } .ds-dropzone-label { font-size: 0.875rem; font-weight: 500; color: var(--color-text); } .ds-dropzone-hint { margin-top: 4px; font-size: 0.75rem; color: var(--color-text-muted); } .ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 32px; padding: 4px 12px; background-color: transparent; color: var(--color-text); font-size: 0.75rem; font-weight: 500; border: 1px solid var(--color-border); border-radius: 6px; cursor: pointer; transition: background-color 150ms; } .ds-btn-outline:hover { background-color: var(--color-brand-50); }"
+    },
+    {
+      "name": "PipelineStageCard — Active Step",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Pipeline stage card showing an active (running) step with progress bar. Purple border + subtle glow.",
+      "html": "<div class=\"ds-stage ds-stage-active\"><div class=\"ds-stage-step\"><div class=\"ds-stage-circle ds-stage-circle-active\">2</div></div><div class=\"ds-stage-content\"><div class=\"ds-stage-header\"><span class=\"ds-stage-label\">OCR 识别</span><span class=\"ds-badge ds-badge-running\"><span class=\"ds-badge-dot-running\"></span> 识别中</span></div><p class=\"ds-stage-desc\">正在识别图片中的数学公式和文本</p><div class=\"ds-stage-bar\"><div class=\"ds-stage-bar-fill\" style=\"width: 60%\"></div></div></div></div>",
+      "css": ".ds-stage { display: flex; gap: 12px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; background-color: var(--color-surface); transition: all 200ms; } .ds-stage-active { border-color: var(--color-brand-500); background-color: var(--color-brand-50); box-shadow: 0 1px 2px rgba(0,0,0,0.05); } .ds-stage-step { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; } .ds-stage-circle { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; transition: all 200ms; } .ds-stage-circle-active { background-color: var(--color-brand-500); color: #fff; animation: ds-pulse 2s ease-in-out infinite; } .ds-stage-content { flex: 1; min-width: 0; } .ds-stage-header { display: flex; align-items: center; gap: 8px; } .ds-stage-label { font-size: 0.875rem; font-weight: 600; color: var(--color-brand-500); } .ds-stage-desc { font-size: 0.75rem; color: var(--color-text-muted); margin-top: 2px; } .ds-stage-bar { margin-top: 8px; height: 6px; border-radius: 9999px; background-color: var(--color-brand-200); overflow: hidden; } .ds-stage-bar-fill { height: 100%; border-radius: 9999px; background-color: var(--color-brand-500); transition: width 500ms; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }"
+    },
+    {
+      "name": "QuestionCard — Collapsed",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Collapsible question card showing number, question text preview, score, and expand chevron.",
+      "html": "<div class=\"ds-qcard\"><button class=\"ds-qcard-header\" type=\"button\"><span class=\"ds-qcard-num\">3</span><span class=\"ds-qcard-text\">计算下列各题，能简算的要简算。</span><span class=\"ds-qcard-score ds-qcard-score-partial\">8/15</span><svg class=\"ds-qcard-chevron\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"m6 9 6 6 6-6\"/></svg></button></div>",
+      "css": ".ds-qcard { border: 1px solid var(--color-border); border-radius: 12px; background-color: var(--color-surface); transition: box-shadow 150ms; } .ds-qcard:hover { box-shadow: 0 1px 2px rgba(0,0,0,0.05); } .ds-qcard-header { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; text-align: left; background: none; border: none; cursor: pointer; font-family: inherit; } .ds-qcard-num { width: 28px; height: 28px; border-radius: 50%; background-color: var(--color-brand-100); color: var(--color-brand-700); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .ds-qcard-text { flex: 1; font-size: 0.875rem; font-weight: 500; color: var(--color-text); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; } .ds-qcard-score { font-size: 0.75rem; font-weight: 600; font-family: 'JetBrains Mono', 'Fira Code', monospace; flex-shrink: 0; } .ds-qcard-score-partial { color: var(--color-warning); } .ds-qcard-score-full { color: var(--color-success); } .ds-qcard-score-zero { color: var(--color-error); } .ds-qcard-chevron { color: var(--color-text-muted); flex-shrink: 0; transition: transform 200ms; } .ds-qcard-header:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: -2px; border-radius: 12px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Purple Academy",
+    "overview": "Inspired by IXL Learning's clean, educational aesthetic, this system combines the approachability of a well-organized classroom with the precision of a laboratory instrument. Light surfaces with purple anchors create an environment that feels both scholarly and inviting — like a math workbook that's been thoughtfully designed by someone who genuinely cares about the experience. The system explicitly rejects decorative excess (gradient text, glassmorphism, bounce animations) and enterprise heaviness (oversized headers, monotonous card grids, dense data-table-only layouts). Every component serves a pedagogical workflow: upload, preview, process, analyze. Nothing is ornamental.",
+    "keyCharacteristics": [
+      "Clean, light-dominant surfaces with purple as the single accent voice",
+      "Educational approachability (IXL-inspired) meets technical precision",
+      "Flat-by-default elevation with subtle hover lift",
+      "Rounded but not cuddly — radii are measured (6px–12px), not pill-shaped",
+      "Dual-theme: light and dark are equal citizens, switched via `.dark` class",
+      "OKLCH color system for perceptual uniformity across themes"
+    ],
+    "rules": [
+      {
+        "name": "The Single Accent Rule",
+        "body": "Purple is the only accent color. Success/warning/error are semantic signals, not decorative accents. Do not introduce a second accent color — the system's restraint is its identity.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Headroom Rule",
+        "body": "This system does not define display or hero typography. The largest size is 15px/600 for titles. This enforces the tool-kit character: every component stays at UI scale, never competing with the consuming application's own hierarchy.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. Shadows appear only as a response to interaction state (hover, open, focus). If you can't see the shadow without looking for it, it's right.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use purple as the single accent voice. It appears on primary buttons, active indicators, focus outlines, and progress fills — nowhere else.",
+      "Do keep surfaces flat at rest. Use shadows sparingly and only for interactive feedback or elevation hierarchy.",
+      "Do use semantic colors strictly for their meaning: Jade = success, Amber = warning, Vermilion = error. Never use them decoratively.",
+      "Do use OKLCH for all color definitions — it ensures perceptual consistency between light and dark themes.",
+      "Do make all interactive elements keyboard-accessible and screen-reader friendly (type=\"button\", aria-label, role attributes).",
+      "Do use the mono font for scores and data values to ensure precise alignment in tables and progress displays.",
+      "Do respect reduced-motion preferences by keeping transitions brief (150–250ms) or suppressing animation entirely."
+    ],
+    "donts": [
+      "Don't introduce a second accent color. The system's restraint is its identity.",
+      "Don't use gradient text, glassmorphism, bounce animations, or ornamental flourishes.",
+      "Don't use enterprise-heavy patterns: oversized headers, dense data-table-only layouts, identical card grids.",
+      "Don't use side-stripe borders (border-left/right > 1px as accent). Use full borders, background tints, or icons instead.",
+      "Don't use em dashes. Use commas, colons, semicolons, periods, or parentheses.",
+      "Don't use inline #000 or #fff. Tint all neutrals toward the brand hue with low chroma.",
+      "Don't define display/hero typography — this is a UI toolkit, not a marketing design system.",
+      "Don't nest cards. Cards are already the boundary element; nesting them is always wrong."
+    ]
+  }
+}

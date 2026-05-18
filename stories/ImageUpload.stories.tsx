@@ -42,3 +42,11 @@ export const ImageOnly: Story = {
     hint: "PNG, JPEG, or WebP",
   },
 };
+
+export const MultipleFiles: Story = {
+  args: {
+    multiple: true,
+    label: "Drop exam pages here",
+    hint: "Select multiple pages at once (max 50MB each)",
+  },
+};

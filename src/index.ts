@@ -67,6 +67,7 @@ export type { AppLayoutProps } from "./components/AppLayout";
 export { ProjectCard } from "./components/ProjectCard";
 export type { ProjectCardProps, DashboardStatus } from "./components/ProjectCard";
 
+// @deprecated Use ProjectCard's Dropdown actions instead. Will be removed in a future version.
 export { CardActions } from "./components/CardActions";
 export type { CardActionsProps } from "./components/CardActions";
 

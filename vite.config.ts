@@ -35,6 +35,8 @@ export default defineConfig({
         "react-dom",
         "react/jsx-runtime",
         "@heroui/react",
+        "@heroui/styles",
+        "@gravity-ui/icons",
         "tailwind-merge",
         "clsx",
       ],

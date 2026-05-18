@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "../utils/cn";
 import { StatusBadge, type PipelineStatus } from "./StatusBadge";
+import { Clock } from "@gravity-ui/icons";
 
 export interface PipelineStageCardProps extends React.ComponentProps<"div"> {
   /** Stage label */
@@ -58,11 +59,11 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
           <div
             className={cn(
               "size-7 rounded-full flex items-center justify-center text-xs font-bold transition-all",
-              isComplete && "bg-emerald-500 text-white",
-              isActive && "bg-(--color-primary) text-white animate-pulse",
-              status === "failed" && "bg-red-500 text-white",
-              status === "pending" && "bg-(--color-brand-100) text-(--color-brand-700)",
-              status === "queued" && "bg-slate-200 text-slate-600",
+              isComplete && "bg-[var(--color-success)] text-[var(--color-primary-foreground)]",
+              isActive && "bg-[var(--color-primary)] text-[var(--color-primary-foreground)] animate-pulse",
+              status === "failed" && "bg-[var(--color-error)] text-[var(--color-primary-foreground)]",
+              status === "pending" && "bg-[var(--color-brand-100)] text-[var(--color-brand-700)]",
+              status === "queued" && "bg-[var(--color-border)] text-[var(--color-text-muted)]",
             )}
           >
             {isComplete ? "✓" : step}
@@ -94,7 +95,7 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
 
           {/* Elapsed time */}
           {elapsed && (
-            <p className="text-xs text-(--color-text-muted) mt-1">⏱ {elapsed}</p>
+            <p className="text-xs text-(--color-text-muted) mt-1 inline-flex items-center gap-1"><Clock className="size-3" />{elapsed}</p>
           )}
 
           {/* Children slot */}

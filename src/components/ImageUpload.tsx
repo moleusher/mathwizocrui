@@ -1,6 +1,9 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { cn } from "../utils/cn";
 import { MathButton } from "./MathButton";
+import { ImagePreview } from "./ImagePreview";
+import { ImagePagination } from "./ImagePagination";
+import { Xmark } from "@gravity-ui/icons";
 
 export interface ImageUploadProps extends Omit<React.ComponentProps<"div">, "onChange"> {
   /** Accepted file types, e.g. "image/*,.pdf" */
@@ -38,30 +41,76 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
     ref,
   ) => {
     const [isDragging, setIsDragging] = useState(false);
-    const [preview, setPreview] = useState<string | null>(null);
+    const [files, setFiles] = useState<File[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
+    const objectUrlsRef = useRef<Map<string, string>>(new Map());
+
+    // Revoke all object URLs on unmount
+    useEffect(() => {
+      return () => {
+        objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+      };
+    }, []);
+
+    const getObjectUrl = useCallback((file: File): string => {
+      const key = file.name + file.size + file.lastModified;
+      if (objectUrlsRef.current.has(key)) {
+        return objectUrlsRef.current.get(key)!;
+      }
+      const url = URL.createObjectURL(file);
+      objectUrlsRef.current.set(key, url);
+      return url;
+    }, []);
 
     const handleFiles = useCallback(
-      (files: FileList | null) => {
-        if (!files?.length) return;
+      (fileList: FileList | null) => {
+        if (!fileList?.length) return;
         const valid: File[] = [];
-        for (const f of Array.from(files)) {
+        for (const f of Array.from(fileList)) {
           if (f.size > maxSize) continue;
           valid.push(f);
         }
         if (!valid.length) return;
 
-        // Preview first image
-        if (showPreview && valid[0]?.type.startsWith("image/")) {
-          const reader = new FileReader();
-          reader.onload = () => setPreview(reader.result as string);
-          reader.readAsDataURL(valid[0]);
-        }
-
-        onFilesSelected?.(valid.slice(0, multiple ? undefined : 1));
+        setFiles((prev) => {
+          const next = multiple ? [...prev, ...valid] : valid;
+          // Reset to first page when adding the first batch
+          if (prev.length === 0 && next.length > 0) {
+            setCurrentIndex(0);
+          }
+          onFilesSelected?.(next);
+          return next;
+        });
       },
-      [maxSize, multiple, onFilesSelected, showPreview],
+      [maxSize, multiple, onFilesSelected],
     );
+
+    const removeCurrentFile = useCallback(() => {
+      setFiles((prev) => {
+        if (prev.length === 0) return prev;
+        const next = prev.filter((_, i) => i !== currentIndex);
+        onFilesSelected?.(next);
+        return next;
+      });
+      // Adjust index after removal
+      setFiles((prev) => {
+        if (currentIndex >= prev.length && prev.length > 0) {
+          setCurrentIndex(prev.length - 1);
+        }
+        return prev;
+      });
+    }, [currentIndex, onFilesSelected]);
+
+    const hasFiles = files.length > 0;
+    const currentFile = hasFiles ? files[currentIndex] : null;
+    const isImage = currentFile?.type.startsWith("image/");
+    const previewUrl = hasFiles && isImage && currentFile ? getObjectUrl(currentFile) : null;
+
+    const openFilePicker = useCallback((e?: React.MouseEvent) => {
+      e?.stopPropagation();
+      inputRef.current?.click();
+    }, []);
 
     return (
       <div
@@ -69,14 +118,16 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
         data-slot="image-upload"
         data-dragging={isDragging || undefined}
         data-error={error || undefined}
+        data-has-files={hasFiles || undefined}
         className={cn(
-          "relative flex flex-col items-center justify-center gap-3 rounded-(--radius-lg) border-2 border-dashed p-8 transition-colors duration-150 cursor-pointer",
+          "relative flex flex-col items-center justify-center gap-3 rounded-(--radius-lg) border-2 border-dashed p-8 transition-colors duration-150",
+          !hasFiles && "cursor-pointer",
           "border-(--color-border) bg-(--color-surface)",
           isDragging && "border-(--color-primary) bg-(--color-brand-50)",
-          error && "border-red-300 bg-red-50",
+          error && "border-[var(--color-error)] bg-[var(--color-error-bg)]",
           className,
         )}
-        onClick={() => inputRef.current?.click()}
+        onClick={() => !hasFiles && openFilePicker()}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
@@ -96,61 +147,112 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           accept={accept}
           multiple={multiple}
           className="hidden"
+          aria-label="Choose file"
           onChange={(e) => handleFiles(e.target.files)}
         />
 
-        {/* Preview */}
-        {preview && (
-          <img
-            src={preview}
-            alt="Upload preview"
-            className="max-h-48 max-w-full rounded-(--radius-md) object-contain"
-          />
-        )}
-
-        {/* Upload icon */}
-        {!preview && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={cn(
-              "transition-colors",
-              isDragging ? "text-(--color-primary)" : "text-(--color-text-muted)",
+        {hasFiles && showPreview ? (
+          /* ── Preview mode (single or multi-page) ── */
+          <>
+            {error && (
+              <p className="w-full text-xs text-[var(--color-error)] text-center">{error}</p>
             )}
-          >
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="17 8 12 3 7 8" />
-            <line x1="12" x2="12" y1="3" y2="15" />
-          </svg>
-        )}
 
-        {/* Text */}
-        <div className="text-center">
-          <p
-            className={cn(
-              "text-sm font-medium",
-              isDragging ? "text-(--color-primary)" : "text-(--color-text)",
+            {isImage && previewUrl ? (
+              <ImagePreview src={previewUrl} alt={currentFile?.name ?? ""} />
+            ) : (
+              <div className="w-full h-48 flex items-center justify-center text-(--color-text-muted) text-sm">
+                {currentFile?.name ?? "Unsupported file"}
+              </div>
             )}
-          >
-            {label}
-          </p>
-          {hint && (
-            <p className="mt-1 text-xs text-(--color-text-muted)">{hint}</p>
-          )}
-          {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
-        </div>
 
-        {!preview && (
-          <MathButton variant="outline" size="sm" type="button">
-            Browse Files
-          </MathButton>
+            {multiple && files.length > 1 && (
+              <ImagePagination
+                current={currentIndex + 1}
+                total={files.length}
+                onPageChange={(p) => setCurrentIndex(p - 1)}
+              />
+            )}
+
+            <div className="flex items-center gap-3 text-sm text-(--color-text-muted)">
+              <span>
+                {files.length} file{files.length !== 1 ? "s" : ""} selected
+              </span>
+              {multiple && (
+                <button
+                  type="button"
+                  className="text-[var(--color-error)] hover:opacity-70 transition-colors cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeCurrentFile();
+                  }}
+                >
+                  <Xmark className="size-3.5" /> 移除{" "}
+                  {files.length > 1
+                    ? `第 ${currentIndex + 1} 页`
+                    : "当前页"}
+                </button>
+              )}
+            </div>
+
+            {multiple && (
+              <div className="w-full pt-4 border-t border-(--color-border) flex flex-col items-center gap-2">
+                <p className="text-xs text-(--color-text-muted)">
+                  Add more files by dropping or browsing
+                </p>
+                <MathButton
+                  variant="outline"
+                  size="sm"
+                  type="button"
+                  onClick={openFilePicker}
+                >
+                  Browse Files
+                </MathButton>
+              </div>
+            )}
+          </>
+        ) : (
+          /* ── Empty dropzone ── */
+          <>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={cn(
+                "transition-colors",
+                isDragging ? "text-(--color-primary)" : "text-(--color-text-muted)",
+              )}
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+
+            <div className="text-center">
+              <p
+                className={cn(
+                  "text-sm font-medium",
+                  isDragging ? "text-(--color-primary)" : "text-(--color-text)",
+                )}
+              >
+                {label}
+              </p>
+              {hint && (
+                <p className="mt-1 text-xs text-(--color-text-muted)">{hint}</p>
+              )}
+              {error && <p className="mt-1 text-xs text-[var(--color-error)]">{error}</p>}
+            </div>
+
+            <MathButton variant="outline" size="sm" type="button" onClick={openFilePicker}>
+              Browse Files
+            </MathButton>
+          </>
         )}
       </div>
     );

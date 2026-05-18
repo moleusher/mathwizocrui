@@ -27,7 +27,7 @@ const variantStyles: Record<MathButtonVariant, string> = {
   ghost:
     "bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
   destructive:
-    "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+    "bg-[var(--color-error)] text-white hover:opacity-90 active:opacity-80",
 };
 
 const sizeStyles: Record<MathButtonSize, string> = {

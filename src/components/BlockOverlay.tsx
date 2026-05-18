@@ -36,6 +36,18 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
             key={block.id}
             data-slot="block-overlay-item"
             data-active={block.active || undefined}
+            role={onBlockClick ? "button" : undefined}
+            tabIndex={onBlockClick ? 0 : undefined}
+            onKeyDown={
+              onBlockClick
+                ? (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      onBlockClick(block.id);
+                    }
+                  }
+                : undefined
+            }
             className={cn(
               "absolute pointer-events-auto cursor-pointer transition-all border-2 rounded-sm",
               block.color || "border-(--color-primary)",
@@ -53,7 +65,7 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
             title={block.label}
           >
             {block.label && (
-              <span className="absolute -top-5 left-0 text-[10px] font-medium bg-white/90 px-1 rounded whitespace-nowrap shadow-sm">
+              <span className="absolute -top-5 left-0 text-[10px] font-medium bg-[var(--color-surface)]/90 px-1 rounded whitespace-nowrap shadow-[var(--shadow-sm)]">
                 {block.label}
               </span>
             )}

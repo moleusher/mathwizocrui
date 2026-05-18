@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "../utils/cn";
-import { CardActions } from "./CardActions";
+import { Button, Dropdown } from "@heroui/react";
+import { EllipsisVertical, TrashBin } from "@gravity-ui/icons";
 import { StatusBadge } from "./StatusBadge";
 import type { PipelineStatus } from "./StatusBadge";
 
@@ -20,7 +21,15 @@ export interface ProjectCardProps extends React.ComponentProps<"div"> {
   analyzeProgress?: number;
   thumbnailUrl?: string;
   onClick: () => void;
-  onViewProgress: () => void;
+  /** Callbacks for dropdown actions */
+  onViewProgress?: () => void;
+  onOcrParse?: () => void;
+  onReupload?: () => void;
+  onDelete?: () => void;
+  /** Keys of built-in dropdown items to disable: "ocr-parse", "view-progress", "reupload", "delete" */
+  dropdownDisabledKeys?: string[];
+  /** Additional custom dropdown items rendered after built-in items, before "删除项目" */
+  dropdownItems?: React.ReactNode;
 }
 
 const statusConfig: Record<DashboardStatus, PipelineStatus> = {
@@ -41,6 +50,11 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
       thumbnailUrl,
       onClick,
       onViewProgress,
+      onOcrParse,
+      onReupload,
+      onDelete,
+      dropdownDisabledKeys,
+      dropdownItems,
       className,
       ...props
     },
@@ -48,7 +62,31 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
   ) => {
     const showProgress = dashboardStatus === "ocr" || dashboardStatus === "analyzing";
     const progress = dashboardStatus === "ocr" ? ocrProgress : analyzeProgress;
-    const showActions = dashboardStatus !== "uploading";
+
+    // Dropdown items render whenever their callback prop is provided.
+    // Visibility and disabled state are controlled by the frontend.
+    const showOcrParse = !!onOcrParse;
+    const showViewProgress = !!onViewProgress;
+
+    const hasDropdownItems =
+      showOcrParse || showViewProgress || !!onReupload || !!dropdownItems || !!onDelete;
+
+    const handleAction = (key: string) => {
+      switch (key) {
+        case "ocr-parse":
+          onOcrParse?.();
+          break;
+        case "view-progress":
+          onViewProgress?.();
+          break;
+        case "reupload":
+          onReupload?.();
+          break;
+        case "delete":
+          onDelete?.();
+          break;
+      }
+    };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
@@ -106,7 +144,52 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
 
         {/* Right: Status + Progress + Actions */}
         <div className="flex flex-col items-end gap-1 flex-shrink-0">
-          <StatusBadge status={statusConfig[dashboardStatus]} />
+          <div className="flex items-center gap-1">
+            <StatusBadge status={statusConfig[dashboardStatus]} />
+            {hasDropdownItems && (
+              <Dropdown>
+                <Button
+                  isIconOnly
+                  aria-label="更多操作"
+                  variant="tertiary"
+                  size="sm"
+                  className="text-[var(--color-text-muted)] min-w-unit-7 w-7 h-7"
+                >
+                  <EllipsisVertical className="size-4" />
+                </Button>
+                <Dropdown.Popover placement="bottom end">
+                  <Dropdown.Menu
+                    aria-label="项目操作"
+                    disabledKeys={dropdownDisabledKeys}
+                    onAction={(key) => handleAction(key as string)}
+                  >
+                    {showOcrParse && (
+                      <Dropdown.Item key="ocr-parse" textValue="OCR解析">
+                        OCR解析
+                      </Dropdown.Item>
+                    )}
+                    {showViewProgress && (
+                      <Dropdown.Item key="view-progress" textValue="查看进度">
+                        查看进度
+                      </Dropdown.Item>
+                    )}
+                    {onReupload && (
+                      <Dropdown.Item key="reupload" textValue="重新上传">
+                        重新上传
+                      </Dropdown.Item>
+                    )}
+                    {dropdownItems}
+                    {onDelete && (
+                      <Dropdown.Item key="delete" textValue="删除项目" variant="danger">
+                        <TrashBin className="size-4" />
+                        删除项目
+                      </Dropdown.Item>
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
+            )}
+          </div>
           {showProgress && (
             <div data-slot="project-card-progress" className="w-24">
               <div className="h-1 rounded-full bg-[var(--color-border)] overflow-hidden">
@@ -117,7 +200,6 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
               </div>
             </div>
           )}
-          {showActions && <CardActions onViewProgress={onViewProgress} />}
         </div>
       </div>
     );

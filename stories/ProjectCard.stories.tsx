@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Dropdown } from "@heroui/react";
 import { ProjectCard } from "../src/components/ProjectCard";
 
 const meta: Meta<typeof ProjectCard> = {
@@ -14,7 +15,6 @@ const meta: Meta<typeof ProjectCard> = {
   args: {
     project: { id: "p1", title: "2024 初二数学期中试卷", subject: "数学", grade: "G8", questions: 12 },
     onClick: () => {},
-    onViewProgress: () => {},
   },
 };
 export default meta;
@@ -27,14 +27,37 @@ export const Completed: Story = { args: { dashboardStatus: "completed" } };
 export const Failed: Story = { args: { dashboardStatus: "failed" } };
 export const WithThumbnail: Story = { args: { dashboardStatus: "completed", thumbnailUrl: "https://placehold.co/48x64" } };
 
-export const AllStatuses: Story = {
-  render: (args) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxWidth: 600 }}>
-      <ProjectCard {...args} dashboardStatus="uploading" />
-      <ProjectCard {...args} dashboardStatus="ocr" ocrProgress={45} />
-      <ProjectCard {...args} dashboardStatus="analyzing" analyzeProgress={70} />
-      <ProjectCard {...args} dashboardStatus="completed" />
-      <ProjectCard {...args} dashboardStatus="failed" />
-    </div>
-  ),
+/** With all dropdown actions available (OCR解析, 查看进度, 重新上传, 删除) */
+export const WithActions: Story = {
+  args: {
+    dashboardStatus: "completed",
+    onOcrParse: () => {},
+    onViewProgress: () => {},
+    onReupload: () => {},
+    onDelete: () => {},
+  },
+};
+
+/** "OCR解析" is disabled via dropdownDisabledKeys */
+export const DisabledActions: Story = {
+  args: {
+    dashboardStatus: "failed",
+    onOcrParse: () => {},
+    onDelete: () => {},
+    dropdownDisabledKeys: ["ocr-parse"],
+  },
+};
+
+/** Custom items injected between built-in items and "删除项目" */
+export const WithCustomItems: Story = {
+  args: {
+    dashboardStatus: "completed",
+    onDelete: () => {},
+    dropdownItems: (
+      <>
+        <Dropdown.Item key="share" textValue="分享">分享</Dropdown.Item>
+        <Dropdown.Item key="rename" textValue="重命名">重命名</Dropdown.Item>
+      </>
+    ),
+  },
 };

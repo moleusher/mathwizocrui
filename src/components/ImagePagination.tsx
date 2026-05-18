@@ -43,7 +43,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
     }
 
     const btnClass =
-      "size-8 flex items-center justify-center rounded-(--radius-sm) text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-default";
+      "size-9 flex items-center justify-center rounded-(--radius-sm) text-sm font-medium transition-colors disabled:opacity-30 disabled:cursor-default";
 
     return (
       <div
@@ -54,20 +54,22 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
       >
         {showEdges && (
           <button
+            type="button"
             className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
             disabled={current === 1}
             onClick={() => onPageChange(1)}
-            title="First page"
+            aria-label="First page"
           >
             «
           </button>
         )}
 
         <button
+          type="button"
           className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
           disabled={current === 1}
           onClick={() => onPageChange(current - 1)}
-          title="Previous page"
+          aria-label="Previous page"
         >
           ‹
         </button>
@@ -80,6 +82,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
               </span>
             ) : (
               <button
+                type="button"
                 key={p}
                 className={cn(
                   btnClass,
@@ -88,6 +91,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
                     : "hover:bg-(--color-brand-50) text-(--color-text)",
                 )}
                 onClick={() => onPageChange(p)}
+                aria-label={`Page ${p}`}
               >
                 {p}
               </button>
@@ -95,20 +99,22 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
           )}
 
         <button
+          type="button"
           className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
           disabled={current === total}
           onClick={() => onPageChange(current + 1)}
-          title="Next page"
+          aria-label="Next page"
         >
           ›
         </button>
 
         {showEdges && (
           <button
+            type="button"
             className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
             disabled={current === total}
             onClick={() => onPageChange(total)}
-            title="Last page"
+            aria-label="Last page"
           >
             »
           </button>
