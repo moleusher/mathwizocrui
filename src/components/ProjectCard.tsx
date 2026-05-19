@@ -40,6 +40,18 @@ const statusConfig: Record<DashboardStatus, PipelineStatus> = {
   failed: "failed",
 };
 
+const statusLabels: Record<DashboardStatus, string> = {
+  uploading: "上传中",
+  ocr: "识别中",
+  analyzing: "分析中",
+  completed: "已完成",
+  failed: "已失败",
+};
+
+function getCardAriaLabel(title: string, status: DashboardStatus): string {
+  return `试卷: ${title} — 状态: ${statusLabels[status]}`;
+}
+
 export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
   (
     {
@@ -102,6 +114,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         tabIndex={0}
         data-slot="project-card"
         data-status={dashboardStatus}
+        aria-label={getCardAriaLabel(project.title, dashboardStatus)}
         className={cn(
           "flex items-center gap-3 p-3 rounded-lg cursor-pointer",
           "bg-[var(--color-surface)] border border-[var(--color-border)]",

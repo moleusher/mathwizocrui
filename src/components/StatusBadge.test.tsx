@@ -52,6 +52,12 @@ describe("StatusBadge", () => {
     expect(dot).toHaveClass("animate-pulse");
   });
 
+  it("respects prefers-reduced-motion with motion-reduce class", () => {
+    render(<StatusBadge status="uploading" pulse />);
+    const dot = document.querySelector('[data-slot="status-badge-dot"]');
+    expect(dot).toHaveClass("motion-reduce:animate-none");
+  });
+
   it("does not pulse for completed state", () => {
     render(<StatusBadge status="completed" pulse />);
     const dot = document.querySelector('[data-slot="status-badge-dot"]');

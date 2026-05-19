@@ -14,6 +14,8 @@ export interface ImageUploadProps extends Omit<React.ComponentProps<"div">, "onC
   maxSize?: number;
   /** Called when files are selected */
   onFilesSelected?: (files: File[]) => void;
+  /** Called when files are rejected due to size/type validation */
+  onRejected?: (rejected: Array<{ name: string; reason: string }>) => void;
   /** Preview selected image as background */
   showPreview?: boolean;
   /** Custom dropzone text */
@@ -22,6 +24,10 @@ export interface ImageUploadProps extends Omit<React.ComponentProps<"div">, "onC
   hint?: string;
   /** Error message to display */
   error?: string;
+  /** Aria-label for the dropzone region (default computed from accept) */
+  ariaLabel?: string;
+  /** Aria-label for the hidden file input (default computed from accept) */
+  inputAriaLabel?: string;
 }
 
 export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
@@ -31,10 +37,13 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
       multiple = false,
       maxSize = 50 * 1024 * 1024,
       onFilesSelected,
+      onRejected,
       showPreview = true,
       label = "Drop files here or click to browse",
       hint = "Supports PDF, PNG, JPEG (max 50MB)",
       error,
+      ariaLabel,
+      inputAriaLabel,
       className,
       ...props
     },
@@ -45,6 +54,22 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
     const [currentIndex, setCurrentIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
     const objectUrlsRef = useRef<Map<string, string>>(new Map());
+
+    // Compute default ARIA labels from accept prop
+    const dropzoneAriaLabel = ariaLabel || (accept === "image/jpeg,image/png"
+      ? "试卷上传区域"
+      : accept === "image/*"
+        ? "图片上传区域"
+        : accept === "image/*,.pdf"
+          ? "文件上传区域"
+          : "文件上传区域");
+    const fileInputAriaLabel = inputAriaLabel || (accept === "image/jpeg,image/png"
+      ? "选择 JPEG 或 PNG 试卷图片"
+      : accept === "image/*"
+        ? "选择图片文件"
+        : accept === "image/*,.pdf"
+          ? "选择图片或 PDF 文件"
+          : "选择文件");
 
     // Revoke all object URLs on unmount
     useEffect(() => {
@@ -67,9 +92,38 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
       (fileList: FileList | null) => {
         if (!fileList?.length) return;
         const valid: File[] = [];
+        const rejected: Array<{ name: string; reason: string }> = [];
+        const maxSizeMb = (maxSize / (1024 * 1024)).toFixed(0);
+
+        // Parse accept list for type checking
+        const acceptedTypes = accept.split(",").map((t) => t.trim());
+        const isTypeAccepted = (file: File): boolean => {
+          if (acceptedTypes.length === 0 || acceptedTypes[0] === "" || acceptedTypes[0] === "*/*") return true;
+          return acceptedTypes.some((type) => {
+            if (type.startsWith(".")) {
+              return file.name.toLowerCase().endsWith(type.toLowerCase());
+            }
+            if (type.endsWith("/*")) {
+              const category = type.slice(0, -2);
+              return file.type.startsWith(category);
+            }
+            return file.type === type;
+          });
+        };
+
         for (const f of Array.from(fileList)) {
-          if (f.size > maxSize) continue;
+          if (f.size > maxSize) {
+            rejected.push({ name: f.name, reason: `超过 ${maxSizeMb}MB 大小限制` });
+            continue;
+          }
+          if (!isTypeAccepted(f)) {
+            rejected.push({ name: f.name, reason: "不支持的文件类型" });
+            continue;
+          }
           valid.push(f);
+        }
+        if (rejected.length > 0) {
+          onRejected?.(rejected);
         }
         if (!valid.length) return;
 
@@ -83,7 +137,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           return next;
         });
       },
-      [maxSize, multiple, onFilesSelected],
+      [maxSize, multiple, onFilesSelected, onRejected],
     );
 
     const removeCurrentFile = useCallback(() => {
@@ -115,6 +169,8 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
     return (
       <div
         ref={ref}
+        role="region"
+        aria-label={dropzoneAriaLabel}
         data-slot="image-upload"
         data-dragging={isDragging || undefined}
         data-error={error || undefined}
@@ -147,7 +203,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           accept={accept}
           multiple={multiple}
           className="hidden"
-          aria-label="Choose file"
+          aria-label={fileInputAriaLabel}
           onChange={(e) => handleFiles(e.target.files)}
         />
 

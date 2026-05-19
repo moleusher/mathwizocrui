@@ -70,6 +70,30 @@ describe("ProjectCard", () => {
     expect(document.querySelector('[data-status="ocr"]')).toBeInTheDocument();
   });
 
+  it("has descriptive aria-label with title and status", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="completed"
+        onClick={() => {}}
+      />,
+    );
+    const card = document.querySelector('[data-slot="project-card"]');
+    expect(card).toHaveAttribute("aria-label", "试卷: 2024 期末数学试卷 — 状态: 已完成");
+  });
+
+  it("aria-label reflects uploading status", () => {
+    render(
+      <ProjectCard
+        project={mockProject}
+        dashboardStatus="uploading"
+        onClick={() => {}}
+      />,
+    );
+    const card = document.querySelector('[data-slot="project-card"]');
+    expect(card).toHaveAttribute("aria-label", "试卷: 2024 期末数学试卷 — 状态: 上传中");
+  });
+
   // ── StatusBadge ──
   it.each([
     ["uploading", "上传中"],

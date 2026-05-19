@@ -118,7 +118,7 @@ export const StatusBadge = React.forwardRef<HTMLSpanElement, StatusBadgeProps>(
           className={cn(
             "size-1.5 rounded-full",
             config.dot,
-            pulse && isActive && "animate-pulse",
+            pulse && isActive && "animate-pulse motion-reduce:animate-none",
           )}
         />
         {!compact && config.label}

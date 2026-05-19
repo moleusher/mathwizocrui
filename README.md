@@ -49,7 +49,7 @@ npm run lint         # tsc --noEmit
 | Image/OCR | ImageUpload, ImagePreview, ImagePagination |
 | Analysis | QuestionCard, QuestionList, AnalysisTabs, IntentActions |
 | Pipeline | PipelineStageCard, BlockLegend, BlockOverlay |
-| Dashboard | ProjectCard (Dropdown: OCR解析/查看进度/重新上传/删除), ClassroomProgress |
+| Dashboard | ProjectCard (HeroUI Dropdown with custom items + disabledKeys), ClassroomProgress |
 | Layout | TopBar, AppLayout |
 
 Also re-exports HeroUI components (Button, Card, Badge, ProgressBar, etc.).
@@ -66,13 +66,18 @@ import "@mathwiz/ui-ocr/styles.css";
 
 ### 0.1.4 (2026-05-18)
 
-- **ProjectCard**: Replace CardActions + actions slot with HeroUI Dropdown.
-  - Dropdown items: OCR解析, 查看进度, 重新上传, 删除项目.
-  - Context-aware — items show/hide based on `dashboardStatus`.
-  - Icons via `@gravity-ui/icons` (EllipsisVertical, TrashBin).
+- **ProjectCard**: Replace CardActions + actions slot with HeroUI Dropdown (EllipsisVertical trigger).
+  - Dropdown items: OCR解析, 查看进度, 重新上传 (via `onOcrParse`/`onViewProgress`/`onReupload` callbacks), plus custom `dropdownItems` slot and `dropdownDisabledKeys`.
+  - Delete item with TrashBin icon via `onDelete` callback.
+  - Frontend fully controls item visibility via callback presence.
+- **ImageUpload**: Multi-page upload support with paginated preview (ImagePagination), per-file removal (Xmark icon), incremental file addition. Backward compatible.
+- **Audit fixes**: type="button" + aria-label on all buttons, replace hard-coded colors with semantic tokens (`--color-success`/`--color-error`), replace emoji with `@gravity-ui/icons` (Xmark, Clock).
+- **New tokens**: `--color-info` + `--color-info-bg` for running/uploading states and info badges.
+- **Accessibility**: BlockOverlay keyboard support (role=button, tabIndex, onKeyDown); touch targets increased (32→36px pagination, 28→32px zoom controls).
 - **CardActions** marked as `@deprecated` — use ProjectCard Dropdown instead.
+- **Design context**: Add PRODUCT.md, DESIGN.md, .impeccable/design.json for AI-assisted brand consistency.
 - Install `@heroui/styles` for HeroUI v3 + Tailwind 4 CSS integration.
-- Updated Storybook stories and tests for new Dropdown API.
+- Updated Storybook stories and tests for new Dropdown API and ImageUpload.
 - Bump version to 0.1.4.
 
 ### 0.1.2 (2026-05-17)
