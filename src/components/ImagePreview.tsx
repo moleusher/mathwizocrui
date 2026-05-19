@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { cn } from "../utils/cn";
 
 export interface ImagePreviewProps extends React.ComponentProps<"div"> {
@@ -36,15 +36,25 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [hasError, setHasError] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const divRef = useRef<HTMLDivElement>(null);
 
-    const handleWheel = useCallback(
-      (e: React.WheelEvent) => {
-        if (!zoomable) return;
+    // wheel handler with passive:false to avoid browser warning for preventDefault
+    useEffect(() => {
+      const el = divRef.current;
+      if (!el || !zoomable) return;
+      const handler = (e: WheelEvent) => {
         e.preventDefault();
         setZoom((z) => Math.min(maxZoom, Math.max(1, z - e.deltaY * 0.001)));
-      },
-      [zoomable, maxZoom],
-    );
+      };
+      el.addEventListener('wheel', handler, { passive: false });
+      return () => el.removeEventListener('wheel', handler);
+    }, [zoomable, maxZoom]);
+
+    // forward internal ref to parent ref
+    useEffect(() => {
+      if (typeof ref === 'function') ref(divRef.current);
+      else if (ref) ref.current = divRef.current;
+    }, [ref]);
 
     const handleMouseDown = (e: React.MouseEvent) => {
       if (zoom <= 1) return;
@@ -66,7 +76,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
 
     return (
       <div
-        ref={ref}
+        ref={divRef}
         data-slot="image-preview"
         data-zoom={zoom > 1 ? zoom : undefined}
         className={cn(
@@ -76,7 +86,6 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
           isDragging && "cursor-grabbing",
           className,
         )}
-        onWheel={handleWheel}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

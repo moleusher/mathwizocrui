@@ -89,7 +89,7 @@ const STATUS_CONFIG: Record<
 // ── Component ──
 export const StatusBadge = React.forwardRef<HTMLSpanElement, StatusBadgeProps>(
   ({ status, pulse = false, compact = false, className, ...props }, ref) => {
-    const config = STATUS_CONFIG[status];
+    const config = STATUS_CONFIG[status] || STATUS_CONFIG.pending;
     const isActive =
       status === "running" ||
       status === "pending" ||
