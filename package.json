@@ -1,6 +1,6 @@
 {
   "name": "@mathwiz/ui-ocr",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "private": false,
   "description": "Math-OCR Component Library — React 19 · HeroUI 3 · Tailwind 4 · Storybook 10",
   "type": "module",
@@ -33,6 +33,12 @@
     "@heroui/react": "3.0.5",
     "@heroui/styles": "^3.0.5",
     "clsx": "^2.1.1",
+    "katex": "^0.16.47",
+    "lucide-react": "^1.16.0",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "rehype-sanitize": "^6.0.0",
+    "remark-math": "^6.0.0",
     "tailwind-merge": "^3.4.0"
   },
   "peerDependencies": {
@@ -45,9 +51,12 @@
     "@storybook/addon-themes": "^10.4.0",
     "@storybook/react": "^10.4.0",
     "@storybook/react-vite": "^10.4.0",
+    "@storybook/test": "^8.6.15",
     "@tailwindcss/vite": "^4.3.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@types/katex": "^0.16.8",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",

@@ -81,3 +81,14 @@
   font-size: 1.05em;
   line-height: 1.6;
 }
+
+/* ── KaTeX Dark Mode ── */
+.dark .katex { color: var(--color-text); }
+.dark .katex .mathnormal,
+.dark .katex .mord,
+.dark .katex .mathrm,
+.dark .katex .mathit,
+.dark .katex .mathbf { color: var(--color-text); }
+.dark .katex .mbin,
+.dark .katex .mrel { color: var(--color-text); }
+.dark .katex-html { color: var(--color-text); }

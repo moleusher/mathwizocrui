@@ -1,6 +1,23 @@
-// ── @math-ocr/ui ──
+// ── @mathwiz/ui-ocr ──
 // Component library for Math-OCR project
 // Built with React 19 · HeroUI 3 · Tailwind 4
+
+// v0.11.0 Data Contracts
+export type {
+  ExamQuestion,
+  BBox,
+  QuestionImage,
+  StudentAnswer,
+  TeacherCorrection,
+  StandardAnswer,
+  SolutionStep,
+  ErrorAnalysis,
+  QuestionsMeta,
+  DataCompleteness,
+  QuestionType,
+  Difficulty,
+} from "./types/question";
+export { getDataCompleteness } from "./types/question";
 
 // Re-export HeroUI for convenience
 export { Button, Card, Badge, ProgressBar, ProgressCircle, Spinner, Tooltip } from "@heroui/react";
@@ -21,6 +38,52 @@ export type { StatusBadgeProps, PipelineStatus } from "./components/StatusBadge"
 export { MarkdownViewer } from "./components/MarkdownViewer";
 export type { MarkdownViewerProps } from "./components/MarkdownViewer";
 
+export { MarkdownRenderer } from "./components/MarkdownRenderer";
+export type { MarkdownRendererProps } from "./components/MarkdownRenderer";
+
+export { ExpandToggle } from "./components/ExpandToggle";
+export type { ExpandToggleProps } from "./components/ExpandToggle";
+
+export { QuestionBody } from "./components/QuestionBody";
+export type { QuestionBodyProps } from "./components/QuestionBody";
+
+export { AnswerComparePanel } from "./components/AnswerComparePanel";
+export type { AnswerComparePanelProps } from "./components/AnswerComparePanel";
+
+export { TeacherCommentPanel } from "./components/TeacherCommentPanel";
+export type { TeacherCommentPanelProps } from "./components/TeacherCommentPanel";
+
+export { CorrectionPanel } from "./components/CorrectionPanel";
+export type { CorrectionPanelProps } from "./components/CorrectionPanel";
+
+export { SolutionStepsPanel } from "./components/SolutionStepsPanel";
+export type { SolutionStepsPanelProps } from "./components/SolutionStepsPanel";
+
+export { ErrorAnalysisPanel } from "./components/ErrorAnalysisPanel";
+export type { ErrorAnalysisPanelProps } from "./components/ErrorAnalysisPanel";
+
+export {
+  QuestionBadge,
+  TypeBadge,
+  DifficultyBadge,
+  CorrectionBadge,
+  ScoreDisplay,
+  KnowledgeBadge,
+  PrerequisiteBadge,
+} from "./components/QuestionBadges";
+export type {
+  QuestionBadgeProps,
+  TypeBadgeProps,
+  DifficultyBadgeProps,
+  CorrectionBadgeProps,
+  ScoreDisplayProps,
+  KnowledgeBadgeProps,
+  PrerequisiteBadgeProps,
+} from "./components/QuestionBadges";
+
+export { QuestionSummary } from "./components/QuestionSummary";
+export type { QuestionSummaryProps } from "./components/QuestionSummary";
+
 export { FormulaRenderer } from "./components/FormulaRenderer";
 export type { FormulaRendererProps } from "./components/FormulaRenderer";
 
@@ -40,10 +103,13 @@ export { ImagePagination } from "./components/ImagePagination";
 export type { ImagePaginationProps } from "./components/ImagePagination";
 
 export { QuestionCard } from "./components/QuestionCard";
-export type { QuestionCardProps, ScoreDimension } from "./components/QuestionCard";
+export type { QuestionCardProps } from "./components/QuestionCard";
+
+export { FilterBar } from "./components/QuestionList";
+export type { FilterBarProps } from "./components/QuestionList";
 
 export { QuestionList } from "./components/QuestionList";
-export type { QuestionListProps } from "./components/QuestionList";
+export type { QuestionListProps, FilterType } from "./components/QuestionList";
 
 export { AnalysisTabs } from "./components/AnalysisTabs";
 export type { AnalysisTabsProps, Tab } from "./components/AnalysisTabs";

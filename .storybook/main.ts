@@ -29,6 +29,8 @@ const config: StorybookConfig = {
       react: resolve(__dirname, "../node_modules/react"),
       "react-dom": resolve(__dirname, "../node_modules/react-dom"),
     };
+    config.server = config.server || {};
+    config.server.allowedHosts = ["47.253.199.239", "localhost", "0.0.0.0"];
     return config;
   },
 };
