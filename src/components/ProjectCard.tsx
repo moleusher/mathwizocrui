@@ -49,7 +49,8 @@ const statusLabels: Record<DashboardStatus, string> = {
 };
 
 function getCardAriaLabel(title: string, status: DashboardStatus): string {
-  return `试卷: ${title} — 状态: ${statusLabels[status]}`;
+  const label = status in statusLabels ? statusLabels[status as keyof typeof statusLabels] : status;
+  return `试卷: ${title} — 状态: ${label}`;
 }
 
 export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
@@ -72,6 +73,8 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
     },
     ref,
   ) => {
+    const isKnownStatus = dashboardStatus in statusConfig;
+    const safeStatus = statusConfig[dashboardStatus] ?? "pending";
     const showProgress = dashboardStatus === "ocr" || dashboardStatus === "analyzing";
     const progress = dashboardStatus === "ocr" ? ocrProgress : analyzeProgress;
 
@@ -158,7 +161,22 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         {/* Right: Status + Progress + Actions */}
         <div className="flex flex-col items-end gap-1 flex-shrink-0">
           <div className="flex items-center gap-1">
-            <StatusBadge status={statusConfig[dashboardStatus]} />
+            {isKnownStatus ? (
+              <StatusBadge status={safeStatus} />
+            ) : (
+              <span
+                data-slot="status-badge"
+                data-status={dashboardStatus}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                  "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-muted)]",
+                )}
+                title={`未知状态: ${dashboardStatus}`}
+              >
+                <span className="size-1.5 rounded-full bg-[var(--color-text-muted)]" />
+                {dashboardStatus}
+              </span>
+            )}
             {hasDropdownItems && (
               <Dropdown>
                 <Button

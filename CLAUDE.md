@@ -27,11 +27,11 @@ npm run preview          # vite preview
 | Category | Components |
 |----------|-----------|
 | Generic UI | MathButton (5 variants, 4 sizes, loading), MathBadge (5 variants, dot indicator), EmptyState (compound: Root/Icon/Title/Description/Action), ~~CardActions~~ (deprecated) |
-| Status/Display | StatusBadge (6 pipeline states, pulse animation, compact mode), MarkdownViewer (zero-dep markdown→HTML), FormulaRenderer (LaTeX inline/block) |
+| Status/Display | StatusBadge (9 states, unknown-status fallback to "pending", pulse animation, compact mode), MarkdownViewer (zero-dep markdown→HTML), FormulaRenderer (LaTeX inline/block) |
 | Image/OCR | ImageUpload (drag-drop/click/paste, preview, validation), ImagePreview (scroll-zoom 1x-3x, drag-pan), ImagePagination (smart ellipsis) |
 | Analysis | QuestionCard (collapsible, score dimensions, progress bars), QuestionList, AnalysisTabs (horizontal/vertical, controlled/uncontrolled), IntentActions |
 | Pipeline | PipelineStageCard (step indicator, progress bar, elapsed, dimmed), BlockLegend, BlockOverlay (percentage positioning, active highlight) |
-| Dashboard | ProjectCard (HeroUI Dropdown: OCR解析/查看进度/重新上传/删除), ClassroomProgress (4-stage pipeline UI) |
+| Dashboard | ProjectCard (HeroUI Dropdown: OCR解析/查看进度/重新上传/删除, unknown-status gray fallback badge), ClassroomProgress (4-stage pipeline UI) |
 | Layout | TopBar (left/center/right slots), AppLayout (sidebar + topbar + content, collapsible sidebar) |
 
 ### Component Patterns

@@ -61,3 +61,9 @@ export const WithCustomItems: Story = {
     ),
   },
 };
+
+/** Unknown status — renders a gray UnknownBadge with the raw value visible */
+export const Unknown: Story = {
+  args: { dashboardStatus: "unknown_value" as any },
+  parameters: { controls: { exclude: ["dashboardStatus"] } },
+};
