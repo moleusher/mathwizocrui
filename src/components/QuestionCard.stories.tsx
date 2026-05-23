@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { QuestionCard } from "./QuestionCard";
 import type { ExamQuestion } from "../types/question";
 
@@ -167,6 +168,34 @@ export const StandaloneMode: Story = {
   args: {
     question: createFullQuestion({ question_index: 5 }),
     mode: "standalone",
+  },
+};
+
+// Story D: Interactive checkbox toggle (click to select/deselect)
+export const WithCheckbox: Story = {
+  args: {
+    question: createFullQuestion(),
+    mode: "full",
+    selectable: true,
+  },
+  render: function InteractiveCheckbox(args) {
+    const [checked, setChecked] = React.useState(false);
+    return (
+      <QuestionCard
+        {...args}
+        selected={checked}
+        onSelect={(index, sel) => setChecked(sel)}
+      />
+    );
+  },
+};
+
+export const CheckboxSelected: Story = {
+  args: {
+    question: createFullQuestion(),
+    mode: "full",
+    selectable: true,
+    selected: true,
   },
 };
 

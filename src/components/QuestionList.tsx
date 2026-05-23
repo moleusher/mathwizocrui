@@ -82,6 +82,11 @@ export interface QuestionListProps {
 
   /** 自定义 CSS 类 */
   className?: string;
+
+  /** 选中的题号集合 */
+  selectedIndices?: Set<number>;
+  /** 选中变化回调 */
+  onSelectChange?: (index: number, selected: boolean) => void;
 }
 
 // ── Filter logic ──
@@ -156,6 +161,8 @@ export const QuestionList: React.FC<QuestionListProps> = ({
   onExpandedChange,
   activeIndex,
   onActiveChange,
+  selectedIndices,
+  onSelectChange,
   onFilterChange,
   onQuestionClick,
   loading = false,
@@ -267,6 +274,9 @@ export const QuestionList: React.FC<QuestionListProps> = ({
               key={q.question_index}
               question={q}
               mode="full"
+              selectable
+              selected={selectedIndices?.has(q.question_index)}
+              onSelect={onSelectChange}
               isSelected={activeIndex === q.question_index}
               onQuestionClick={handleQuestionClick}
             />
@@ -277,6 +287,7 @@ export const QuestionList: React.FC<QuestionListProps> = ({
         <Accordion expandedKeys={currentExpandedKeys} onExpandedChange={handleExpandedChange}>
           {filteredQuestions.map((q) => (
             <AccordionItem
+              id={String(q.question_index)}
               key={String(q.question_index)}
               className={cn(
                 activeIndex === q.question_index &&
@@ -293,6 +304,9 @@ export const QuestionList: React.FC<QuestionListProps> = ({
                   <QuestionCard
                     question={q}
                     mode="accordion"
+                    selectable
+                    selected={selectedIndices?.has(q.question_index)}
+                    onSelect={onSelectChange}
                     isExpanded={currentExpandedKeys.has(String(q.question_index))}
                     isSelected={activeIndex === q.question_index}
                     onQuestionClick={handleQuestionClick}

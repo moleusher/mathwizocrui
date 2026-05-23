@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
+import React from "react";
 import { QuestionList } from "./QuestionList";
 import type { ExamQuestion } from "../types/question";
 
@@ -260,5 +261,55 @@ export const FilterUnmarked: Story = {
     questions: baseQuestions,
     browseMode: "scroll",
     filter: "unmarked",
+  },
+};
+
+// Story: Interactive checkbox selection (click to toggle)
+export const WithSelection: Story = {
+  args: {
+    questions: baseQuestions,
+    browseMode: "scroll",
+    selectedIndices: new Set([1, 3]),
+  },
+  render: function InteractiveSelection(args) {
+    const [selected, setSelected] = React.useState(new Set([1, 3]));
+    return (
+      <QuestionList
+        {...args}
+        selectedIndices={selected}
+        onSelectChange={(index, checked) => {
+          setSelected(prev => {
+            const next = new Set(prev);
+            checked ? next.add(index) : next.delete(index);
+            return next;
+          });
+        }}
+      />
+    );
+  },
+};
+
+// Story: Accordion with interactive checkbox selection
+export const AccordionWithSelection: Story = {
+  args: {
+    questions: baseQuestions,
+    browseMode: "accordion",
+    selectedIndices: new Set([2]),
+  },
+  render: function InteractiveAccordionSelection(args) {
+    const [selected, setSelected] = React.useState(new Set([2]));
+    return (
+      <QuestionList
+        {...args}
+        selectedIndices={selected}
+        onSelectChange={(index, checked) => {
+          setSelected(prev => {
+            const next = new Set(prev);
+            checked ? next.add(index) : next.delete(index);
+            return next;
+          });
+        }}
+      />
+    );
   },
 };

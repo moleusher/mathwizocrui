@@ -46,6 +46,13 @@ export interface QuestionCardProps {
   /** 是否被选中 (BlockOverlay 联动高亮) */
   isSelected?: boolean;
 
+  /** 是否显示选择框 */
+  selectable?: boolean;
+  /** 是否已选中 */
+  selected?: boolean;
+  /** 选中状态变化回调 */
+  onSelect?: (questionIndex: number, selected: boolean) => void;
+
   /** 自定义 CSS 类 */
   className?: string;
 }
@@ -88,6 +95,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   mode = "full",
   isExpanded = true,
   isSelected = false,
+  selectable = false,
+  selected = false,
+  onSelect,
   onQuestionClick,
   className,
 }) => {
@@ -100,7 +110,16 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   // ── Shared sections ──
 
   const cardHeader = (
-    <CardHeader className="flex items-center gap-3 pb-2">
+    <CardHeader className="flex flex-row items-center gap-3 pb-2">
+      {selectable && (
+        <input
+          type="checkbox"
+          checked={selected}
+          onChange={(e) => onSelect?.(question.question_index, e.target.checked)}
+          className="w-4 h-4 accent-[var(--color-primary)] cursor-pointer"
+          onClick={(e) => e.stopPropagation()}
+        />
+      )}
       <QuestionBadge index={question.question_index} />
       <TypeBadge type={question.question_type} />
       <DifficultyBadge difficulty={question.difficulty} />
