@@ -29,18 +29,14 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
         <BookOpen className="w-4 h-4 text-[var(--color-text-muted)]" />
-        <span className="text-xs font-medium text-[var(--color-text-muted)]">
-          题目原文
-        </span>
+        <span className="text-xs font-medium text-[var(--color-text-muted)]">题目原文</span>
       </div>
 
       {/* Text content */}
       {renderMode === "markdown" ? (
         <MarkdownRenderer content={text} />
       ) : (
-        <div className="text-sm text-[var(--color-text)] whitespace-pre-wrap">
-          {text}
-        </div>
+        <div className="text-sm text-[var(--color-text)] whitespace-pre-wrap">{text}</div>
       )}
 
       {/* Images */}
@@ -48,7 +44,7 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
         <div className="flex flex-wrap gap-2 mt-2">
           {images.map((image, index) => (
             <ImageThumbnail
-              key={image.url + index}
+              key={`${image.url}-${index}`}
               image={image}
               index={index}
               onImageClick={onImageClick}
@@ -88,7 +84,9 @@ function ImageThumbnail({ image, index, onImageClick }: ImageThumbnailProps) {
       loading="lazy"
       className="mt-2 rounded-md max-h-48 object-contain border border-[var(--color-border)] cursor-pointer"
       onClick={() => onImageClick?.(image, index)}
-      onError={() => setHasError(true)}
+      onError={() => {
+        setHasError(true);
+      }}
     />
   );
 }

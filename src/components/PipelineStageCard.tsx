@@ -60,8 +60,10 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
             className={cn(
               "size-7 rounded-full flex items-center justify-center text-xs font-bold transition-all",
               isComplete && "bg-[var(--color-success)] text-[var(--color-primary-foreground)]",
-              isActive && "bg-[var(--color-primary)] text-[var(--color-primary-foreground)] animate-pulse",
-              status === "failed" && "bg-[var(--color-error)] text-[var(--color-primary-foreground)]",
+              isActive &&
+                "bg-[var(--color-primary)] text-[var(--color-primary-foreground)] animate-pulse",
+              status === "failed" &&
+                "bg-[var(--color-error)] text-[var(--color-primary-foreground)]",
               status === "pending" && "bg-[var(--color-brand-100)] text-[var(--color-brand-700)]",
               status === "queued" && "bg-[var(--color-border)] text-[var(--color-text-muted)]",
             )}
@@ -79,9 +81,7 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
             <StatusBadge status={status} compact={!isActive} />
           </div>
 
-          {description && (
-            <p className="text-xs text-(--color-text-muted) mt-0.5">{description}</p>
-          )}
+          {description && <p className="text-xs text-(--color-text-muted) mt-0.5">{description}</p>}
 
           {/* Progress bar */}
           {progress !== undefined && isActive && (
@@ -95,7 +95,10 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
 
           {/* Elapsed time */}
           {elapsed && (
-            <p className="text-xs text-(--color-text-muted) mt-1 inline-flex items-center gap-1"><Clock className="size-3" />{elapsed}</p>
+            <p className="text-xs text-(--color-text-muted) mt-1 inline-flex items-center gap-1">
+              <Clock className="size-3" />
+              {elapsed}
+            </p>
           )}
 
           {/* Children slot */}

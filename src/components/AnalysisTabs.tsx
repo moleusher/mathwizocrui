@@ -38,11 +38,14 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
     },
     ref,
   ) => {
-    const [internalTab, setInternalTab] = useState(defaultTab || tabs[0]?.id || "");
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    const [internalTab, setInternalTab] = useState(defaultTab ?? tabs[0]?.id ?? "");
     const activeId = controlledTab ?? internalTab;
 
     const handleTabChange = (id: string) => {
-      if (controlledTab === undefined) setInternalTab(id);
+      if (controlledTab === undefined) {
+        setInternalTab(id);
+      }
       onTabChange?.(id);
     };
 
@@ -78,7 +81,9 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
               role="tab"
               aria-selected={activeId === tab.id}
               disabled={tab.disabled}
-              onClick={() => handleTabChange(tab.id)}
+              onClick={() => {
+                handleTabChange(tab.id);
+              }}
               className={cn(
                 "flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors",
                 "disabled:opacity-40 disabled:cursor-not-allowed",
@@ -108,11 +113,7 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
         </div>
 
         {/* Tab panel */}
-        <div
-          data-slot="analysis-tabs-panel"
-          role="tabpanel"
-          className="flex-1 pt-3"
-        >
+        <div data-slot="analysis-tabs-panel" role="tabpanel" className="flex-1 pt-3">
           {active?.content}
         </div>
       </div>

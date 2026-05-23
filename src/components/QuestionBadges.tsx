@@ -93,11 +93,7 @@ export const CorrectionBadge: React.FC<CorrectionBadgeProps> = ({ mark }) => {
           ? "text-[var(--color-warning)]"
           : "text-[var(--color-text-muted)]";
 
-  return (
-    <span className={cn("inline-block text-sm font-semibold", colorClass)}>
-      {mark}
-    </span>
-  );
+  return <span className={cn("inline-block text-sm font-semibold", colorClass)}>{mark}</span>;
 };
 
 CorrectionBadge.displayName = "CorrectionBadge";
@@ -111,22 +107,23 @@ export interface ScoreDisplayProps {
 
 export const ScoreDisplay: React.FC<ScoreDisplayProps> = ({ score, maxScore }) => {
   const getScoreColor = (): string => {
-    if (score == null) return "text-[var(--color-text-muted)]";
+    if (score == null) {
+      return "text-[var(--color-text-muted)]";
+    }
     const ratio = score / maxScore;
-    if (ratio >= 0.8) return "text-[var(--color-success)]";
-    if (ratio < 0.6) return "text-[var(--color-error)]";
+    if (ratio >= 0.8) {
+      return "text-[var(--color-success)]";
+    }
+    if (ratio < 0.6) {
+      return "text-[var(--color-error)]";
+    }
     return "text-[var(--color-warning)]";
   };
 
   const displayScore = score != null ? String(score) : "--";
 
   return (
-    <span
-      className={cn(
-        "font-mono tabular-nums text-sm font-semibold",
-        getScoreColor(),
-      )}
-    >
+    <span className={cn("font-mono tabular-nums text-sm font-semibold", getScoreColor())}>
       {displayScore}/{maxScore}
     </span>
   );
@@ -183,16 +180,16 @@ export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
   // 中置信度 (0.5-0.8): 半透明 ⓘ 图标
   // 低置信度 (<0.5): 醒目 ⚠ 图标 + tooltip
   // 如有冲突: 显示冲突标记
-  if (confidence >= 0.8 && !hasConflict) return null;
+  if (confidence >= 0.8 && !hasConflict) {
+    return null;
+  }
 
   const isLow = confidence < 0.5;
   return (
     <span
       className={cn(
         "inline-flex items-center text-xs cursor-help",
-        isLow
-          ? "text-[var(--color-warning)] font-semibold"
-          : "text-[var(--color-text-muted)]",
+        isLow ? "text-[var(--color-warning)] font-semibold" : "text-[var(--color-text-muted)]",
       )}
       title={
         hasConflict

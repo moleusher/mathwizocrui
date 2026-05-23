@@ -18,16 +18,7 @@ export interface ImagePreviewProps extends React.ComponentProps<"div"> {
 
 export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
   (
-    {
-      src,
-      alt = "",
-      zoomable = true,
-      maxZoom = 3,
-      placeholder,
-      errorContent,
-      className,
-      ...props
-    },
+    { src, alt = "", zoomable = true, maxZoom = 3, placeholder, errorContent, className, ...props },
     ref,
   ) => {
     const [zoom, setZoom] = useState(1);
@@ -41,33 +32,46 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
     // wheel handler with passive:false to avoid browser warning for preventDefault
     useEffect(() => {
       const el = divRef.current;
-      if (!el || !zoomable) return;
+      if (!el || !zoomable) {
+        return;
+      }
       const handler = (e: WheelEvent) => {
         e.preventDefault();
         setZoom((z) => Math.min(maxZoom, Math.max(1, z - e.deltaY * 0.001)));
       };
-      el.addEventListener('wheel', handler, { passive: false });
-      return () => el.removeEventListener('wheel', handler);
+      el.addEventListener("wheel", handler, { passive: false });
+      return () => {
+        el.removeEventListener("wheel", handler);
+      };
     }, [zoomable, maxZoom]);
 
     // forward internal ref to parent ref
     useEffect(() => {
-      if (typeof ref === 'function') ref(divRef.current);
-      else if (ref) ref.current = divRef.current;
+      if (typeof ref === "function") {
+        ref(divRef.current);
+      } else if (ref) {
+        ref.current = divRef.current;
+      }
     }, [ref]);
 
     const handleMouseDown = (e: React.MouseEvent) => {
-      if (zoom <= 1) return;
+      if (zoom <= 1) {
+        return;
+      }
       setIsDragging(true);
       setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
     };
 
     const handleMouseMove = (e: React.MouseEvent) => {
-      if (!isDragging) return;
+      if (!isDragging) {
+        return;
+      }
       setPosition({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
     };
 
-    const handleMouseUp = () => setIsDragging(false);
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
 
     const resetZoom = () => {
       setZoom(1);
@@ -95,7 +99,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         {/* Loading */}
         {!isLoaded && !hasError && (
           <div className="absolute inset-0 flex items-center justify-center">
-            {placeholder || (
+            {placeholder ?? (
               <div className="flex flex-col items-center gap-2 text-(--color-text-muted) text-sm">
                 <div className="size-6 border-2 border-(--color-brand-200) border-t-(--color-primary) rounded-full animate-spin" />
                 Loading...
@@ -107,7 +111,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         {/* Error */}
         {hasError && (
           <div className="absolute inset-0 flex items-center justify-center">
-            {errorContent || (
+            {errorContent ?? (
               <div className="text-sm text-[var(--color-error)]">Failed to load image</div>
             )}
           </div>
@@ -118,8 +122,12 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
           src={src}
           alt={alt}
           draggable={false}
-          onLoad={() => setIsLoaded(true)}
-          onError={() => setHasError(true)}
+          onLoad={() => {
+            setIsLoaded(true);
+          }}
+          onError={() => {
+            setHasError(true);
+          }}
           className={cn(
             "w-full h-auto transition-transform duration-100",
             !isLoaded && "invisible",

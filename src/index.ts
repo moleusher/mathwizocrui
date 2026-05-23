@@ -24,12 +24,18 @@ export { Button, Card, Badge, ProgressBar, ProgressCircle, Spinner, Tooltip } fr
 
 // Math-OCR custom components
 export {
-  EmptyStateRoot, EmptyStateIcon, EmptyStateTitle,
-  EmptyStateDescription, EmptyStateAction,
+  EmptyStateRoot,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateAction,
 } from "./components/EmptyState";
 export type {
-  EmptyStateRootProps, EmptyStateIconProps, EmptyStateTitleProps,
-  EmptyStateDescriptionProps, EmptyStateActionProps,
+  EmptyStateRootProps,
+  EmptyStateIconProps,
+  EmptyStateTitleProps,
+  EmptyStateDescriptionProps,
+  EmptyStateActionProps,
 } from "./components/EmptyState";
 
 export { StatusBadge } from "./components/StatusBadge";
@@ -141,4 +147,8 @@ export { IntentActions } from "./components/IntentActions";
 export type { IntentActionsProps } from "./components/IntentActions";
 
 export { ClassroomProgress } from "./components/ClassroomProgress";
-export type { ClassroomProgressProps, StageState, ClassroomStage } from "./components/ClassroomProgress";
+export type {
+  ClassroomProgressProps,
+  StageState,
+  ClassroomStage,
+} from "./components/ClassroomProgress";

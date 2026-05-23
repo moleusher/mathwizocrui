@@ -28,7 +28,9 @@ export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgr
     const allComplete = stages.every((s) => s.status === "completed");
     const headerText = allComplete ? "课堂生成完成" : "正在生成互动课堂...";
 
-    if (!isGenerating && !classroomUrl && !error && !allComplete) return null;
+    if (!isGenerating && !classroomUrl && !error && !allComplete) {
+      return null;
+    }
 
     return (
       <div
@@ -41,14 +43,19 @@ export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgr
         )}
         {...props}
       >
-        <div className="text-sm font-medium text-[var(--color-brand-500)] mb-3">
-          {headerText}
-        </div>
+        <div className="text-sm font-medium text-[var(--color-brand-500)] mb-3">{headerText}</div>
 
         <div className="flex flex-col gap-2">
           {stages.map((s) => (
-            <div key={s.stage} data-stage={s.stage} data-stage-status={s.status} className="flex items-center gap-2.5">
-              {s.status === "completed" && <span className="text-[var(--color-success)] text-xs">✓</span>}
+            <div
+              key={s.stage}
+              data-stage={s.stage}
+              data-stage-status={s.status}
+              className="flex items-center gap-2.5"
+            >
+              {s.status === "completed" && (
+                <span className="text-[var(--color-success)] text-xs">✓</span>
+              )}
               <span
                 className={cn(
                   "text-sm flex-1",

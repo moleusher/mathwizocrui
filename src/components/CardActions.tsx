@@ -11,7 +11,9 @@ export interface CardActionsProps extends React.ComponentProps<"span"> {
 /** @deprecated Use ProjectCard's Dropdown actions instead. */
 export const CardActions = React.forwardRef<HTMLSpanElement, CardActionsProps>(
   ({ onViewProgress, label = "查看进度 →", visible = true, className, ...props }, ref) => {
-    if (!visible) return null;
+    if (!visible) {
+      return null;
+    }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {

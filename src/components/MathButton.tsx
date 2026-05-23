@@ -24,10 +24,8 @@ const variantStyles: Record<MathButtonVariant, string> = {
     "bg-(--color-brand-100) text-(--color-brand-700) hover:bg-(--color-brand-200) active:bg-(--color-brand-300)",
   outline:
     "border border-(--color-border) bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
-  ghost:
-    "bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
-  destructive:
-    "bg-[var(--color-error)] text-white hover:opacity-90 active:opacity-80",
+  ghost: "bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
+  destructive: "bg-[var(--color-error)] text-white hover:opacity-90 active:opacity-80",
 };
 
 const sizeStyles: Record<MathButtonSize, string> = {
@@ -58,8 +56,8 @@ export const MathButton = React.forwardRef<HTMLButtonElement, MathButtonProps>(
         data-slot="math-button"
         data-variant={variant}
         data-size={size}
-        data-loading={loading || undefined}
-        disabled={disabled || loading}
+        data-loading={loading ? "" : undefined}
+        disabled={disabled || loading} // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
         className={cn(
           // Base
           "inline-flex items-center justify-center font-medium transition-all duration-150",
@@ -72,11 +70,7 @@ export const MathButton = React.forwardRef<HTMLButtonElement, MathButtonProps>(
         )}
         {...props}
       >
-        {loading ? (
-          <SpinnerIcon className="size-4 animate-spin" />
-        ) : (
-          iconLeft
-        )}
+        {loading ? <SpinnerIcon className="size-4 animate-spin" /> : iconLeft}
         {children}
         {iconRight}
       </button>
@@ -94,14 +88,7 @@ function SpinnerIcon({ className }: { className?: string }) {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
       <path
         className="opacity-75"
         fill="currentColor"

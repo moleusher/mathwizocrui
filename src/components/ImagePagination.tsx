@@ -16,29 +16,29 @@ export interface ImagePaginationProps extends React.ComponentProps<"div"> {
 
 export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationProps>(
   (
-    {
-      current,
-      total,
-      onPageChange,
-      showEdges = true,
-      showNumbers = true,
-      className,
-      ...props
-    },
+    { current, total, onPageChange, showEdges = true, showNumbers = true, className, ...props },
     ref,
   ) => {
-    if (total <= 1) return null;
+    if (total <= 1) {
+      return null;
+    }
 
     const pages: (number | "…")[] = [];
     if (total <= 7) {
-      for (let i = 1; i <= total; i++) pages.push(i);
+      for (let i = 1; i <= total; i++) {
+        pages.push(i);
+      }
     } else {
       pages.push(1);
-      if (current > 3) pages.push("…");
+      if (current > 3) {
+        pages.push("…");
+      }
       for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
         pages.push(i);
       }
-      if (current < total - 2) pages.push("…");
+      if (current < total - 2) {
+        pages.push("…");
+      }
       pages.push(total);
     }
 
@@ -57,7 +57,9 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
             type="button"
             className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
             disabled={current === 1}
-            onClick={() => onPageChange(1)}
+            onClick={() => {
+              onPageChange(1);
+            }}
             aria-label="First page"
           >
             «
@@ -68,7 +70,9 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
           type="button"
           className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
           disabled={current === 1}
-          onClick={() => onPageChange(current - 1)}
+          onClick={() => {
+            onPageChange(current - 1);
+          }}
           aria-label="Previous page"
         >
           ‹
@@ -77,7 +81,10 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
         {showNumbers &&
           pages.map((p, i) =>
             p === "…" ? (
-              <span key={`dots-${i}`} className="size-8 flex items-center justify-center text-(--color-text-muted) text-sm">
+              <span
+                key={`dots-${i}`}
+                className="size-8 flex items-center justify-center text-(--color-text-muted) text-sm"
+              >
                 …
               </span>
             ) : (
@@ -90,7 +97,9 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
                     ? "bg-(--color-primary) text-(--color-primary-foreground)"
                     : "hover:bg-(--color-brand-50) text-(--color-text)",
                 )}
-                onClick={() => onPageChange(p)}
+                onClick={() => {
+                  onPageChange(p);
+                }}
                 aria-label={`Page ${p}`}
               >
                 {p}
@@ -102,7 +111,9 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
           type="button"
           className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
           disabled={current === total}
-          onClick={() => onPageChange(current + 1)}
+          onClick={() => {
+            onPageChange(current + 1);
+          }}
           aria-label="Next page"
         >
           ›
@@ -113,7 +124,9 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
             type="button"
             className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
             disabled={current === total}
-            onClick={() => onPageChange(total)}
+            onClick={() => {
+              onPageChange(total);
+            }}
             aria-label="Last page"
           >
             »

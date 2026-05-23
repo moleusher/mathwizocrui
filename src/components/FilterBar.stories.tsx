@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { FilterBar } from './QuestionList';
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
+import { FilterBar } from "./QuestionList";
 
 const meta: Meta<typeof FilterBar> = {
-  title: 'Components/FilterBar',
+  title: "Components/FilterBar",
   component: FilterBar,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
     onFilterChange: fn(),
   },
@@ -16,21 +16,21 @@ type Story = StoryObj<typeof FilterBar>;
 
 export const All: Story = {
   args: {
-    filter: 'all',
+    filter: "all",
     counts: { all: 12, wrong: 3, unmarked: 2 },
   },
 };
 
 export const Wrong: Story = {
   args: {
-    filter: 'wrong',
+    filter: "wrong",
     counts: { all: 12, wrong: 3, unmarked: 2 },
   },
 };
 
 export const Unmarked: Story = {
   args: {
-    filter: 'unmarked',
+    filter: "unmarked",
     counts: { all: 12, wrong: 3, unmarked: 2 },
   },
 };

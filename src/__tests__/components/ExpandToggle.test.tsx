@@ -25,7 +25,12 @@ describe("ExpandToggle", () => {
 
   it("calls onClick when clicked", async () => {
     let called = false;
-    await renderToggle({ isExpanded: false, onClick: () => { called = true; } });
+    await renderToggle({
+      isExpanded: false,
+      onClick: () => {
+        called = true;
+      },
+    });
     fireEvent.click(screen.getByText("展开更多"));
     expect(called).toBe(true);
   });

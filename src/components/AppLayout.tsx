@@ -1,6 +1,5 @@
 import React from "react";
 import { cn } from "../utils/cn";
-import { TopBar } from "./TopBar";
 
 export interface AppLayoutProps extends React.ComponentProps<"div"> {
   /** Sidebar content */
@@ -51,10 +50,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
         {/* Main area */}
         <div className="flex flex-col flex-1 min-w-0">
           {topBar}
-          <main
-            data-slot="app-content"
-            className="flex-1 overflow-auto"
-          >
+          <main data-slot="app-content" className="flex-1 overflow-auto">
             {children}
           </main>
         </div>

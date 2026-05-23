@@ -134,11 +134,7 @@ describe("QuestionList", () => {
   });
 
   it("shows all questions with filter='all'", async () => {
-    const questions = [
-      createCorrectQuestion(1),
-      createWrongQuestion(2),
-      createUnmarkedQuestion(3),
-    ];
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2), createUnmarkedQuestion(3)];
     await renderList({ questions, filter: "all", browseMode: "scroll" });
 
     // All three questions render
@@ -164,11 +160,7 @@ describe("QuestionList", () => {
   });
 
   it("shows only unmarked questions with filter='unmarked'", async () => {
-    const questions = [
-      createCorrectQuestion(1),
-      createWrongQuestion(2),
-      createUnmarkedQuestion(3),
-    ];
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2), createUnmarkedQuestion(3)];
     await renderList({ questions, filter: "unmarked", browseMode: "scroll" });
 
     // Only unmarked question
@@ -178,11 +170,7 @@ describe("QuestionList", () => {
   });
 
   it("fires onFilterChange when filter button clicked", async () => {
-    const questions = [
-      createCorrectQuestion(1),
-      createWrongQuestion(2),
-      createUnmarkedQuestion(3),
-    ];
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2), createUnmarkedQuestion(3)];
     const handleFilterChange = vi.fn();
     await renderList({ questions, onFilterChange: handleFilterChange, browseMode: "scroll" });
 
@@ -210,10 +198,7 @@ describe("QuestionList", () => {
   });
 
   it("highlights card with activeIndex", async () => {
-    const questions = [
-      createCorrectQuestion(1),
-      createWrongQuestion(2),
-    ];
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
     const { container } = await renderList({
       questions,
       activeIndex: 2,

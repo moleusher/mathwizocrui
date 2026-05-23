@@ -77,11 +77,7 @@ describe("ClassroomProgress", () => {
 
   it("shows error message when error prop provided", () => {
     render(
-      <ClassroomProgress
-        isGenerating={false}
-        stages={mockStages}
-        error="生成失败：服务不可用"
-      />,
+      <ClassroomProgress isGenerating={false} stages={mockStages} error="生成失败：服务不可用" />,
     );
     expect(screen.getByText("生成失败：服务不可用")).toBeInTheDocument();
   });

@@ -20,7 +20,8 @@ async function renderCard(props: QuestionCardProps) {
 function createFullQuestion(overrides?: Partial<ExamQuestion>): ExamQuestion {
   return {
     question_index: 1,
-    question_text: "请你根据原始瓷尊的尺寸，算出制作一个瓷尊至少需要用多少平方厘米的瓷土。已知：长 a = 25cm，宽 b = 22cm，高 h = 26cm",
+    question_text:
+      "请你根据原始瓷尊的尺寸，算出制作一个瓷尊至少需要用多少平方厘米的瓷土。已知：长 a = 25cm，宽 b = 22cm，高 h = 26cm",
     question_type: "calculation",
     difficulty: "medium",
     knowledge_points: ["长方体", "表面积"],

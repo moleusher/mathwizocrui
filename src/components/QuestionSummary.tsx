@@ -30,10 +30,7 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
 
   return (
     <div
-      className={cn(
-        "flex items-center gap-3 py-3 px-4 min-h-[44px]",
-        className,
-      )}
+      className={cn("flex items-center gap-3 py-3 px-4 min-h-[44px]", className)}
       aria-label={`题目 ${question.question_index}`}
     >
       <QuestionBadge index={question.question_index} />
@@ -50,9 +47,7 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
           {question.teacher_correction.mark && (
             <CorrectionBadge mark={question.teacher_correction.mark} />
           )}
-          {maxScore > 0 && (
-            <ScoreDisplay score={score} maxScore={maxScore} />
-          )}
+          {maxScore > 0 && <ScoreDisplay score={score} maxScore={maxScore} />}
         </span>
       )}
 

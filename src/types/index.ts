@@ -11,8 +11,6 @@ export type {
   DataCompleteness,
   FusionMeta,
   FusionConflict,
-} from './question';
+} from "./question";
 
-export {
-  getDataCompleteness,
-} from './question';
+export { getDataCompleteness } from "./question";

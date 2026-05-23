@@ -49,7 +49,7 @@ const statusLabels: Record<DashboardStatus, string> = {
 };
 
 function getCardAriaLabel(title: string, status: DashboardStatus): string {
-  const label = status in statusLabels ? statusLabels[status as keyof typeof statusLabels] : status;
+  const label = status in statusLabels ? statusLabels[status] : status;
   return `试卷: ${title} — 状态: ${label}`;
 }
 
@@ -74,7 +74,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
     ref,
   ) => {
     const isKnownStatus = dashboardStatus in statusConfig;
-    const safeStatus = statusConfig[dashboardStatus] ?? "pending";
+    const safeStatus = statusConfig[dashboardStatus];
     const showProgress = dashboardStatus === "ocr" || dashboardStatus === "analyzing";
     const progress = dashboardStatus === "ocr" ? ocrProgress : analyzeProgress;
 
@@ -192,7 +192,9 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
                   <Dropdown.Menu
                     aria-label="项目操作"
                     disabledKeys={dropdownDisabledKeys}
-                    onAction={(key) => handleAction(key as string)}
+                    onAction={(key) => {
+                      handleAction(key as string);
+                    }}
                   >
                     {showOcrParse && (
                       <Dropdown.Item key="ocr-parse" textValue="OCR解析">
@@ -226,7 +228,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
               <div className="h-1 rounded-full bg-[var(--color-border)] overflow-hidden">
                 <div
                   className="h-full rounded-full bg-[var(--color-brand-500)] transition-all duration-500"
-                  style={{ width: `${Math.min(100, Math.max(0, progress || 0))}%` }}
+                  style={{ width: `${Math.min(100, Math.max(0, progress ?? 0))}%` }}
                 />
               </div>
             </div>

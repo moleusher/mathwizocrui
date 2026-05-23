@@ -21,10 +21,6 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
-  if (analysis == null) {
-    return null;
-  }
-
   return (
     <div
       className={cn(
@@ -35,9 +31,7 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
         <AlertTriangle className="w-4 h-4 text-[var(--color-error)]" />
-        <span className="text-xs font-medium text-[var(--color-error)]">
-          错因分析
-        </span>
+        <span className="text-xs font-medium text-[var(--color-error)]">错因分析</span>
         {/* Error type badge */}
         <span className="ml-auto text-xs bg-[var(--color-error)]/10 px-2 py-0.5 rounded">
           {analysis.type}
@@ -56,14 +50,15 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
         {/* Suggestion */}
         {analysis.suggestion && (
           <p className="text-sm text-[var(--color-text)] mb-1">
-            <span role="img" aria-label="建议">💡</span> 建议: {analysis.suggestion}
+            <span role="img" aria-label="建议">
+              💡
+            </span>{" "}
+            建议: {analysis.suggestion}
           </p>
         )}
 
         {/* AI disclaimer */}
-        <p className="text-xs text-[var(--color-text-muted)] mt-2">
-          ⚠️ AI 生成，仅供参考
-        </p>
+        <p className="text-xs text-[var(--color-text-muted)] mt-2">⚠️ AI 生成，仅供参考</p>
 
         {/* Gradient mask overlay — only when collapsed */}
         {!isExpanded && (
@@ -80,7 +75,9 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
       <div className="flex justify-center mt-1">
         <ExpandToggle
           isExpanded={isExpanded}
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => {
+            setIsExpanded(!isExpanded);
+          }}
           controlsId={ANALYSIS_ID}
         />
       </div>

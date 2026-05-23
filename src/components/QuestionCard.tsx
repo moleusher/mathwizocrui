@@ -86,7 +86,7 @@ function shouldRenderSection(question: ExamQuestion, section: SectionKey): boole
 export const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   mode = "full",
-  isExpanded = false,
+  isExpanded = true,
   isSelected = false,
   onQuestionClick,
   className,
@@ -117,8 +117,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           )}
           {question.fusion_meta && (
             <ConfidenceIndicator
-              confidence={question.fusion_meta.confidence_per_field?.is_correct ?? 0.5}
-              hasConflict={(question.fusion_meta.conflicts?.length ?? 0) > 0}
+              confidence={question.fusion_meta.confidence_per_field.is_correct}
+              hasConflict={question.fusion_meta.conflicts.length > 0}
             />
           )}
         </>
@@ -139,12 +139,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         />
       )}
 
-      {shouldRenderSection(question, "TeacherCommentPanel") && (
-        <TeacherCommentPanel comment={question.teacher_correction!.comment!} />
-      )}
+      {shouldRenderSection(question, "TeacherCommentPanel") &&
+        question.teacher_correction?.comment && (
+          <TeacherCommentPanel comment={question.teacher_correction.comment} />
+        )}
 
-      {shouldRenderSection(question, "CorrectionPanel") && (
-        <CorrectionPanel text={question.student_correction!} />
+      {shouldRenderSection(question, "CorrectionPanel") && question.student_correction && (
+        <CorrectionPanel text={question.student_correction} />
       )}
 
       {shouldRenderSection(question, "SolutionStepsPanel") && (
@@ -171,10 +172,14 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   // ── Accordion mode: inside Accordion.Item, no outer Card wrapper ──
   if (mode === "accordion") {
     return (
-      <div className={cn("space-y-3", className)}>
+      <div
+        data-slot="question-card"
+        data-expanded={isExpanded || undefined}
+        className={cn("space-y-3", className)}
+      >
         {cardHeader}
-        {cardBody}
-        {cardFooter}
+        {isExpanded && cardBody}
+        {isExpanded && cardFooter}
       </div>
     );
   }

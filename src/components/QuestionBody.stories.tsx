@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { QuestionBody } from './QuestionBody';
-import type { QuestionImage } from '../types/question';
+import type { Meta, StoryObj } from "@storybook/react";
+import { QuestionBody } from "./QuestionBody";
+import type { QuestionImage } from "../types/question";
 
 const meta: Meta<typeof QuestionBody> = {
-  title: 'Components/QuestionBody',
+  title: "Components/QuestionBody",
   component: QuestionBody,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -13,33 +13,33 @@ type Story = StoryObj<typeof QuestionBody>;
 
 export const WithTextOnly: Story = {
   args: {
-    text: '计算：$3.14 \\times 2.5^2$，并保留两位小数。',
+    text: "计算：$3.14 \\times 2.5^2$，并保留两位小数。",
   },
 };
 
 export const WithImages: Story = {
   args: {
-    text: '观察下图，计算阴影部分的面积。',
+    text: "观察下图，计算阴影部分的面积。",
     images: [
       {
-        url: 'http://localhost:6006/placeholder.jpg',
-        caption: '几何示意图',
+        url: "http://localhost:6006/placeholder.jpg",
+        caption: "几何示意图",
         width: 400,
         height: 300,
-      } as QuestionImage,
+      },
       {
-        url: 'http://localhost:6006/placeholder2.jpg',
-        caption: '辅助线说明',
+        url: "http://localhost:6006/placeholder2.jpg",
+        caption: "辅助线说明",
         width: 400,
         height: 300,
-      } as QuestionImage,
+      },
     ],
   },
 };
 
 export const WithMathFormula: Story = {
   args: {
-    text: '已知二次函数 $f(x) = ax^2 + bx + c$ 的图像经过点 $(0, 1)$、$(1, 2)$、$(-1, 6)$，求 $f(x)$ 的解析式。',
+    text: "已知二次函数 $f(x) = ax^2 + bx + c$ 的图像经过点 $(0, 1)$、$(1, 2)$、$(-1, 6)$，求 $f(x)$ 的解析式。",
   },
 };
 

@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { MarkdownRenderer } from './MarkdownRenderer';
+import type { Meta, StoryObj } from "@storybook/react";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 
 const meta: Meta<typeof MarkdownRenderer> = {
-  title: 'Components/MarkdownRenderer',
+  title: "Components/MarkdownRenderer",
   component: MarkdownRenderer,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -12,20 +12,19 @@ type Story = StoryObj<typeof MarkdownRenderer>;
 
 export const Default: Story = {
   args: {
-    content: '这是一段普通的文字内容。',
+    content: "这是一段普通的文字内容。",
   },
 };
 
 export const WithInlineMath: Story = {
   args: {
-    content: '质能方程 $E=mc^2$ 是爱因斯坦提出的。',
+    content: "质能方程 $E=mc^2$ 是爱因斯坦提出的。",
   },
 };
 
 export const WithDisplayMath: Story = {
   args: {
-    content:
-      '已知 $$S = 2(ab+ah+bh)$$，求表面积。',
+    content: "已知 $$S = 2(ab+ah+bh)$$，求表面积。",
   },
 };
 
@@ -49,14 +48,14 @@ export const MixedContent: Story = {
 
 export const Empty: Story = {
   args: {
-    content: '',
+    content: "",
   },
 };
 
 export const WithHTML: Story = {
   args: {
-    content: '这是 <b>加粗</b> 和 <i>斜体</i> 文本。',
-    htmlMode: 'sanitize',
+    content: "这是 <b>加粗</b> 和 <i>斜体</i> 文本。",
+    htmlMode: "sanitize",
   },
 };
 

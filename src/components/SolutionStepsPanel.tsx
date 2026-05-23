@@ -36,9 +36,7 @@ export const SolutionStepsPanel: React.FC<SolutionStepsPanelProps> = ({
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
         <Lightbulb className="w-4 h-4 text-[var(--color-primary)]" />
-        <span className="text-xs font-medium text-[var(--color-text-muted)]">
-          解题步骤
-        </span>
+        <span className="text-xs font-medium text-[var(--color-text-muted)]">解题步骤</span>
       </div>
 
       {/* Steps content */}
@@ -70,7 +68,9 @@ export const SolutionStepsPanel: React.FC<SolutionStepsPanelProps> = ({
       <div className="flex justify-center mt-1">
         <ExpandToggle
           isExpanded={isExpanded}
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => {
+            setIsExpanded(!isExpanded);
+          }}
           controlsId={STEPS_ID}
         />
       </div>

@@ -122,6 +122,6 @@ describe("ImageUpload", () => {
     const input = getInput();
     await user.upload(input, createMockFile("img.png", "image/png"));
 
-    expect(document.querySelector('[data-has-files]')).toBeInTheDocument();
+    expect(document.querySelector("[data-has-files]")).toBeInTheDocument();
   });
 });

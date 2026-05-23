@@ -23,7 +23,7 @@ export const FormulaRenderer = React.forwardRef<HTMLSpanElement, FormulaRenderer
 
     return (
       <Comp
-        ref={ref as any}
+        ref={ref as React.Ref<HTMLSpanElement> & React.Ref<HTMLDivElement>}
         data-slot="formula-renderer"
         data-display={display}
         className={cn(
@@ -33,9 +33,9 @@ export const FormulaRenderer = React.forwardRef<HTMLSpanElement, FormulaRenderer
           className,
         )}
         title={formula}
-        {...(props as any)}
+        {...props}
       >
-        {fallback || `$${formula}$`}
+        {fallback ?? `$${formula}$`}
       </Comp>
     );
   },

@@ -164,18 +164,13 @@ export const QuestionList: React.FC<QuestionListProps> = ({
   className,
 }) => {
   // ── Filtering ──
-  const filteredQuestions = useMemo(
-    () => filterQuestions(questions, filter),
-    [questions, filter],
-  );
+  const filteredQuestions = useMemo(() => filterQuestions(questions, filter), [questions, filter]);
 
   const counts = useMemo(() => computeCounts(questions), [questions]);
 
   // ── Internal expanded state (for uncontrolled accordion) ──
   const [localExpandedKeys, setLocalExpandedKeys] = React.useState<Set<string | number>>(
-    defaultExpandedIndex != null
-      ? new Set([String(defaultExpandedIndex)])
-      : new Set(),
+    defaultExpandedIndex != null ? new Set([String(defaultExpandedIndex)]) : new Set(),
   );
 
   const isControlled = controlledExpandedIndices !== undefined;
@@ -190,12 +185,19 @@ export const QuestionList: React.FC<QuestionListProps> = ({
     }
     const numberKeys = new Set(Array.from(keys).map(Number));
     onExpandedChange?.(numberKeys);
+    // Accordion: the single expanded item becomes the active question
+    if (keys.size === 1) {
+      onActiveChange?.(Number(Array.from(keys)[0]));
+    }
+  };
+
+  const handleQuestionClick = (questionIndex: number, bbox?: BBox) => {
+    onQuestionClick?.(questionIndex, bbox);
+    onActiveChange?.(questionIndex);
   };
 
   // ── Shared: FilterBar ──
-  const filterBar = (
-    <FilterBar filter={filter} counts={counts} onFilterChange={onFilterChange} />
-  );
+  const filterBar = <FilterBar filter={filter} counts={counts} onFilterChange={onFilterChange} />;
 
   // ── Loading state ──
   if (loading) {
@@ -266,16 +268,13 @@ export const QuestionList: React.FC<QuestionListProps> = ({
               question={q}
               mode="full"
               isSelected={activeIndex === q.question_index}
-              onQuestionClick={onQuestionClick}
+              onQuestionClick={handleQuestionClick}
             />
           ))}
         </div>
       ) : (
         /* ── Accordion mode ── */
-        <Accordion
-          expandedKeys={currentExpandedKeys}
-          onExpandedChange={handleExpandedChange}
-        >
+        <Accordion expandedKeys={currentExpandedKeys} onExpandedChange={handleExpandedChange}>
           {filteredQuestions.map((q) => (
             <AccordionItem
               key={String(q.question_index)}
@@ -294,8 +293,9 @@ export const QuestionList: React.FC<QuestionListProps> = ({
                   <QuestionCard
                     question={q}
                     mode="accordion"
+                    isExpanded={currentExpandedKeys.has(String(q.question_index))}
                     isSelected={activeIndex === q.question_index}
-                    onQuestionClick={onQuestionClick}
+                    onQuestionClick={handleQuestionClick}
                   />
                 </AccordionBody>
               </AccordionPanel>

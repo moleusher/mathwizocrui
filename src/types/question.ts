@@ -29,7 +29,7 @@ export interface StudentAnswer {
 }
 
 export interface TeacherCorrection {
-  mark: '✓' | '✗' | '?' | null;
+  mark: "✓" | "✗" | "?" | null;
   score: number | null;
   max_score: number | null;
   comment: string | null;
@@ -39,7 +39,7 @@ export interface TeacherCorrection {
 export interface StandardAnswer {
   text: string;
   latex?: string;
-  source: 'ocr' | 'llm';
+  source: "ocr" | "llm";
 }
 
 export interface SolutionStep {
@@ -50,7 +50,7 @@ export interface SolutionStep {
 
 export interface ErrorAnalysis {
   cause: string;
-  type: '审题失误' | '计算失误' | '知识点漏洞' | '思维层级不足' | '规范失分' | '未知';
+  type: "审题失误" | "计算失误" | "知识点漏洞" | "思维层级不足" | "规范失分" | "未知";
   suggestion?: string;
 }
 
@@ -58,7 +58,7 @@ export interface ErrorAnalysis {
 // Data completeness
 // ══════════════════════════════════════════════════════
 
-export type DataCompleteness = 'full' | 'basic' | 'minimal';
+export type DataCompleteness = "full" | "basic" | "minimal";
 
 /**
  * Calculate data completeness for an ExamQuestion.
@@ -67,17 +67,28 @@ export type DataCompleteness = 'full' | 'basic' | 'minimal';
  * - minimal: only question_text + question_index
  */
 export function getDataCompleteness(q: ExamQuestion): DataCompleteness {
-  if (q.student_answer && q.teacher_correction && q.error_analysis) return 'full';
-  if (q.question_type !== 'unknown') return 'basic';
-  return 'minimal';
+  if (q.student_answer && q.teacher_correction && q.error_analysis) {
+    return "full";
+  }
+  if (q.question_type !== "unknown") {
+    return "basic";
+  }
+  return "minimal";
 }
 
 // ══════════════════════════════════════════════════════
 // Type aliases from ExamQuestion (exported for badge components)
 // ══════════════════════════════════════════════════════
 
-export type QuestionType = 'calculation' | 'choice' | 'fill_blank' | 'solution' | 'proof' | 'geometry' | 'unknown';
-export type Difficulty = 'easy' | 'medium' | 'hard' | 'unknown';
+export type QuestionType =
+  | "calculation"
+  | "choice"
+  | "fill_blank"
+  | "solution"
+  | "proof"
+  | "geometry"
+  | "unknown";
+export type Difficulty = "easy" | "medium" | "hard" | "unknown";
 
 // ══════════════════════════════════════════════════════
 // Fusion meta (v0.2.1+)
@@ -102,8 +113,15 @@ export interface ExamQuestion {
   // ═══ L1 必有层 ═══
   question_index: number;
   question_text: string;
-  question_type: 'calculation' | 'choice' | 'fill_blank' | 'solution' | 'proof' | 'geometry' | 'unknown';
-  difficulty: 'easy' | 'medium' | 'hard' | 'unknown';
+  question_type:
+    | "calculation"
+    | "choice"
+    | "fill_blank"
+    | "solution"
+    | "proof"
+    | "geometry"
+    | "unknown";
+  difficulty: "easy" | "medium" | "hard" | "unknown";
   knowledge_points: string[];
 
   // ═══ L2 增强层 ═══
@@ -120,7 +138,7 @@ export interface ExamQuestion {
   common_mistakes: string[];
   related_block_ids: number[];
   block_bbox: BBox | null;
-  source: 'ocr' | 'llm' | 'manual';
+  source: "ocr" | "llm" | "manual";
 
   /** 双模型融合元信息 (v0.2.1+, 可选) */
   fusion_meta?: FusionMeta;

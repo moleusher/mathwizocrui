@@ -72,16 +72,10 @@ function renderMarkdown(md: string): string {
   html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
 
   // LaTeX math blocks $$ ... $$
-  html = html.replace(
-    /\$\$([\s\S]*?)\$\$/g,
-    '<div class="math-block">$$$1$$</div>',
-  );
+  html = html.replace(/\$\$([\s\S]*?)\$\$/g, '<div class="math-block">$$$1$$</div>');
 
   // Inline math $ ... $
-  html = html.replace(
-    /\$(.+?)\$/g,
-    '<span class="math-inline">$$$1$$</span>',
-  );
+  html = html.replace(/\$(.+?)\$/g, '<span class="math-inline">$$$1$$</span>');
 
   // Links
   html = html.replace(
@@ -101,7 +95,9 @@ function renderMarkdown(md: string): string {
     .split(/\n\n+/)
     .map((block) => {
       const trimmed = block.trim();
-      if (!trimmed) return "";
+      if (!trimmed) {
+        return "";
+      }
       if (
         trimmed.startsWith("<h") ||
         trimmed.startsWith("<ul") ||

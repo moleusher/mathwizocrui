@@ -131,8 +131,16 @@ describe("Sub-type interfaces", () => {
 
   it("creates solution_steps", () => {
     const steps: SolutionStep[] = [
-      { step: 1, content: "Identify the dimensions: length $a=25$cm, width $b=22$cm, height $c=26$cm.", knowledge: "reading comprehension" },
-      { step: 2, content: "Apply the surface area formula: $$S = 2(ab + ah + bh)$$", knowledge: "surface area formula" },
+      {
+        step: 1,
+        content: "Identify the dimensions: length $a=25$cm, width $b=22$cm, height $c=26$cm.",
+        knowledge: "reading comprehension",
+      },
+      {
+        step: 2,
+        content: "Apply the surface area formula: $$S = 2(ab + ah + bh)$$",
+        knowledge: "surface area formula",
+      },
     ];
     expect(steps).toHaveLength(2);
     expect(steps[0].step).toBe(1);
@@ -140,11 +148,18 @@ describe("Sub-type interfaces", () => {
   });
 
   it("creates error_analysis with all error types", () => {
-    const types = ["审题失误", "计算失误", "知识点漏洞", "思维层级不足", "规范失分", "未知"] as const;
+    const types = [
+      "审题失误",
+      "计算失误",
+      "知识点漏洞",
+      "思维层级不足",
+      "规范失分",
+      "未知",
+    ] as const;
     for (const t of types) {
       const analysis: ErrorAnalysis = {
         cause: `Test cause for ${t}`,
-        type: t as ErrorAnalysis["type"],
+        type: t,
         suggestion: "Review the concept.",
       };
       expect(analysis.type).toBe(t);
@@ -192,7 +207,13 @@ describe("DataCompleteness type", () => {
 describe("question_type union type", () => {
   it("accepts all valid question types", () => {
     const types: ExamQuestion["question_type"][] = [
-      "calculation", "choice", "fill_blank", "solution", "proof", "geometry", "unknown",
+      "calculation",
+      "choice",
+      "fill_blank",
+      "solution",
+      "proof",
+      "geometry",
+      "unknown",
     ];
     expect(types).toHaveLength(7);
   });
@@ -320,7 +341,10 @@ describe("fusion_meta on ExamQuestion", () => {
       source: "manual",
     };
 
-    const qWithFusion = { ...qBase, fusion_meta: { source_per_field: {}, confidence_per_field: {}, conflicts: [] } };
+    const qWithFusion = {
+      ...qBase,
+      fusion_meta: { source_per_field: {}, confidence_per_field: {}, conflicts: [] },
+    };
 
     expect(getDataCompleteness(qBase)).toBe("basic");
     expect(getDataCompleteness(qWithFusion)).toBe("basic");
@@ -400,7 +424,11 @@ describe("getDataCompleteness function", () => {
 
 // ── Helper function from data contracts (inline for test) ──
 function getDataCompleteness(q: ExamQuestion): DataCompleteness {
-  if (q.student_answer && q.teacher_correction && q.error_analysis) return "full";
-  if (q.question_type !== "unknown") return "basic";
+  if (q.student_answer && q.teacher_correction && q.error_analysis) {
+    return "full";
+  }
+  if (q.question_type !== "unknown") {
+    return "basic";
+  }
   return "minimal";
 }

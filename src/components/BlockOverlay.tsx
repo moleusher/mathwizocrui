@@ -35,7 +35,7 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
           <div
             key={block.id}
             data-slot="block-overlay-item"
-            data-active={block.active || undefined}
+            data-active={block.active ? "" : undefined}
             role={onBlockClick ? "button" : undefined}
             tabIndex={onBlockClick ? 0 : undefined}
             onKeyDown={
@@ -50,7 +50,7 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
             }
             className={cn(
               "absolute pointer-events-auto cursor-pointer transition-all border-2 rounded-sm",
-              block.color || "border-(--color-primary)",
+              block.color || "border-(--color-primary)", // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
               block.active
                 ? "border-(--color-primary) bg-(--color-primary)/10"
                 : "bg-transparent hover:bg-(--color-primary)/5",

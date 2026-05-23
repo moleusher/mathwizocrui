@@ -1,7 +1,19 @@
 // ── @mathwiz/ui-ocr components barrel ──
 
-export { EmptyStateRoot, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, EmptyStateAction } from "./EmptyState";
-export type { EmptyStateRootProps, EmptyStateIconProps, EmptyStateTitleProps, EmptyStateDescriptionProps, EmptyStateActionProps } from "./EmptyState";
+export {
+  EmptyStateRoot,
+  EmptyStateIcon,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateAction,
+} from "./EmptyState";
+export type {
+  EmptyStateRootProps,
+  EmptyStateIconProps,
+  EmptyStateTitleProps,
+  EmptyStateDescriptionProps,
+  EmptyStateActionProps,
+} from "./EmptyState";
 
 export { StatusBadge } from "./StatusBadge";
 export type { StatusBadgeProps, PipelineStatus } from "./StatusBadge";

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   QuestionBadge,
   TypeBadge,
@@ -7,11 +7,11 @@ import {
   ScoreDisplay,
   KnowledgeBadge,
   PrerequisiteBadge,
-} from './QuestionBadges';
+} from "./QuestionBadges";
 
 const meta: Meta<typeof QuestionBadge> = {
-  title: 'Components/QuestionBadges',
-  tags: ['autodocs'],
+  title: "Components/QuestionBadges",
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -30,7 +30,7 @@ export const QuestionBadgeIndex1: StoryObj<typeof QuestionBadge> = {
   ),
 };
 
-QuestionBadgeIndex1.storyName = 'QuestionBadge';
+QuestionBadgeIndex1.storyName = "QuestionBadge";
 
 // ── TypeBadge ──
 
@@ -48,7 +48,7 @@ export const TypeBadgeAll: StoryObj<typeof TypeBadge> = {
   ),
 };
 
-TypeBadgeAll.storyName = 'TypeBadge';
+TypeBadgeAll.storyName = "TypeBadge";
 
 // ── DifficultyBadge ──
 
@@ -63,7 +63,7 @@ export const DifficultyBadgeAll: StoryObj<typeof DifficultyBadge> = {
   ),
 };
 
-DifficultyBadgeAll.storyName = 'DifficultyBadge';
+DifficultyBadgeAll.storyName = "DifficultyBadge";
 
 // ── CorrectionBadge ──
 
@@ -78,7 +78,7 @@ export const CorrectionBadgeAll: StoryObj<typeof CorrectionBadge> = {
   ),
 };
 
-CorrectionBadgeAll.storyName = 'CorrectionBadge';
+CorrectionBadgeAll.storyName = "CorrectionBadge";
 
 // ── ScoreDisplay ──
 
@@ -93,7 +93,7 @@ export const ScoreDisplayAll: StoryObj<typeof ScoreDisplay> = {
   ),
 };
 
-ScoreDisplayAll.storyName = 'ScoreDisplay';
+ScoreDisplayAll.storyName = "ScoreDisplay";
 
 // ── KnowledgeBadge ──
 
@@ -107,7 +107,7 @@ export const KnowledgeBadgeAll: StoryObj<typeof KnowledgeBadge> = {
   ),
 };
 
-KnowledgeBadgeAll.storyName = 'KnowledgeBadge';
+KnowledgeBadgeAll.storyName = "KnowledgeBadge";
 
 // ── PrerequisiteBadge ──
 
@@ -120,4 +120,4 @@ export const PrerequisiteBadgeAll: StoryObj<typeof PrerequisiteBadge> = {
   ),
 };
 
-PrerequisiteBadgeAll.storyName = 'PrerequisiteBadge';
+PrerequisiteBadgeAll.storyName = "PrerequisiteBadge";

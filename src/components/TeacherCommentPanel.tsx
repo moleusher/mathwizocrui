@@ -7,10 +7,7 @@ export interface TeacherCommentPanelProps {
   className?: string;
 }
 
-export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({
-  comment,
-  className,
-}) => {
+export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({ comment, className }) => {
   return (
     <div
       className={cn(
@@ -20,9 +17,7 @@ export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({
     >
       <div className="flex items-center gap-1.5 mb-1">
         <MessageSquare className="w-4 h-4 text-[var(--color-error)]" />
-        <span className="text-xs font-medium text-[var(--color-error)]">
-          教师批注
-        </span>
+        <span className="text-xs font-medium text-[var(--color-error)]">教师批注</span>
       </div>
       <p className="text-sm text-[var(--color-text)] italic">{comment}</p>
     </div>

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { ExpandToggle } from './ExpandToggle';
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
+import { ExpandToggle } from "./ExpandToggle";
 
 const meta: Meta<typeof ExpandToggle> = {
-  title: 'Components/ExpandToggle',
+  title: "Components/ExpandToggle",
   component: ExpandToggle,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
     onClick: fn(),
   },
@@ -29,6 +29,6 @@ export const Expanded: Story = {
 export const CustomLabel: Story = {
   args: {
     isExpanded: false,
-    label: '显示解题过程',
+    label: "显示解题过程",
   },
 };

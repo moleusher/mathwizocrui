@@ -15,7 +15,7 @@ export interface ImageUploadProps extends Omit<React.ComponentProps<"div">, "onC
   /** Called when files are selected */
   onFilesSelected?: (files: File[]) => void;
   /** Called when files are rejected due to size/type validation */
-  onRejected?: (rejected: Array<{ name: string; reason: string }>) => void;
+  onRejected?: (rejected: { name: string; reason: string }[]) => void;
   /** Preview selected image as background */
   showPreview?: boolean;
   /** Custom dropzone text */
@@ -56,32 +56,41 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
     const objectUrlsRef = useRef<Map<string, string>>(new Map());
 
     // Compute default ARIA labels from accept prop
-    const dropzoneAriaLabel = ariaLabel || (accept === "image/jpeg,image/png"
-      ? "试卷上传区域"
-      : accept === "image/*"
-        ? "图片上传区域"
-        : accept === "image/*,.pdf"
-          ? "文件上传区域"
-          : "文件上传区域");
-    const fileInputAriaLabel = inputAriaLabel || (accept === "image/jpeg,image/png"
-      ? "选择 JPEG 或 PNG 试卷图片"
-      : accept === "image/*"
-        ? "选择图片文件"
-        : accept === "image/*,.pdf"
-          ? "选择图片或 PDF 文件"
-          : "选择文件");
+    const dropzoneAriaLabel =
+      ariaLabel && ariaLabel.length > 0
+        ? ariaLabel
+        : accept === "image/jpeg,image/png"
+          ? "试卷上传区域"
+          : accept === "image/*"
+            ? "图片上传区域"
+            : accept === "image/*,.pdf"
+              ? "文件上传区域"
+              : "文件上传区域";
+    const fileInputAriaLabel =
+      inputAriaLabel && inputAriaLabel.length > 0
+        ? inputAriaLabel
+        : accept === "image/jpeg,image/png"
+          ? "选择 JPEG 或 PNG 试卷图片"
+          : accept === "image/*"
+            ? "选择图片文件"
+            : accept === "image/*,.pdf"
+              ? "选择图片或 PDF 文件"
+              : "选择文件";
 
     // Revoke all object URLs on unmount
     useEffect(() => {
       return () => {
-        objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+        objectUrlsRef.current.forEach((url) => {
+          URL.revokeObjectURL(url);
+        });
       };
     }, []);
 
     const getObjectUrl = useCallback((file: File): string => {
-      const key = file.name + file.size + file.lastModified;
-      if (objectUrlsRef.current.has(key)) {
-        return objectUrlsRef.current.get(key)!;
+      const key = `${file.name}-${file.size}-${file.lastModified}`;
+      const cached = objectUrlsRef.current.get(key);
+      if (cached) {
+        return cached;
       }
       const url = URL.createObjectURL(file);
       objectUrlsRef.current.set(key, url);
@@ -90,15 +99,19 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
 
     const handleFiles = useCallback(
       (fileList: FileList | null) => {
-        if (!fileList?.length) return;
+        if (!fileList?.length) {
+          return;
+        }
         const valid: File[] = [];
-        const rejected: Array<{ name: string; reason: string }> = [];
+        const rejected: { name: string; reason: string }[] = [];
         const maxSizeMb = (maxSize / (1024 * 1024)).toFixed(0);
 
         // Parse accept list for type checking
         const acceptedTypes = accept.split(",").map((t) => t.trim());
         const isTypeAccepted = (file: File): boolean => {
-          if (acceptedTypes.length === 0 || acceptedTypes[0] === "" || acceptedTypes[0] === "*/*") return true;
+          if (acceptedTypes.length === 0 || acceptedTypes[0] === "" || acceptedTypes[0] === "*/*") {
+            return true;
+          }
           return acceptedTypes.some((type) => {
             if (type.startsWith(".")) {
               return file.name.toLowerCase().endsWith(type.toLowerCase());
@@ -125,7 +138,9 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
         if (rejected.length > 0) {
           onRejected?.(rejected);
         }
-        if (!valid.length) return;
+        if (!valid.length) {
+          return;
+        }
 
         setFiles((prev) => {
           const next = multiple ? [...prev, ...valid] : valid;
@@ -142,7 +157,9 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
 
     const removeCurrentFile = useCallback(() => {
       setFiles((prev) => {
-        if (prev.length === 0) return prev;
+        if (prev.length === 0) {
+          return prev;
+        }
         const next = prev.filter((_, i) => i !== currentIndex);
         onFilesSelected?.(next);
         return next;
@@ -166,15 +183,18 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
       inputRef.current?.click();
     }, []);
 
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    const dataError = error || undefined;
+
     return (
       <div
         ref={ref}
         role="region"
         aria-label={dropzoneAriaLabel}
         data-slot="image-upload"
-        data-dragging={isDragging || undefined}
-        data-error={error || undefined}
-        data-has-files={hasFiles || undefined}
+        data-dragging={isDragging ? "" : undefined}
+        data-error={dataError}
+        data-has-files={hasFiles ? "" : undefined}
         className={cn(
           "relative flex flex-col items-center justify-center gap-3 rounded-(--radius-lg) border-2 border-dashed p-8 transition-colors duration-150",
           !hasFiles && "cursor-pointer",
@@ -183,12 +203,18 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           error && "border-[var(--color-error)] bg-[var(--color-error-bg)]",
           className,
         )}
-        onClick={() => !hasFiles && openFilePicker()}
+        onClick={() => {
+          if (!hasFiles) {
+            openFilePicker();
+          }
+        }}
         onDragOver={(e) => {
           e.preventDefault();
           setIsDragging(true);
         }}
-        onDragLeave={() => setIsDragging(false)}
+        onDragLeave={() => {
+          setIsDragging(false);
+        }}
         onDrop={(e) => {
           e.preventDefault();
           setIsDragging(false);
@@ -204,7 +230,9 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
           multiple={multiple}
           className="hidden"
           aria-label={fileInputAriaLabel}
-          onChange={(e) => handleFiles(e.target.files)}
+          onChange={(e) => {
+            handleFiles(e.target.files);
+          }}
         />
 
         {hasFiles && showPreview ? (
@@ -226,7 +254,9 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               <ImagePagination
                 current={currentIndex + 1}
                 total={files.length}
-                onPageChange={(p) => setCurrentIndex(p - 1)}
+                onPageChange={(p) => {
+                  setCurrentIndex(p - 1);
+                }}
               />
             )}
 
@@ -244,9 +274,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                   }}
                 >
                   <Xmark className="size-3.5" /> 移除{" "}
-                  {files.length > 1
-                    ? `第 ${currentIndex + 1} 页`
-                    : "当前页"}
+                  {files.length > 1 ? `第 ${currentIndex + 1} 页` : "当前页"}
                 </button>
               )}
             </div>
@@ -256,12 +284,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
                 <p className="text-xs text-(--color-text-muted)">
                   Add more files by dropping or browsing
                 </p>
-                <MathButton
-                  variant="outline"
-                  size="sm"
-                  type="button"
-                  onClick={openFilePicker}
-                >
+                <MathButton variant="outline" size="sm" type="button" onClick={openFilePicker}>
                   Browse Files
                 </MathButton>
               </div>
@@ -299,9 +322,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               >
                 {label}
               </p>
-              {hint && (
-                <p className="mt-1 text-xs text-(--color-text-muted)">{hint}</p>
-              )}
+              {hint && <p className="mt-1 text-xs text-(--color-text-muted)">{hint}</p>}
               {error && <p className="mt-1 text-xs text-[var(--color-error)]">{error}</p>}
             </div>
 

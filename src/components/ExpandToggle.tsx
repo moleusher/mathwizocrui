@@ -31,11 +31,7 @@ export const ExpandToggle: React.FC<ExpandToggleProps> = ({
       )}
     >
       {displayLabel}
-      {isExpanded ? (
-        <ChevronUp className="w-4 h-4" />
-      ) : (
-        <ChevronDown className="w-4 h-4" />
-      )}
+      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
     </button>
   );
 };

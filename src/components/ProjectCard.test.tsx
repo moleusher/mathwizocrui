@@ -15,81 +15,39 @@ const mockProject = {
 describe("ProjectCard", () => {
   // ── rendering ──
   it("renders project title", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(screen.getByText("2024 期末数学试卷")).toBeInTheDocument();
   });
 
   it("renders subject and grade metadata", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(screen.getByText("数学")).toBeInTheDocument();
     expect(screen.getByText("G8")).toBeInTheDocument();
   });
 
   it("renders question count", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(screen.getByText("12 题")).toBeInTheDocument();
   });
 
   it("renders with data-slot attribute", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(document.querySelector('[data-slot="project-card"]')).toBeInTheDocument();
   });
 
   it("renders with data-status attribute", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="ocr"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="ocr" onClick={() => {}} />);
     expect(document.querySelector('[data-status="ocr"]')).toBeInTheDocument();
   });
 
   it("has descriptive aria-label with title and status", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     const card = document.querySelector('[data-slot="project-card"]');
     expect(card).toHaveAttribute("aria-label", "试卷: 2024 期末数学试卷 — 状态: 已完成");
   });
 
   it("aria-label reflects uploading status", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="uploading"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="uploading" onClick={() => {}} />);
     const card = document.querySelector('[data-slot="project-card"]');
     expect(card).toHaveAttribute("aria-label", "试卷: 2024 期末数学试卷 — 状态: 上传中");
   });
@@ -102,13 +60,7 @@ describe("ProjectCard", () => {
     ["completed", "Complete"],
     ["failed", "Failed"],
   ] as const)("renders StatusBadge for %s", (status, label) => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus={status}
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus={status} onClick={() => {}} />);
     expect(screen.getByText(label)).toBeInTheDocument();
   });
 
@@ -138,13 +90,7 @@ describe("ProjectCard", () => {
   });
 
   it("hides progress bar for completed status", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(document.querySelector('[data-slot="project-card-progress"]')).not.toBeInTheDocument();
   });
 
@@ -162,13 +108,7 @@ describe("ProjectCard", () => {
   });
 
   it("does not render dropdown trigger when no action callbacks", () => {
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={() => {}}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={() => {}} />);
     expect(screen.queryByLabelText("更多操作")).not.toBeInTheDocument();
   });
 
@@ -210,7 +150,11 @@ describe("ProjectCard", () => {
         dashboardStatus="completed"
         onClick={() => {}}
         onDelete={() => {}}
-        dropdownItems={<Dropdown.Item key="custom-1" textValue="自定义">自定义</Dropdown.Item>}
+        dropdownItems={
+          <Dropdown.Item key="custom-1" textValue="自定义">
+            自定义
+          </Dropdown.Item>
+        }
       />,
     );
     expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
@@ -222,7 +166,11 @@ describe("ProjectCard", () => {
         project={mockProject}
         dashboardStatus="completed"
         onClick={() => {}}
-        dropdownItems={<Dropdown.Item key="custom" textValue="自定义">自定义</Dropdown.Item>}
+        dropdownItems={
+          <Dropdown.Item key="custom" textValue="自定义">
+            自定义
+          </Dropdown.Item>
+        }
       />,
     );
     expect(screen.getByLabelText("更多操作")).toBeInTheDocument();
@@ -231,13 +179,7 @@ describe("ProjectCard", () => {
   // ── click on card ──
   it("calls onClick when card is clicked", async () => {
     const fn = vi.fn();
-    render(
-      <ProjectCard
-        project={mockProject}
-        dashboardStatus="completed"
-        onClick={fn}
-      />,
-    );
+    render(<ProjectCard project={mockProject} dashboardStatus="completed" onClick={fn} />);
     await userEvent.click(screen.getByText("2024 期末数学试卷"));
     expect(fn).toHaveBeenCalledOnce();
   });

@@ -97,7 +97,9 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   }
 
   // ── Build remark/rehype pipeline ──
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const remarkPlugins: any[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const rehypePlugins: any[] = [];
 
   if (enableMath) {
