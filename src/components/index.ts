@@ -39,6 +39,7 @@ export {
   DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
+  ConfidenceIndicator,
   KnowledgeBadge,
   PrerequisiteBadge,
 } from "./QuestionBadges";
@@ -48,6 +49,7 @@ export type {
   DifficultyBadgeProps,
   CorrectionBadgeProps,
   ScoreDisplayProps,
+  ConfidenceIndicatorProps,
   KnowledgeBadgeProps,
   PrerequisiteBadgeProps,
 } from "./QuestionBadges";
@@ -125,6 +127,8 @@ export type {
   ErrorAnalysis,
   QuestionsMeta,
   DataCompleteness,
+  FusionMeta,
+  FusionConflict,
   QuestionType,
   Difficulty,
 } from "../types/question";

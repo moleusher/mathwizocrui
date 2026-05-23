@@ -9,6 +9,8 @@ export type {
   ErrorAnalysis,
   QuestionsMeta,
   DataCompleteness,
+  FusionMeta,
+  FusionConflict,
 } from './question';
 
 export {

@@ -165,3 +165,45 @@ export const PrerequisiteBadge: React.FC<PrerequisiteBadgeProps> = ({ label }) =
 };
 
 PrerequisiteBadge.displayName = "PrerequisiteBadge";
+
+// ── ConfidenceIndicator ──
+
+export interface ConfidenceIndicatorProps {
+  /** 置信度 0.0-1.0 */
+  confidence: number;
+  /** 是否有冲突 */
+  hasConflict?: boolean;
+}
+
+export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
+  confidence,
+  hasConflict,
+}) => {
+  // 高置信度 (>0.8): 无指示 (不干扰用户)
+  // 中置信度 (0.5-0.8): 半透明 ⓘ 图标
+  // 低置信度 (<0.5): 醒目 ⚠ 图标 + tooltip
+  // 如有冲突: 显示冲突标记
+  if (confidence >= 0.8 && !hasConflict) return null;
+
+  const isLow = confidence < 0.5;
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center text-xs cursor-help",
+        isLow
+          ? "text-[var(--color-warning)] font-semibold"
+          : "text-[var(--color-text-muted)]",
+      )}
+      title={
+        hasConflict
+          ? `置信度 ${(confidence * 100).toFixed(0)}%，存在模型判定冲突`
+          : `置信度 ${(confidence * 100).toFixed(0)}%`
+      }
+    >
+      {hasConflict ? "⚠" : isLow ? "ⓘ" : ""}
+      {isLow && !hasConflict && ` ${(confidence * 100).toFixed(0)}%`}
+    </span>
+  );
+};
+
+ConfidenceIndicator.displayName = "ConfidenceIndicator";

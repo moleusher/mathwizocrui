@@ -80,6 +80,21 @@ export type QuestionType = 'calculation' | 'choice' | 'fill_blank' | 'solution' 
 export type Difficulty = 'easy' | 'medium' | 'hard' | 'unknown';
 
 // ══════════════════════════════════════════════════════
+// Fusion meta (v0.2.1+)
+// ══════════════════════════════════════════════════════
+
+export interface FusionConflict {
+  field: string;
+  detail: string;
+}
+
+export interface FusionMeta {
+  source_per_field: Record<string, string>;
+  confidence_per_field: Record<string, number>;
+  conflicts: FusionConflict[];
+}
+
+// ══════════════════════════════════════════════════════
 // Main model
 // ══════════════════════════════════════════════════════
 
@@ -106,6 +121,9 @@ export interface ExamQuestion {
   related_block_ids: number[];
   block_bbox: BBox | null;
   source: 'ocr' | 'llm' | 'manual';
+
+  /** 双模型融合元信息 (v0.2.1+, 可选) */
+  fusion_meta?: FusionMeta;
 }
 
 // ══════════════════════════════════════════════════════

@@ -10,6 +10,8 @@ import type {
   ErrorAnalysis,
   QuestionsMeta,
   DataCompleteness,
+  FusionMeta,
+  FusionConflict,
 } from "../../types/question";
 
 describe("ExamQuestion type", () => {
@@ -207,6 +209,121 @@ describe("source union type", () => {
   it("accepts all valid source values", () => {
     const sources: ExamQuestion["source"][] = ["ocr", "llm", "manual"];
     expect(sources).toHaveLength(3);
+  });
+});
+
+describe("FusionMeta type", () => {
+  it("creates a valid FusionMeta with all fields", () => {
+    const meta: FusionMeta = {
+      source_per_field: { is_correct: "merged" },
+      confidence_per_field: { is_correct: 0.95 },
+      conflicts: [{ field: "score", detail: "PaddleOCR says 5, QwenVL says 3" }],
+    };
+    expect(meta.source_per_field.is_correct).toBe("merged");
+    expect(meta.confidence_per_field.is_correct).toBe(0.95);
+    expect(meta.conflicts).toHaveLength(1);
+  });
+
+  it("creates an empty FusionMeta", () => {
+    const meta: FusionMeta = {
+      source_per_field: {},
+      confidence_per_field: {},
+      conflicts: [],
+    };
+    expect(Object.keys(meta.source_per_field)).toHaveLength(0);
+    expect(meta.conflicts).toHaveLength(0);
+  });
+});
+
+describe("FusionConflict type", () => {
+  it("creates a valid FusionConflict", () => {
+    const conflict: FusionConflict = {
+      field: "score",
+      detail: "PaddleOCR says 5, QwenVL says 3",
+    };
+    expect(conflict.field).toBe("score");
+    expect(conflict.detail).toBeTruthy();
+  });
+});
+
+describe("fusion_meta on ExamQuestion", () => {
+  it("is optional — ExamQuestion can be created without it", () => {
+    const question: ExamQuestion = {
+      question_index: 1,
+      question_text: "Test",
+      question_type: "calculation",
+      difficulty: "easy",
+      knowledge_points: [],
+      images: [],
+      student_answer: null,
+      teacher_correction: null,
+      standard_answer: null,
+      student_correction: null,
+      solution_steps: [],
+      error_analysis: null,
+      prerequisite_knowledge: [],
+      common_mistakes: [],
+      related_block_ids: [],
+      block_bbox: null,
+      source: "manual",
+    };
+    expect(question.fusion_meta).toBeUndefined();
+  });
+
+  it("can be set when provided", () => {
+    const question: ExamQuestion = {
+      question_index: 1,
+      question_text: "Test",
+      question_type: "calculation",
+      difficulty: "easy",
+      knowledge_points: [],
+      images: [],
+      student_answer: null,
+      teacher_correction: null,
+      standard_answer: null,
+      student_correction: null,
+      solution_steps: [],
+      error_analysis: null,
+      prerequisite_knowledge: [],
+      common_mistakes: [],
+      related_block_ids: [],
+      block_bbox: null,
+      source: "manual",
+      fusion_meta: {
+        source_per_field: { is_correct: "paddleocr" },
+        confidence_per_field: { is_correct: 0.65 },
+        conflicts: [],
+      },
+    };
+    expect(question.fusion_meta).toBeDefined();
+    expect(question.fusion_meta!.source_per_field.is_correct).toBe("paddleocr");
+  });
+
+  it("does not affect getDataCompleteness", () => {
+    const qBase: ExamQuestion = {
+      question_index: 1,
+      question_text: "Test",
+      question_type: "calculation",
+      difficulty: "easy",
+      knowledge_points: [],
+      images: [],
+      student_answer: null,
+      teacher_correction: null,
+      standard_answer: null,
+      student_correction: null,
+      solution_steps: [],
+      error_analysis: null,
+      prerequisite_knowledge: [],
+      common_mistakes: [],
+      related_block_ids: [],
+      block_bbox: null,
+      source: "manual",
+    };
+
+    const qWithFusion = { ...qBase, fusion_meta: { source_per_field: {}, confidence_per_field: {}, conflicts: [] } };
+
+    expect(getDataCompleteness(qBase)).toBe("basic");
+    expect(getDataCompleteness(qWithFusion)).toBe("basic");
   });
 });
 

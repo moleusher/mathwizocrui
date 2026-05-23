@@ -8,6 +8,7 @@ import {
   DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
+  ConfidenceIndicator,
   KnowledgeBadge,
   PrerequisiteBadge,
 } from "./QuestionBadges";
@@ -112,6 +113,12 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             <ScoreDisplay
               score={question.teacher_correction.score}
               maxScore={question.teacher_correction.max_score}
+            />
+          )}
+          {question.fusion_meta && (
+            <ConfidenceIndicator
+              confidence={question.fusion_meta.confidence_per_field?.is_correct ?? 0.5}
+              hasConflict={(question.fusion_meta.conflicts?.length ?? 0) > 0}
             />
           )}
         </>

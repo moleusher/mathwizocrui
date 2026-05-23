@@ -97,3 +97,31 @@ describe("PrerequisiteBadge", () => {
     expect(screen.getByText("← 整数运算")).toBeInTheDocument();
   });
 });
+
+describe("ConfidenceIndicator", () => {
+  it("renders nothing when confidence >= 0.8 and no conflict", async () => {
+    const { ConfidenceIndicator } = await renderBadges();
+    const { container } = render(<ConfidenceIndicator confidence={0.95} />);
+    expect(container.innerHTML).toBe("");
+  });
+
+  it("renders warning when confidence < 0.5 without conflict", async () => {
+    const { ConfidenceIndicator } = await renderBadges();
+    render(<ConfidenceIndicator confidence={0.3} />);
+    expect(screen.getByText((content) => content.includes("30%"))).toBeInTheDocument();
+  });
+
+  it("renders conflict marker when hasConflict is true", async () => {
+    const { ConfidenceIndicator } = await renderBadges();
+    render(<ConfidenceIndicator confidence={0.9} hasConflict={true} />);
+    // ⚠ is rendered for conflict even at high confidence
+    expect(screen.getByText("⚠")).toBeInTheDocument();
+  });
+
+  it("renders medium confidence without text indicator", async () => {
+    const { ConfidenceIndicator } = await renderBadges();
+    const { container } = render(<ConfidenceIndicator confidence={0.65} />);
+    // 0.5-0.8: no visible text, only ⓘ which might be rendered
+    expect(container.textContent).toBe("");
+  });
+});

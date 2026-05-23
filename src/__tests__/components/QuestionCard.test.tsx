@@ -281,4 +281,38 @@ describe("QuestionCard", () => {
       expect(screen.getByText(`← ${pr}`)).toBeInTheDocument();
     }
   });
+
+  it("renders ConfidenceIndicator when fusion_meta is present", async () => {
+    const question = createFullQuestion({
+      fusion_meta: {
+        source_per_field: { is_correct: "paddleocr" },
+        confidence_per_field: { is_correct: 0.45 },
+        conflicts: [],
+      },
+    });
+    await renderCard({ question });
+    // Low confidence (0.45), no conflicts → should show percentage
+    expect(screen.getByText((content) => content.includes("45%"))).toBeInTheDocument();
+  });
+
+  it("renders conflict warning when fusion_meta has conflicts", async () => {
+    const question = createFullQuestion({
+      fusion_meta: {
+        source_per_field: { is_correct: "paddleocr" },
+        confidence_per_field: { is_correct: 0.9 },
+        conflicts: [{ field: "score", detail: "PaddleOCR says 5, QwenVL says 3" }],
+      },
+    });
+    await renderCard({ question });
+    // Has conflict → ⚠ marker
+    expect(screen.getByText("⚠")).toBeInTheDocument();
+  });
+
+  it("does not render fusion_meta indicators when fusion_meta is absent (backward compat)", async () => {
+    const question = createFullQuestion();
+    expect(question.fusion_meta).toBeUndefined();
+    await renderCard({ question });
+    // Normal rendering — "2/5" for ScoreDisplay should still be there
+    expect(screen.getByText("2/5")).toBeInTheDocument();
+  });
 });
