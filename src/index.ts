@@ -16,6 +16,8 @@ export type {
   DataCompleteness,
   QuestionType,
   Difficulty,
+  FusionMeta,
+  FusionConflict,
 } from "./types/question";
 export { getDataCompleteness } from "./types/question";
 
