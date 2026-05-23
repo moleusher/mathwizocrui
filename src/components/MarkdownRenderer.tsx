@@ -1,8 +1,10 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import type { Options as RehypeSanitizeOptions } from "rehype-sanitize";
 import { cn } from "../utils/cn";
 import "katex/dist/katex.min.css";
 
@@ -103,12 +105,33 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   const rehypePlugins: any[] = [];
 
   if (enableMath) {
+    remarkPlugins.push(remarkGfm);
     remarkPlugins.push(remarkMath);
     rehypePlugins.push(rehypeKatex);
   }
 
   if (htmlMode === "sanitize") {
-    rehypePlugins.push([rehypeSanitize, defaultSchema]);
+    // Extend default schema to preserve KaTeX HTML classes and attributes.
+    // rehype-sanitize defaultSchema removes KaTeX's class names (katex, katex-mathml, etc.)
+    // causing formulas to render as raw duplicated text.
+    // See: https://github.com/syntax-tree/hast-util-sanitize
+    const katexSchema: RehypeSanitizeOptions = {
+      ...defaultSchema,
+      attributes: {
+        ...defaultSchema.attributes,
+        '*': [
+          ...(defaultSchema.attributes?.['*'] || []),
+          'className', 'class', 'style', 'aria-hidden',
+        ],
+      },
+      tagNames: [
+        ...(defaultSchema.tagNames || []),
+        'math', 'semantics', 'annotation', 'mrow', 'mi', 'mo', 'mn', 'msup', 'mfrac',
+        'mtable', 'mtr', 'mtd', 'merror', 'mspace', 'mpadded', 'mphantom', 'mstyle',
+        'munder', 'mover', 'munderover', 'svg', 'path', 'line',
+      ],
+    };
+    rehypePlugins.push([rehypeSanitize, katexSchema]);
   }
 
   // When htmlMode is 'strip', we don't add rehype-sanitize or allow raw HTML.
