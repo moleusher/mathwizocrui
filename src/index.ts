@@ -148,6 +148,10 @@ export type { CardActionsProps } from "./components/CardActions";
 export { IntentActions } from "./components/IntentActions";
 export type { IntentActionsProps } from "./components/IntentActions";
 
+export { IntentSelector } from "./components/IntentSelector";
+export type { IntentSelectorProps, IntentDef } from "./components/IntentSelector";
+export { DEFAULT_INTENTS } from "./components/IntentSelector";
+
 export { ClassroomProgress } from "./components/ClassroomProgress";
 export type {
   ClassroomProgressProps,

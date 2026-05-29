@@ -1,6 +1,6 @@
 {
   "name": "@mathwiz/ui-ocr",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "private": false,
   "description": "Math-OCR Component Library \u2014 React 19 \u00b7 HeroUI 3 \u00b7 Tailwind 4 \u00b7 Storybook 10",
   "type": "module",
