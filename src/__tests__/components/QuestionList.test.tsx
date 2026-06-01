@@ -58,6 +58,12 @@ function createUnmarkedQuestion(index: number): ExamQuestion {
   });
 }
 
+function createPartialQuestion(index: number): ExamQuestion {
+  return createMockQuestion(index, {
+    teacher_correction: { mark: "?", score: 3, max_score: 5, comment: "部分正确" },
+  });
+}
+
 // ── Tests ──
 
 describe("QuestionList", () => {
@@ -207,5 +213,136 @@ describe("QuestionList", () => {
 
     // The active card should have isSelected styling (ring-2 class)
     expect(container.innerHTML).toContain("ring-2");
+  });
+});
+
+// ── Flow variant tests ──
+
+describe("QuestionList with variant='flow'", () => {
+  it("renders flow items", async () => {
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
+    await renderList({ questions, variant: "flow" });
+
+    expect(screen.getByText("题目 1 的内容")).toBeInTheDocument();
+    expect(screen.getByText("题目 2 的内容")).toBeInTheDocument();
+  });
+
+  it("renders ✓/✗ marks in flow mode", async () => {
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
+    await renderList({ questions, variant: "flow" });
+
+    expect(screen.getByText("✓")).toBeInTheDocument();
+    expect(screen.getByText("✗")).toBeInTheDocument();
+  });
+
+  it("renders question numbers in flow mode", async () => {
+    const questions = [createCorrectQuestion(5), createWrongQuestion(10)];
+    await renderList({ questions, variant: "flow" });
+
+    expect(screen.getByText("5.")).toBeInTheDocument();
+    expect(screen.getByText("10.")).toBeInTheDocument();
+  });
+
+  it("renders status dots with correct colors", async () => {
+    const questions = [
+      createCorrectQuestion(1),
+      createWrongQuestion(2),
+      createPartialQuestion(3),
+      createUnmarkedQuestion(4),
+    ];
+    const { container } = await renderList({ questions, variant: "flow" });
+
+    const items = container.querySelectorAll('[data-slot="flow-item"]');
+    expect(items.length).toBe(4);
+    expect(items[0].getAttribute("data-status")).toBe("correct");
+    expect(items[1].getAttribute("data-status")).toBe("wrong");
+    expect(items[2].getAttribute("data-status")).toBe("partial");
+    expect(items[3].getAttribute("data-status")).toBe("unmarked");
+  });
+
+  it("renders knowledge tags in flow mode", async () => {
+    const questions = [
+      createMockQuestion(1, {
+        knowledge_points: ["一元二次方程", "判别式", "韦达定理"],
+        teacher_correction: { mark: "✓", score: 5, max_score: 5, comment: null },
+      }),
+    ];
+    const { container } = await renderList({ questions, variant: "flow" });
+
+    const tags = container.querySelectorAll('[data-slot="flow-tag"]');
+    expect(tags.length).toBe(3);
+    expect(tags[0].textContent).toBe("一元二次方程");
+    expect(tags[1].textContent).toBe("判别式");
+  });
+
+  it("highlights active item in flow mode", async () => {
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
+    const { container } = await renderList({
+      questions,
+      variant: "flow",
+      activeIndex: 2,
+    });
+
+    const items = container.querySelectorAll('[data-slot="flow-item"]');
+    expect(items[0].getAttribute("data-active")).toBe("false");
+    expect(items[1].getAttribute("data-active")).toBe("true");
+  });
+
+  it("fires onActiveChange when flow item clicked", async () => {
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
+    const handleActiveChange = vi.fn();
+    await renderList({
+      questions,
+      variant: "flow",
+      onActiveChange: handleActiveChange,
+    });
+
+    await userEvent.click(screen.getByText("题目 2 的内容"));
+
+    expect(handleActiveChange).toHaveBeenCalledTimes(1);
+    expect(handleActiveChange).toHaveBeenCalledWith(2);
+  });
+
+  it("fires onQuestionClick when flow item clicked", async () => {
+    const questions = [createWrongQuestion(1)];
+    const handleClick = vi.fn();
+    await renderList({
+      questions,
+      variant: "flow",
+      onQuestionClick: handleClick,
+    });
+
+    await userEvent.click(screen.getByText("题目 1 的内容"));
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledWith(1, undefined);
+  });
+});
+
+describe("QuestionList data-slot and ref", () => {
+  it("renders with data-slot='question-list'", async () => {
+    const questions = [createCorrectQuestion(1)];
+    const { container } = await renderList({ questions });
+
+    const el = container.querySelector('[data-slot="question-list"]');
+    expect(el).toBeInTheDocument();
+  });
+
+  it("defaults to variant='accordion' for backward compatibility", async () => {
+    // Without passing variant, should render accordion mode
+    const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
+    await renderList({ questions });
+
+    // Accordion renders aria-label on QuestionSummary
+    expect(screen.getByLabelText("题目 1")).toBeInTheDocument();
+    expect(screen.getByLabelText("题目 2")).toBeInTheDocument();
+  });
+
+  it("flow mode renders without heroUI accordion markup", async () => {
+    const questions = [createCorrectQuestion(1)];
+    const { container } = await renderList({ questions, variant: "flow" });
+
+    // Flow mode should not have the accordion trigger
+    expect(container.querySelector('[data-slot="flow-item"]')).toBeInTheDocument();
   });
 });

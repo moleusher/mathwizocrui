@@ -28,7 +28,16 @@ export interface QuestionListProps {
   questions: ExamQuestion[];
 
   /**
-   * 列表浏览模式
+   * 列表呈现模式
+   * - 'accordion': 手风琴/滚动模式 — 使用 HeroUI Accordion 或 QuestionCard 列表 (默认)
+   * - 'flow': 流式模式 — 去边框列表, 状态圆点 + 题号 + 标题截断 + ✓/✗ + 知识点标签
+   *
+   * @default 'accordion'
+   */
+  variant?: "accordion" | "flow";
+
+  /**
+   * 列表浏览模式 (仅 variant='accordion' 时生效)
    * - 'scroll': 滚动模式 — 所有题目全展开, 滚动浏览
    * - 'accordion': 手风琴模式 — 同时只展开一个题目 (推荐)
    *
@@ -37,7 +46,7 @@ export interface QuestionListProps {
   browseMode?: "scroll" | "accordion";
 
   /**
-   * 默认展开的题号 (browseMode='accordion')
+   * 默认展开的题号 (variant='accordion' 且 browseMode='accordion')
    * - number: 展开指定题号
    * - null: 全部折叠 (推荐)
    *
@@ -150,67 +159,168 @@ export function FilterBar({ filter, counts, onFilterChange }: FilterBarProps) {
   );
 }
 
+// ── Status helpers ──
+
+type QuestionStatus = "correct" | "wrong" | "partial" | "unmarked";
+
+function getQuestionStatus(q: ExamQuestion): QuestionStatus {
+  const mark = q.teacher_correction?.mark;
+  if (mark === "✓") return "correct";
+  if (mark === "✗") return "wrong";
+  if (mark === "?") return "partial";
+  return "unmarked";
+}
+
 // ── Main component ──
 
-export const QuestionList: React.FC<QuestionListProps> = ({
-  questions,
-  browseMode = "accordion",
-  filter = "all",
-  defaultExpandedIndex = null,
-  expandedIndices: controlledExpandedIndices,
-  onExpandedChange,
-  activeIndex,
-  onActiveChange,
-  selectedIndices,
-  onSelectChange,
-  onFilterChange,
-  onQuestionClick,
-  loading = false,
-  error = null,
-  onRetry,
-  className,
-}) => {
-  // ── Filtering ──
-  const filteredQuestions = useMemo(() => filterQuestions(questions, filter), [questions, filter]);
+export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
+  (
+    {
+      questions,
+      variant = "accordion",
+      browseMode = "accordion",
+      filter = "all",
+      defaultExpandedIndex = null,
+      expandedIndices: controlledExpandedIndices,
+      onExpandedChange,
+      activeIndex,
+      onActiveChange,
+      selectedIndices,
+      onSelectChange,
+      onFilterChange,
+      onQuestionClick,
+      loading = false,
+      error = null,
+      onRetry,
+      className,
+    },
+    ref,
+  ) => {
+    // ── Filtering ──
+    const filteredQuestions = useMemo(() => filterQuestions(questions, filter), [questions, filter]);
 
-  const counts = useMemo(() => computeCounts(questions), [questions]);
+    const counts = useMemo(() => computeCounts(questions), [questions]);
 
-  // ── Internal expanded state (for uncontrolled accordion) ──
-  const [localExpandedKeys, setLocalExpandedKeys] = React.useState<Set<string | number>>(
-    defaultExpandedIndex != null ? new Set([String(defaultExpandedIndex)]) : new Set(),
-  );
+    // ── Internal expanded state (for uncontrolled accordion) ──
+    const [localExpandedKeys, setLocalExpandedKeys] = React.useState<Set<string | number>>(
+      defaultExpandedIndex != null ? new Set([String(defaultExpandedIndex)]) : new Set(),
+    );
 
-  const isControlled = controlledExpandedIndices !== undefined;
+    const isControlled = controlledExpandedIndices !== undefined;
 
-  const currentExpandedKeys: Set<string | number> | undefined = isControlled
-    ? new Set(Array.from(controlledExpandedIndices).map(String))
-    : localExpandedKeys;
+    const currentExpandedKeys: Set<string | number> | undefined = isControlled
+      ? new Set(Array.from(controlledExpandedIndices).map(String))
+      : localExpandedKeys;
 
-  const handleExpandedChange = (keys: Set<string | number>) => {
-    if (!isControlled) {
-      setLocalExpandedKeys(new Set(keys));
-    }
-    const numberKeys = new Set(Array.from(keys).map(Number));
-    onExpandedChange?.(numberKeys);
-    // Accordion: the single expanded item becomes the active question
-    if (keys.size === 1) {
-      onActiveChange?.(Number(Array.from(keys)[0]));
-    }
-  };
+    const handleExpandedChange = (keys: Set<string | number>) => {
+      if (!isControlled) {
+        setLocalExpandedKeys(new Set(keys));
+      }
+      const numberKeys = new Set(Array.from(keys).map(Number));
+      onExpandedChange?.(numberKeys);
+      // Accordion: the single expanded item becomes the active question
+      if (keys.size === 1) {
+        onActiveChange?.(Number(Array.from(keys)[0]));
+      }
+    };
 
-  const handleQuestionClick = (questionIndex: number, bbox?: BBox) => {
-    onQuestionClick?.(questionIndex, bbox);
-    onActiveChange?.(questionIndex);
-  };
+    const handleQuestionClick = (questionIndex: number, bbox?: BBox) => {
+      onQuestionClick?.(questionIndex, bbox);
+      onActiveChange?.(questionIndex);
+    };
 
-  // ── Shared: FilterBar ──
-  const filterBar = <FilterBar filter={filter} counts={counts} onFilterChange={onFilterChange} />;
+    // ── Shared: FilterBar ──
+    const filterBar = <FilterBar filter={filter} counts={counts} onFilterChange={onFilterChange} />;
 
-  // ── Loading state ──
-  if (loading) {
-    return (
-      <div className={cn("space-y-3", className)}>
-        {filterBar}
+    // ── Flow mode item ──
+    const renderFlowItem = (q: ExamQuestion) => {
+      const isActive = activeIndex === q.question_index;
+      const status = getQuestionStatus(q);
+      const mark = q.teacher_correction?.mark;
+      const truncatedText =
+        q.question_text.length > 80
+          ? q.question_text.slice(0, 80) + "..."
+          : q.question_text;
+
+      return (
+        <div
+          key={q.question_index}
+          data-slot="flow-item"
+          data-status={status}
+          data-active={isActive}
+          role="button"
+          tabIndex={0}
+          aria-label={`题目 ${q.question_index}`}
+          onClick={() => handleQuestionClick(q.question_index, q.block_bbox ?? undefined)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleQuestionClick(q.question_index, q.block_bbox ?? undefined);
+            }
+          }}
+          className={cn(
+            "flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors",
+            "border-b border-[var(--color-border)] last:border-b-0",
+            isActive && "bg-[var(--color-accent)]/10",
+          )}
+        >
+          {/* Status dot */}
+          <span
+            data-slot="status-dot"
+            className={cn(
+              "w-2.5 h-2.5 rounded-full shrink-0",
+              status === "correct" && "bg-[var(--color-success)]",
+              status === "wrong" && "bg-[var(--color-error)]",
+              status === "partial" && "bg-[var(--color-warning)]",
+              status === "unmarked" && "bg-[var(--color-text-muted)]",
+            )}
+          />
+
+          {/* Question number */}
+          <span className="text-sm font-medium text-[var(--color-text)] min-w-[24px] shrink-0 tabular-nums">
+            {q.question_index}.
+          </span>
+
+          {/* Title (truncated) */}
+          <span className="flex-1 truncate text-sm text-[var(--color-text-muted)]">
+            {truncatedText}
+          </span>
+
+          {/* ✓/✗ mark */}
+          {mark && (
+            <span
+              className={cn(
+                "text-sm font-bold shrink-0",
+                mark === "✓" ? "text-[var(--color-success)]" : "text-[var(--color-error)]",
+              )}
+            >
+              {mark}
+            </span>
+          )}
+
+          {/* Knowledge tags */}
+          {q.knowledge_points.length > 0 && (
+            <span className="hidden sm:flex items-center gap-1 shrink-0">
+              {q.knowledge_points.slice(0, 3).map((kp) => (
+                <span
+                  key={kp}
+                  data-slot="flow-tag"
+                  className="px-1.5 py-0.5 text-xs rounded bg-[var(--color-brand)]/10 text-[var(--color-brand)]"
+                >
+                  {kp}
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+      );
+    };
+
+    // ── Determine content based on state ──
+    let content: React.ReactNode;
+
+    if (loading) {
+      content = (
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
             <div
@@ -219,15 +329,9 @@ export const QuestionList: React.FC<QuestionListProps> = ({
             />
           ))}
         </div>
-      </div>
-    );
-  }
-
-  // ── Error state ──
-  if (error) {
-    return (
-      <div className={cn("space-y-3", className)}>
-        {filterBar}
+      );
+    } else if (error) {
+      content = (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <AlertTriangle className="w-8 h-8 text-[var(--color-error)]" />
           <p className="mt-3 text-sm text-[var(--color-text-muted)]">{error}</p>
@@ -241,15 +345,9 @@ export const QuestionList: React.FC<QuestionListProps> = ({
             </button>
           )}
         </div>
-      </div>
-    );
-  }
-
-  // ── Empty state ──
-  if (filteredQuestions.length === 0) {
-    return (
-      <div className={cn("space-y-3", className)}>
-        {filterBar}
+      );
+    } else if (filteredQuestions.length === 0) {
+      content = (
         <EmptyStateRoot>
           <EmptyStateIcon>
             <FileQuestion className="w-6 h-6" />
@@ -257,17 +355,12 @@ export const QuestionList: React.FC<QuestionListProps> = ({
           <EmptyStateTitle>暂无题目数据</EmptyStateTitle>
           <EmptyStateDescription>该试卷尚未完成分析</EmptyStateDescription>
         </EmptyStateRoot>
-      </div>
-    );
-  }
-
-  // ── Success state ──
-  return (
-    <div className={cn("space-y-3", className)}>
-      {filterBar}
-
-      {browseMode === "scroll" ? (
-        /* ── Scroll mode ── */
+      );
+    } else if (variant === "flow") {
+      content = <div className="divide-y divide-[var(--color-border)]">{filteredQuestions.map(renderFlowItem)}</div>;
+    } else if (browseMode === "scroll") {
+      /* ── Scroll mode ── */
+      content = (
         <div className="space-y-3">
           {filteredQuestions.map((q) => (
             <QuestionCard
@@ -282,8 +375,10 @@ export const QuestionList: React.FC<QuestionListProps> = ({
             />
           ))}
         </div>
-      ) : (
-        /* ── Accordion mode ── */
+      );
+    } else {
+      /* ── Accordion mode ── */
+      content = (
         <Accordion expandedKeys={currentExpandedKeys} onExpandedChange={handleExpandedChange}>
           {filteredQuestions.map((q) => (
             <AccordionItem
@@ -316,9 +411,16 @@ export const QuestionList: React.FC<QuestionListProps> = ({
             </AccordionItem>
           ))}
         </Accordion>
-      )}
-    </div>
-  );
-};
+      );
+    }
+
+    return (
+      <div ref={ref} data-slot="question-list" className={cn("space-y-3", className)}>
+        {filterBar}
+        {content}
+      </div>
+    );
+  },
+);
 
 QuestionList.displayName = "QuestionList";
