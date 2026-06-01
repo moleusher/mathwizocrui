@@ -13,7 +13,7 @@ type Story = StoryObj<typeof SocraticGuide>;
 export const Default: Story = {
   args: {
     analysis: {
-      type: "概念理解错误",
+      type: "审题失误",
       cause: "将最大宽25cm同时作为长和宽，导致表面积计算使用了错误的基础尺寸",
       suggestion: "复习长方体包装问题：包装盒尺寸应紧贴物品，长=物品长、宽=物品宽、高=物品高",
     },
@@ -38,7 +38,7 @@ export const Ok: Story = {
 export const OkLegacy: Story = {
   args: {
     analysis: {
-      type: "概念理解错误",
+      type: "审题失误",
       cause: "学生掌握了公式但参数选择错误",
       suggestion: "加强读题训练",
     },
