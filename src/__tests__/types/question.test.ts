@@ -422,6 +422,75 @@ describe("getDataCompleteness function", () => {
   });
 });
 
+// ══════════════════════════════════════════════════════
+// MC-006: visual_svg (v0.4.0)
+// ══════════════════════════════════════════════════════
+
+describe("visual_svg (MC-006)", () => {
+  it("is optional — ExamQuestion can be created without it", () => {
+    const question: ExamQuestion = {
+      question_index: 1,
+      question_text: "A triangle has vertices at (0,0), (3,0), (0,4).",
+      question_type: "geometry",
+      difficulty: "medium",
+      knowledge_points: [],
+      images: [],
+      student_answer: null,
+      teacher_correction: null,
+      standard_answer: null,
+      student_correction: null,
+      solution_steps: [],
+      error_analysis: null,
+      prerequisite_knowledge: [],
+      common_mistakes: [],
+      related_block_ids: [],
+      block_bbox: null,
+      source: "manual",
+    };
+    expect(question.visual_svg).toBeUndefined();
+    expect(question.visual_description).toBeUndefined();
+    expect(question.visual_geometry_type).toBeUndefined();
+  });
+
+  it("can be set when geometry visualization is available", () => {
+    const question: ExamQuestion = {
+      question_index: 2,
+      question_text: "Plot y = x² - 4.",
+      question_type: "geometry",
+      difficulty: "medium",
+      knowledge_points: ["quadratic_function"],
+      images: [],
+      student_answer: null,
+      teacher_correction: null,
+      standard_answer: null,
+      student_correction: null,
+      solution_steps: [],
+      error_analysis: null,
+      prerequisite_knowledge: [],
+      common_mistakes: [],
+      related_block_ids: [],
+      block_bbox: null,
+      source: "manual",
+      visual_svg: '<svg viewBox="0 0 400 400"><path d="..." /></svg>',
+      visual_description: "Parabola y = x² - 4 with vertex at (0, -4)",
+      visual_geometry_type: "function",
+    };
+    expect(question.visual_svg).toContain("<svg");
+    expect(question.visual_description).toMatch(/parabola/i);
+    expect(question.visual_geometry_type).toBe("function");
+  });
+
+  it("accepts all valid visual_geometry_type values", () => {
+    const types: NonNullable<ExamQuestion["visual_geometry_type"]>[] = [
+      "coordinate",
+      "solid",
+      "function",
+      "none",
+    ];
+    expect(types).toHaveLength(4);
+  });
+});
+
 // ── Helper function from data contracts (inline for test) ──
 function getDataCompleteness(q: ExamQuestion): DataCompleteness {
   if (q.student_answer && q.teacher_correction && q.error_analysis) {

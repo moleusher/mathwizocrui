@@ -142,6 +142,11 @@ export interface ExamQuestion {
 
   /** 双模型融合元信息 (v0.2.1+, 可选) */
   fusion_meta?: FusionMeta;
+
+  /** v0.4.0: SVG visualization for geometry questions */
+  visual_svg?: string;
+  visual_description?: string;
+  visual_geometry_type?: "coordinate" | "solid" | "function" | "none";
 }
 
 // ══════════════════════════════════════════════════════
