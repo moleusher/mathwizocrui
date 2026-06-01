@@ -21,10 +21,13 @@ export interface ClassroomProgressProps extends React.ComponentProps<"div"> {
   classroomUrl?: string;
   error?: string;
   onOpenClassroom?: () => void;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
 }
 
 export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgressProps>(
-  ({ isGenerating, stages, classroomUrl, error, onOpenClassroom, className, ...props }, ref) => {
+  ({ isGenerating, stages, classroomUrl, error, onOpenClassroom, variant = "default", className, ...props }, ref) => {
+    const isMinimalist = variant === "minimalist";
     const allComplete = stages.every((s) => s.status === "completed");
     const headerText = allComplete ? "课堂生成完成" : "正在生成互动课堂...";
 
@@ -37,8 +40,8 @@ export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgr
         ref={ref}
         data-slot="classroom-progress"
         className={cn(
-          "p-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]",
-          "shadow-[var(--shadow-sm)]",
+          "p-4 rounded-lg",
+          isMinimalist ? "bg-[var(--color-surface)]" : "border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-sm)]",
           className,
         )}
         {...props}

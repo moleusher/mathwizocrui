@@ -6,6 +6,8 @@ import type { ErrorAnalysis } from "../types/question";
 
 export interface ErrorAnalysisPanelProps {
   analysis: ErrorAnalysis;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
   maxHeight?: number;
   defaultExpanded?: boolean;
   className?: string;
@@ -15,16 +17,21 @@ const ANALYSIS_ID = "error-analysis-content";
 
 export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
   analysis,
+  variant = "default",
   maxHeight = 150,
   defaultExpanded = true,
   className,
 }) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+  const isMinimalist = variant === "minimalist";
 
   return (
     <div
       className={cn(
-        "rounded-lg border border-dashed border-[var(--color-error)]/40 bg-[var(--color-error)]/5 p-3",
+        "rounded-lg p-3",
+        isMinimalist
+          ? "bg-[var(--color-error)]/5"
+          : "border border-dashed border-[var(--color-error)]/40 bg-[var(--color-error)]/5",
         className,
       )}
     >

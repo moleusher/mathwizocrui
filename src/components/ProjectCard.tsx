@@ -21,6 +21,8 @@ export interface ProjectCardProps extends React.ComponentProps<"div"> {
   analyzeProgress?: number;
   thumbnailUrl?: string;
   onClick: () => void;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
   /** Callbacks for dropdown actions */
   onViewProgress?: () => void;
   onOcrParse?: () => void;
@@ -68,11 +70,13 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
       onDelete,
       dropdownDisabledKeys,
       dropdownItems,
+      variant = "default",
       className,
       ...props
     },
     ref,
   ) => {
+    const isMinimalist = variant === "minimalist";
     const isKnownStatus = dashboardStatus in statusConfig;
     const safeStatus = statusConfig[dashboardStatus];
     const showProgress = dashboardStatus === "ocr" || dashboardStatus === "analyzing";
@@ -120,9 +124,9 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         aria-label={getCardAriaLabel(project.title, dashboardStatus)}
         className={cn(
           "flex items-center gap-3 p-3 rounded-lg cursor-pointer",
-          "bg-[var(--color-surface)] border border-[var(--color-border)]",
-          "shadow-[var(--shadow-sm)]",
-          "hover:shadow-[var(--shadow-md)] hover:border-[var(--color-brand-500)]",
+          isMinimalist ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-sm)]",
+          !isMinimalist && "hover:shadow-[var(--shadow-md)] hover:border-[var(--color-brand-500)]",
+          isMinimalist && "hover:bg-[var(--color-brand-50)]",
           "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
           "transition-all duration-200",
           className,

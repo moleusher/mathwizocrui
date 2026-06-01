@@ -4,14 +4,18 @@ import { cn } from "../utils/cn";
 
 export interface TeacherCommentPanelProps {
   comment: string;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
   className?: string;
 }
 
-export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({ comment, className }) => {
+export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({ comment, variant = "default", className }) => {
+  const isMinimalist = variant === "minimalist";
   return (
     <div
       className={cn(
-        "rounded-lg border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 p-2.5",
+        "rounded-lg p-2.5",
+        isMinimalist ? "bg-[var(--color-error)]/5" : "border border-[var(--color-error)]/20 bg-[var(--color-error)]/5",
         className,
       )}
     >

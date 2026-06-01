@@ -9,6 +9,8 @@ export interface QuestionBodyProps {
   images?: QuestionImage[];
   renderMode?: "markdown" | "plain";
   onImageClick?: (image: QuestionImage, index: number) => void;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
   className?: string;
 }
 
@@ -17,12 +19,15 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
   images = [],
   renderMode = "markdown",
   onImageClick,
+  variant = "default",
   className,
 }) => {
+  const isMinimalist = variant === "minimalist";
   return (
     <div
       className={cn(
-        "rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] p-3",
+        "rounded-lg p-3",
+        isMinimalist ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface)] border border-[var(--color-border)]",
         className,
       )}
     >
@@ -48,6 +53,7 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
               image={image}
               index={index}
               onImageClick={onImageClick}
+              isMinimalist={isMinimalist}
             />
           ))}
         </div>
@@ -64,14 +70,15 @@ interface ImageThumbnailProps {
   image: QuestionImage;
   index: number;
   onImageClick?: (image: QuestionImage, index: number) => void;
+  isMinimalist: boolean;
 }
 
-function ImageThumbnail({ image, index, onImageClick }: ImageThumbnailProps) {
+function ImageThumbnail({ image, index, onImageClick, isMinimalist }: ImageThumbnailProps) {
   const [hasError, setHasError] = React.useState(false);
 
   if (hasError) {
     return (
-      <div className="flex items-center justify-center mt-2 rounded-md max-h-48 min-h-[80px] min-w-[120px] border border-[var(--color-border)] bg-[var(--color-surface)] text-xs text-[var(--color-text-muted)]">
+      <div className={cn("flex items-center justify-center mt-2 rounded-md max-h-48 min-h-[80px] min-w-[120px] text-xs text-[var(--color-text-muted)]", isMinimalist ? "bg-[var(--color-surface)]" : "border border-[var(--color-border)] bg-[var(--color-surface)]")}>
         图片加载失败
       </div>
     );
@@ -82,7 +89,7 @@ function ImageThumbnail({ image, index, onImageClick }: ImageThumbnailProps) {
       src={image.url}
       alt={image.caption ?? `题目图片 ${index + 1}`}
       loading="lazy"
-      className="mt-2 rounded-md max-h-48 object-contain border border-[var(--color-border)] cursor-pointer"
+      className={cn("mt-2 rounded-md max-h-48 object-contain cursor-pointer", isMinimalist ? "" : "border border-[var(--color-border)]")}
       onClick={() => onImageClick?.(image, index)}
       onError={() => {
         setHasError(true);

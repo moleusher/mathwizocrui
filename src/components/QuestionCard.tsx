@@ -53,6 +53,9 @@ export interface QuestionCardProps {
   /** 选中状态变化回调 */
   onSelect?: (questionIndex: number, selected: boolean) => void;
 
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
+
   /** 自定义 CSS 类 */
   className?: string;
 }
@@ -90,17 +93,19 @@ function shouldRenderSection(question: ExamQuestion, section: SectionKey): boole
   }
 }
 
-export const QuestionCard: React.FC<QuestionCardProps> = ({
+export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(({
   question,
   mode = "full",
   isExpanded = true,
   isSelected = false,
   selectable = false,
   selected = false,
+  variant = "default",
   onSelect,
   onQuestionClick,
   className,
-}) => {
+}, ref) => {
+  const isMinimalist = variant === "minimalist";
   const handleClick = React.useCallback(() => {
     if (mode !== "accordion") {
       onQuestionClick?.(question.question_index, question.block_bbox ?? undefined);
@@ -148,31 +153,32 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   const cardBody = (
     <CardContent className="space-y-3 pt-0">
       {shouldRenderSection(question, "QuestionBody") && (
-        <QuestionBody text={question.question_text} images={question.images} />
+        <QuestionBody text={question.question_text} images={question.images} variant={variant} />
       )}
 
       {shouldRenderSection(question, "AnswerComparePanel") && (
         <AnswerComparePanel
           studentAnswer={question.student_answer}
           standardAnswer={question.standard_answer}
+          variant={variant}
         />
       )}
 
       {shouldRenderSection(question, "TeacherCommentPanel") &&
         question.teacher_correction?.comment && (
-          <TeacherCommentPanel comment={question.teacher_correction.comment} />
+          <TeacherCommentPanel comment={question.teacher_correction.comment} variant={variant} />
         )}
 
       {shouldRenderSection(question, "CorrectionPanel") && question.student_correction && (
-        <CorrectionPanel text={question.student_correction} />
+        <CorrectionPanel text={question.student_correction} variant={variant} />
       )}
 
       {shouldRenderSection(question, "SolutionStepsPanel") && (
-        <SolutionStepsPanel steps={question.solution_steps} />
+        <SolutionStepsPanel steps={question.solution_steps} variant={variant} />
       )}
 
       {shouldRenderSection(question, "ErrorAnalysisPanel") && question.error_analysis && (
-        <ErrorAnalysisPanel analysis={question.error_analysis} />
+        <ErrorAnalysisPanel analysis={question.error_analysis} variant={variant} />
       )}
     </CardContent>
   );
@@ -206,9 +212,12 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   // ── Full / Standalone mode: HeroUI Card wrapper ──
   return (
     <Card
-      variant="default"
+      ref={ref}
+      data-slot="question-card"
       className={cn(
-        "border border-[var(--color-border)] shadow-[var(--shadow-sm)] rounded-[var(--radius-lg)]",
+        !isMinimalist && "border border-[var(--color-border)] shadow-[var(--shadow-sm)]",
+        isMinimalist && "bg-[var(--color-surface)]",
+        "rounded-[var(--radius-lg)]",
         isSelected && "ring-2 ring-[var(--color-primary)]",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]",
         className,
@@ -220,6 +229,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       {cardFooter}
     </Card>
   );
-};
+});
 
 QuestionCard.displayName = "QuestionCard";

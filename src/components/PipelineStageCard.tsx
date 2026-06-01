@@ -18,6 +18,8 @@ export interface PipelineStageCardProps extends React.ComponentProps<"div"> {
   elapsed?: string;
   /** Deemphasize when not active */
   dimmed?: boolean;
+  /** Visual style variant */
+  variant?: "default" | "minimalist";
 }
 
 export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageCardProps>(
@@ -30,6 +32,7 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
       progress,
       elapsed,
       dimmed = false,
+      variant = "default",
       children,
       className,
       ...props
@@ -38,6 +41,7 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
   ) => {
     const isActive = status === "running";
     const isComplete = status === "completed";
+    const isMinimalist = variant === "minimalist";
 
     return (
       <div
@@ -46,9 +50,10 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
         data-status={status}
         data-dimmed={dimmed || undefined}
         className={cn(
-          "flex gap-3 rounded-(--radius-lg) border p-3 transition-all",
-          isActive && "border-(--color-primary) bg-(--color-brand-50) shadow-(--shadow-sm)",
-          !isActive && "border-(--color-border) bg-(--color-surface)",
+          "flex gap-3 rounded-(--radius-lg) p-3 transition-all",
+          isMinimalist && "bg-(--color-surface)",
+          !isMinimalist && isActive && "border border-(--color-primary) bg-(--color-brand-50) shadow-(--shadow-sm)",
+          !isMinimalist && !isActive && "border border-(--color-border) bg-(--color-surface)",
           dimmed && "opacity-50",
           className,
         )}
