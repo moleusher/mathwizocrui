@@ -59,4 +59,46 @@ describe("SolutionStepsPanel", () => {
     await renderPanel({ steps });
     expect(screen.getByText("解题步骤")).toBeInTheDocument();
   });
+
+  describe("timeline variant", () => {
+    it("renders timeline dots with correct colors per position", async () => {
+      const { container } = await renderPanel({ steps, variant: "timeline" });
+      const dots = container.querySelectorAll("[data-timeline-dot]");
+      expect(dots).toHaveLength(3);
+
+      // First step: purple (brand-500)
+      expect(dots[0].getAttribute("style")).toContain("var(--color-brand-500)");
+      // Middle step: blue (info)
+      expect(dots[1].getAttribute("style")).toContain("var(--color-info)");
+      // Last step: green (success)
+      expect(dots[2].getAttribute("style")).toContain("var(--color-success)");
+    });
+
+    it("renders connecting lines between all steps except after last", async () => {
+      const { container } = await renderPanel({ steps, variant: "timeline" });
+      const lines = container.querySelectorAll("[data-timeline-line]");
+      expect(lines).toHaveLength(2);
+    });
+
+    it("renders step contents in timeline mode", async () => {
+      await renderPanel({ steps, variant: "timeline" });
+      expect(screen.getByText("读题：识别条件")).toBeInTheDocument();
+      expect(screen.getByText("代入数值计算")).toBeInTheDocument();
+    });
+  });
+
+  describe("minimalist variant", () => {
+    it("renders without border class by default", async () => {
+      const { container } = await renderPanel({ steps, variant: "minimalist" });
+      const wrapper = container.querySelector("[data-slot='solution-steps']");
+      expect(wrapper).toBeInTheDocument();
+      // Should not have border-applied class
+      expect(wrapper!.className).not.toContain("border");
+    });
+  });
+
+  it("renders default variant (ordered list) when no variant specified", async () => {
+    const { container } = await renderPanel({ steps });
+    expect(container.querySelector("ol")).toBeInTheDocument();
+  });
 });
