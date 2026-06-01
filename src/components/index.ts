@@ -44,6 +44,8 @@ export type { SolutionStepsPanelProps } from "./SolutionStepsPanel";
 
 export { ErrorAnalysisPanel } from "./ErrorAnalysisPanel";
 export type { ErrorAnalysisPanelProps } from "./ErrorAnalysisPanel";
+export { SocraticGuide } from "./SocraticGuide";
+export type { SocraticGuideProps } from "./SocraticGuide";
 
 export {
   QuestionBadge,
