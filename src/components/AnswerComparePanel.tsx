@@ -50,13 +50,13 @@ const VARIANT_STYLES = {
   },
 } as const;
 
-export const AnswerComparePanel: React.FC<AnswerComparePanelProps> = ({
+export const AnswerComparePanel: React.FC<AnswerComparePanelProps> = React.forwardRef<HTMLDivElement, AnswerComparePanelProps>(({
   studentAnswer,
   standardAnswer,
   studentVariant = "partial",
   variant = "default",
   className,
-}) => {
+}, ref) => {
   const hasStudent = studentAnswer != null;
   const hasStandard = standardAnswer != null;
 
@@ -71,6 +71,8 @@ export const AnswerComparePanel: React.FC<AnswerComparePanelProps> = ({
 
   return (
     <div
+      ref={ref}
+      data-slot="answer-compare"
       className={cn(
         "grid gap-2",
         isSingleColumn ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2",
@@ -120,6 +122,6 @@ export const AnswerComparePanel: React.FC<AnswerComparePanelProps> = ({
       )}
     </div>
   );
-};
+});
 
 AnswerComparePanel.displayName = "AnswerComparePanel";

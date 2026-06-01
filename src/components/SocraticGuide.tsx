@@ -27,7 +27,7 @@ export interface SocraticGuideProps {
 
 const ANALYSIS_ID = "socratic-guide-content";
 
-export const SocraticGuide: React.FC<SocraticGuideProps> = ({
+export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTMLDivElement, SocraticGuideProps>(({
   analysis,
   status,
   strengths,
@@ -37,7 +37,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = ({
   maxHeight = 300,
   defaultExpanded = true,
   className,
-}) => {
+}, ref) => {
   const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
 
   // Derive status from analysis if not explicitly provided
@@ -75,7 +75,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = ({
   const Icon = statusStyles.icon;
 
   return (
-    <div className={cn("rounded-lg p-4", statusStyles.bg, statusStyles.border, className)}>
+    <div ref={ref} data-slot="socratic-guide" className={cn("rounded-lg p-4", statusStyles.bg, statusStyles.border, className)}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-3">
         <Icon className={cn("w-4 h-4", statusStyles.iconColor)} />
@@ -199,7 +199,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = ({
       </div>
     </div>
   );
-};
+});
 
 SocraticGuide.displayName = "SocraticGuide";
 
