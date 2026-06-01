@@ -60,3 +60,71 @@ export const Empty: Story = {
     standardAnswer: null,
   },
 };
+
+// v0.4.0 studentVariant stories
+export const StudentCorrect: Story = {
+  args: {
+    studentAnswer: {
+      text: "S=2(ab+ah+bh)=2×(25×25+25×26+25×26)=3850(cm²)",
+      confidence: 0.95,
+    },
+    standardAnswer: {
+      text: "S=2×(25×22+25×26+22×26)=3544(cm²)",
+      source: "llm",
+    },
+    studentVariant: "correct",
+  },
+};
+
+export const StudentWrong: Story = {
+  args: {
+    studentAnswer: {
+      text: "V=abh=25×25×26=16250(cm³)",
+    },
+    standardAnswer: {
+      text: "V=25×22×26=14300(cm³)",
+      source: "llm",
+    },
+    studentVariant: "wrong",
+  },
+};
+
+export const StudentPartial: Story = {
+  args: {
+    studentAnswer: {
+      text: "思路正确但数值错误",
+    },
+    standardAnswer: {
+      text: "参考答案",
+      source: "llm",
+    },
+    studentVariant: "partial",
+  },
+};
+
+export const StudentUnmarked: Story = {
+  args: {
+    studentAnswer: {
+      text: "学生作答内容（无批改标记）",
+    },
+    standardAnswer: {
+      text: "标准答案（等待判定）",
+      source: "llm",
+    },
+    studentVariant: "unmarked",
+  },
+};
+
+export const MinimalistBoth: Story = {
+  args: {
+    studentAnswer: {
+      text: "S=2(ab+ah+bh)=3850",
+    },
+    standardAnswer: {
+      text: "S=3544",
+      source: "llm",
+    },
+    studentVariant: "wrong",
+    variant: "minimalist",
+  },
+};

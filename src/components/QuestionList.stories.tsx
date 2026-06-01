@@ -313,3 +313,49 @@ export const AccordionWithSelection: Story = {
     );
   },
 };
+
+// v0.4.0 flow variant stories
+const flowQuestions: ExamQuestion[] = [
+  { question_index: 1, question_text: "请你根据原始瓷尊的尺寸为它设计一个用纸最少的长方体包装盒", question_type: "solution", difficulty: "medium", knowledge_points: ["长方体表面积", "最值模型"], is_correct: false } as ExamQuestion,
+  { question_index: 2, question_text: "计算(1)中你设计的包装盒的体积", question_type: "calculation", difficulty: "easy", knowledge_points: ["长方体体积"], is_correct: false } as ExamQuestion,
+  { question_index: 3, question_text: "一种汽车的油箱长6dm、宽4dm、高25cm，一箱油最多行驶多少千米", question_type: "calculation", difficulty: "medium", knowledge_points: ["单位换算", "容积应用"], is_correct: true } as ExamQuestion,
+  { question_index: 5, question_text: "一个长方体鱼缸，放入正方体铁块后水面上升多少厘米", question_type: "geometry", difficulty: "medium", knowledge_points: ["浸没问题", "体积排水法"], is_correct: false } as ExamQuestion,
+  { question_index: 6, question_text: "一个长方体高增加4cm变成正方体，求原来表面积和体积", question_type: "geometry", difficulty: "hard", knowledge_points: ["立体几何", "表面积增量"], is_correct: true } as ExamQuestion,
+  { question_index: 7, question_text: "长方体玻璃容器装满水沿边缘倒出，倒出了多少cm³的水", question_type: "geometry", difficulty: "medium", knowledge_points: ["三棱柱体积"], is_correct: true } as ExamQuestion,
+];
+
+export const Flow: Story = {
+  args: {
+    variant: "flow",
+    questions: flowQuestions,
+    filter: "all",
+  },
+  render: (args) => {
+    const [selected, setSelected] = React.useState<number | null>(null);
+    return (
+      <QuestionList
+        {...args}
+        selectedIndex={selected}
+        onSelect={(index) => setSelected(index)}
+      />
+    );
+  },
+};
+
+export const FlowMinimalist: Story = {
+  args: {
+    variant: "minimalist",
+    questions: flowQuestions,
+    filter: "all",
+  },
+  render: (args) => {
+    const [selected, setSelected] = React.useState<number | null>(null);
+    return (
+      <QuestionList
+        {...args}
+        selectedIndex={selected}
+        onSelect={(index) => setSelected(index)}
+      />
+    );
+  },
+};
