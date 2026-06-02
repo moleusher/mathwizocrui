@@ -236,11 +236,6 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
     const renderFlowItem = (q: ExamQuestion) => {
       const isActive = activeIndex === q.question_index;
       const status = getQuestionStatus(q);
-      const truncatedText =
-        q.question_text.length > 80
-          ? q.question_text.slice(0, 80) + "..."
-          : q.question_text;
-
       return (
         <div
           key={q.question_index}
@@ -280,9 +275,9 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
             {q.question_index}.
           </span>
 
-          {/* Title (truncated) */}
-          <span className="flex-1 truncate text-sm text-[var(--color-text-muted)]">
-            {truncatedText}
+          {/* Title (2-line clamp) */}
+          <span className="flex-1 line-clamp-2 text-sm text-[var(--color-text-muted)]">
+            {q.question_text}
           </span>
 
           {/* Knowledge tags */}
