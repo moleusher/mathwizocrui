@@ -158,3 +158,9 @@ export type {
   StageState,
   ClassroomStage,
 } from "./components/ClassroomProgress";
+
+// v0.4.1 — Sidebar components
+export { RibbonButton } from "./components/RibbonButton";
+export type { RibbonButtonProps } from "./components/RibbonButton";
+export { SidebarContainer } from "./components/SidebarContainer";
+export type { SidebarContainerProps, SidebarTab } from "./components/SidebarContainer";
