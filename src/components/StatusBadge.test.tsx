@@ -5,12 +5,12 @@ import { StatusBadge, type PipelineStatus } from "./StatusBadge";
 describe("StatusBadge", () => {
   describe("existing statuses (backward compat)", () => {
     it.each<[PipelineStatus, string]>([
-      ["pending", "Pending"],
-      ["queued", "Queued"],
-      ["running", "Running"],
-      ["completed", "Complete"],
-      ["failed", "Failed"],
-      ["cancelled", "Cancelled"],
+      ["pending", "待处理"],
+      ["queued", "排队中"],
+      ["running", "运行中"],
+      ["completed", "已完成"],
+      ["failed", "失败"],
+      ["cancelled", "已取消"],
     ])("renders %s with label %s", (status, label) => {
       render(<StatusBadge status={status} />);
       expect(screen.getByText(label)).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe("StatusBadge", () => {
 
   it("renders with data-slot attribute", () => {
     render(<StatusBadge status="completed" />);
-    const el = screen.getByText("Complete").closest('[data-slot="status-badge"]');
+    const el = screen.getByText("已完成").closest('[data-slot="status-badge"]');
     expect(el).toBeInTheDocument();
   });
 
@@ -66,18 +66,18 @@ describe("StatusBadge", () => {
 
   it("renders in compact mode (no label)", () => {
     render(<StatusBadge status="completed" compact />);
-    expect(screen.queryByText("Complete")).not.toBeInTheDocument();
+    expect(screen.queryByText("已完成")).not.toBeInTheDocument();
   });
 
   it("has title attribute in compact mode for accessibility", () => {
     render(<StatusBadge status="completed" compact />);
-    const el = screen.getByTitle("Complete");
+    const el = screen.getByTitle("已完成");
     expect(el).toBeInTheDocument();
   });
 
   it("applies custom className", () => {
     render(<StatusBadge status="completed" className="custom-class" />);
-    const el = screen.getByText("Complete").closest('[data-slot="status-badge"]');
+    const el = screen.getByText("已完成").closest('[data-slot="status-badge"]');
     expect(el).toHaveClass("custom-class");
   });
 

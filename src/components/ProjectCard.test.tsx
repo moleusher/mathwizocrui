@@ -57,8 +57,8 @@ describe("ProjectCard", () => {
     ["uploading", "上传中"],
     ["ocr", "识别中"],
     ["analyzing", "分析中"],
-    ["completed", "Complete"],
-    ["failed", "Failed"],
+    ["completed", "已完成"],
+    ["failed", "失败"],
   ] as const)("renders StatusBadge for %s", (status, label) => {
     render(<ProjectCard project={mockProject} dashboardStatus={status} onClick={() => {}} />);
     expect(screen.getByText(label)).toBeInTheDocument();

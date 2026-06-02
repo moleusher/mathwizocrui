@@ -28,7 +28,7 @@ export const Default: Story = {
         sidebar={<TestSidebar />}
         topBar={
           <div className="flex items-center justify-between h-14 px-4 border-b border-(--color-border)">
-            <span className="text-sm font-semibold">Math-OCR</span>
+            <span className="text-sm font-semibold">数学批改助手</span>
           </div>
         }
       >
