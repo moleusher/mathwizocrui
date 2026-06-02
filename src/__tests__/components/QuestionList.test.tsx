@@ -227,12 +227,12 @@ describe("QuestionList with variant='flow'", () => {
     expect(screen.getByText("题目 2 的内容")).toBeInTheDocument();
   });
 
-  it("renders ✓/✗ marks in flow mode", async () => {
+  it("does not render ✓/✗ marks in flow mode (status dot only)", async () => {
     const questions = [createCorrectQuestion(1), createWrongQuestion(2)];
     await renderList({ questions, variant: "flow" });
 
-    expect(screen.getByText("✓")).toBeInTheDocument();
-    expect(screen.getByText("✗")).toBeInTheDocument();
+    expect(screen.queryByText("✓")).not.toBeInTheDocument();
+    expect(screen.queryByText("✗")).not.toBeInTheDocument();
   });
 
   it("renders question numbers in flow mode", async () => {
