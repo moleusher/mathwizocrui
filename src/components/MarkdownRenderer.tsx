@@ -104,9 +104,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const rehypePlugins: any[] = [];
 
+  // remarkMath MUST come before remarkGfm — GFM's micromark extensions can
+  // interfere with $...$ math delimiter detection (e.g. _ inside $x_1$ would
+  // get parsed as emphasis before remark-math can claim it as math).
   if (enableMath) {
-    remarkPlugins.push(remarkGfm);
     remarkPlugins.push(remarkMath);
+    remarkPlugins.push(remarkGfm);
     rehypePlugins.push(rehypeKatex);
   }
 
@@ -126,9 +129,13 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       },
       tagNames: [
         ...(defaultSchema.tagNames || []),
-        'math', 'semantics', 'annotation', 'mrow', 'mi', 'mo', 'mn', 'msup', 'mfrac',
+        'math', 'semantics', 'annotation', 'annotation-xml',
+        'mrow', 'mi', 'mo', 'mn', 'msup', 'msub', 'msubsup', 'mfrac',
         'mtable', 'mtr', 'mtd', 'merror', 'mspace', 'mpadded', 'mphantom', 'mstyle',
-        'munder', 'mover', 'munderover', 'svg', 'path', 'line',
+        'munder', 'mover', 'munderover',
+        'mtext', 'msqrt', 'mroot',
+        'mmultiscripts', 'mprescripts', 'none',
+        'svg', 'path', 'line',
       ],
     };
     rehypePlugins.push([rehypeSanitize, katexSchema]);
