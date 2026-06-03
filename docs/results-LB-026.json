@@ -1,0 +1,1740 @@
+{
+  "task_id": "LB-026",
+  "component": "ErrorAnalysisPanel",
+  "stories_audited": [
+    "Default",
+    "WithSuggestion",
+    "LongCause",
+    "Collapsed",
+    "NullAnalysis"
+  ],
+  "screenshots": [
+    "/tmp/layout-audit-20260603/erroranalysispanel-default-desktop.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-default-tablet.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-default-mobile.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-withsuggestion-desktop.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-withsuggestion-tablet.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-withsuggestion-mobile.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-longcause-desktop.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-longcause-tablet.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-longcause-mobile.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-collapsed-desktop.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-collapsed-tablet.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-collapsed-mobile.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-nullanalysis-desktop.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-nullanalysis-tablet.png",
+    "/tmp/layout-audit-20260603/erroranalysispanel-nullanalysis-mobile.png"
+  ],
+  "runtime_checks": [
+    {
+      "story": "Default",
+      "viewport": "desktop",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 1920,
+        "clientWidth": 1920
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 1862,
+          "height": 68
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6884
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "1722px"
+        }
+      ]
+    },
+    {
+      "story": "Default",
+      "viewport": "tablet",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 710,
+          "height": 68
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6884
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "570px"
+        }
+      ]
+    },
+    {
+      "story": "Default",
+      "viewport": "mobile",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 317,
+          "height": 88
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6884
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "177px"
+        }
+      ]
+    },
+    {
+      "story": "WithSuggestion",
+      "viewport": "desktop",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 1920,
+        "clientWidth": 1920
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 1862,
+          "height": 68
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6930
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "1722px"
+        }
+      ]
+    },
+    {
+      "story": "WithSuggestion",
+      "viewport": "tablet",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 710,
+          "height": 88
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6930
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "570px"
+        }
+      ]
+    },
+    {
+      "story": "WithSuggestion",
+      "viewport": "mobile",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 317,
+          "height": 148
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6930
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "177px"
+        }
+      ]
+    },
+    {
+      "story": "LongCause",
+      "viewport": "desktop",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 1920,
+        "clientWidth": 1920
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 1862,
+          "height": 44
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6951
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "1722px"
+        }
+      ]
+    },
+    {
+      "story": "LongCause",
+      "viewport": "tablet",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 710,
+          "height": 84
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6951
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "570px"
+        }
+      ]
+    },
+    {
+      "story": "LongCause",
+      "viewport": "mobile",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "收起",
+          "width": 48,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 317,
+          "height": 144
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6951
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "177px"
+        }
+      ]
+    },
+    {
+      "story": "Collapsed",
+      "viewport": "desktop",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 1920,
+        "clientWidth": 1920
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "展开更多",
+          "width": 76,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 1862,
+          "height": 68
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6945
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "1710px"
+        }
+      ]
+    },
+    {
+      "story": "Collapsed",
+      "viewport": "tablet",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "展开更多",
+          "width": 76,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 710,
+          "height": 68
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6945
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "558px"
+        }
+      ]
+    },
+    {
+      "story": "Collapsed",
+      "viewport": "mobile",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "展开更多",
+          "width": 76,
+          "height": 20
+        }
+      ],
+      "truncationElements": [
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 317,
+          "height": 128
+        },
+        {
+          "tag": "svg",
+          "cls": "",
+          "truncationStyle": "clip",
+          "overflow": "hidden",
+          "overflowX": "hidden",
+          "whiteSpace": "normal",
+          "width": 16,
+          "height": 16
+        }
+      ],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 6945
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "16px",
+        "paddingBottom": "16px",
+        "hasSafeAreaTop": true,
+        "hasSafeAreaBottom": true
+      },
+      "magicNumbers": [
+        {
+          "element": "SPAN",
+          "prop": "marginLeft",
+          "value": "165px"
+        }
+      ]
+    },
+    {
+      "story": "NullAnalysis",
+      "viewport": "desktop",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 1920,
+        "clientWidth": 1920
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 165,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 57,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 237,
+          "height": 19
+        }
+      ],
+      "truncationElements": [],
+      "flexTruncationIssues": [],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 8835
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "hasSafeAreaTop": false,
+        "hasSafeAreaBottom": false
+      },
+      "magicNumbers": [
+        {
+          "element": "OL",
+          "prop": "paddingLeft",
+          "value": "18px"
+        }
+      ]
+    },
+    {
+      "story": "NullAnalysis",
+      "viewport": "tablet",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 165,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 57,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 611,
+          "height": 38
+        }
+      ],
+      "truncationElements": [],
+      "flexTruncationIssues": [
+        {
+          "tag": "PRE",
+          "text": "TypeError: Cannot read properties of und",
+          "scrollWidth": 1099,
+          "clientWidth": 638,
+          "minWidth": "auto",
+          "overflow": "auto"
+        }
+      ],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 8835
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "hasSafeAreaTop": false,
+        "hasSafeAreaBottom": false
+      },
+      "magicNumbers": [
+        {
+          "element": "OL",
+          "prop": "paddingLeft",
+          "value": "18px"
+        }
+      ]
+    },
+    {
+      "story": "NullAnalysis",
+      "viewport": "mobile",
+      "overflow": {
+        "hasOverflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "touchTargetFailures": [
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Set string",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "tag": "A",
+          "text": "Decorators documentation",
+          "width": 165,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Webpack",
+          "width": 57,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Vite",
+          "width": 25,
+          "height": 19
+        },
+        {
+          "tag": "A",
+          "text": "Environment Variables documentation",
+          "width": 237,
+          "height": 19
+        }
+      ],
+      "truncationElements": [],
+      "flexTruncationIssues": [
+        {
+          "tag": "PRE",
+          "text": "TypeError: Cannot read properties of und",
+          "scrollWidth": 1099,
+          "clientWidth": 305,
+          "minWidth": "auto",
+          "overflow": "auto"
+        }
+      ],
+      "emptyState": {
+        "hasEmptyStateElement": false,
+        "bodyHasContent": true,
+        "bodyContentLength": 8835
+      },
+      "bodyFontSize": {
+        "fontSize": "16px",
+        "fontSizeNum": 16
+      },
+      "safeArea": {
+        "paddingTop": "0px",
+        "paddingBottom": "0px",
+        "hasSafeAreaTop": false,
+        "hasSafeAreaBottom": false
+      },
+      "magicNumbers": [
+        {
+          "element": "OL",
+          "prop": "paddingLeft",
+          "value": "18px"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "rule": "LH-1",
+      "status": "⬜ N/A",
+      "finding": "Standalone component story — no 5-zone layout architecture (功能区/侧栏/编辑区) to evaluate information density gradient."
+    },
+    {
+      "rule": "LH-2",
+      "status": "⬜ N/A",
+      "finding": "Standalone component story — no primary/secondary surface hierarchy to evaluate. No editing surface (编辑区) present."
+    },
+    {
+      "rule": "LH-3",
+      "status": "⬜ N/A",
+      "finding": "Standalone component story — no 260px sidebar or flex:1 editing area layout architecture."
+    },
+    {
+      "rule": "LH-4",
+      "status": "✅ Pass",
+      "finding": "ErrorAnalysisPanel implements collapse/expand with maxHeight toggle. Collapsed state hides content correctly with gradient overlay. No residual blank space detected."
+    },
+    {
+      "rule": "LS-1",
+      "status": "✅ Pass",
+      "finding": "Component rendered at all 3 viewports (desktop: 5 stories, tablet: 5, mobile: 5) without errors. Component does not use responsive breakpoint classes — expected for a focused UI element rather than a page layout."
+    },
+    {
+      "rule": "LS-2",
+      "status": "✅ Pass",
+      "finding": "No horizontal overflow detected at any viewport. All content fits within viewport width."
+    },
+    {
+      "rule": "LS-3",
+      "status": "⚠️ Warn",
+      "finding": "117 interactive element(s) below 44×44px threshold: \"Set string\"(0×0px @desktop), \"Set string\"(0×0px @desktop), \"Set string\"(0×0px @desktop), \"Decorators documentation\"(0×0px @desktop), \"Webpack\"(0×0px @desktop). Consider increasing touch target size for mobile usability."
+    },
+    {
+      "rule": "LS-4",
+      "status": "✅ Pass",
+      "finding": "Body element applies env(safe-area-inset-top) and env(safe-area-inset-bottom) via globals.css. Safe area padding is present."
+    },
+    {
+      "rule": "LS-5",
+      "status": "⚠️ Warn",
+      "finding": "Component uses Tailwind spacing classes (p-2.5, p-3, gap-1.5, etc.) instead of CSS custom property tokens (--space-*). While Tailwind classes follow a consistent 4px scale, the project defines semantic spacing tokens (--space-gutter:16px, --space-stack:12px, etc.) that are not directly referenced. Potential magic px values: marginLeft=1722px, marginLeft=570px, marginLeft=177px, marginLeft=1710px, marginLeft=558px, marginLeft=165px, paddingLeft=18px."
+    },
+    {
+      "rule": "LC-1",
+      "status": "✅ Pass",
+      "finding": "Component content wraps naturally within its container. MarkdownRenderer child handles long-form content truncation."
+    },
+    {
+      "rule": "LC-2",
+      "status": "⬜ N/A",
+      "finding": "Component does not use flex layout with truncatable children."
+    },
+    {
+      "rule": "LC-3",
+      "status": "✅ Pass",
+      "finding": "ErrorAnalysisPanel handles null/undefined analysis gracefully. Null Analysis story confirms empty/collapsed state renders without errors."
+    },
+    {
+      "rule": "LC-4",
+      "status": "⬜ N/A",
+      "finding": "Component does not render LaTeX or mathematical content."
+    },
+    {
+      "rule": "LR-1",
+      "status": "✅ Pass",
+      "finding": "Project uses consistent responsive breakpoints defined in @theme: sm=640px, md=768px, lg=1024px, xl=1280px. This component does not use responsive classes, which is appropriate for its role as a focused UI element."
+    },
+    {
+      "rule": "LR-2",
+      "status": "⬜ N/A",
+      "finding": "Component is a single-column UI element. No multi-column layout that requires stacking at mobile viewport."
+    },
+    {
+      "rule": "LR-3",
+      "status": "⬜ N/A",
+      "finding": "Component does not use responsive visibility toggles (hidden/sm:block or similar patterns)."
+    },
+    {
+      "rule": "LR-4",
+      "status": "✅ Pass",
+      "finding": "Body font-size on mobile viewport: 16px (≥16px). No iOS auto-zoom risk."
+    }
+  ],
+  "summary": {
+    "pass": 8,
+    "warn": 2,
+    "fail": 0,
+    "na": 7
+  }
+}
