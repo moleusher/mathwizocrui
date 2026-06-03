@@ -28,7 +28,7 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
       <QuestionHeaderBadges question={question} />
 
       {/* Truncated question text */}
-      <div className="flex-1 truncate text-xs text-[var(--text-muted)]">
+      <div className="flex-1 line-clamp-1 text-xs text-[var(--text-muted)]" title={question.question_text}>
         <MarkdownRenderer content={truncatedText} />
       </div>
     </div>
