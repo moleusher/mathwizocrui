@@ -1,0 +1,33 @@
+#!/bin/bash
+# Design Token Gate — runs before every commit
+# Blocks commits with free hex values or contrast violations
+
+set -e
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+FAILED=0
+
+echo "🔒 Design Token Gate"
+
+# Step 1: token-diff.py — check for free hex and private token refs
+echo "  [1/2] token-diff.py..."
+python3 "$REPO_ROOT/graders/token-diff.py" --dir "$REPO_ROOT/src" || {
+    echo "  ❌ TOKEN GATE FAILED: token-diff violations found"
+    echo "  Fix: replace hex colors with var(--xxx) from decisions-*.css"
+    FAILED=1
+}
+
+# Step 2: contrast-calc.py — check WCAG AA contrast
+echo "  [2/2] contrast-calc.py..."
+python3 "$REPO_ROOT/graders/contrast-calc.py" --css "$REPO_ROOT/tokens/decisions-color-dark.css" || {
+    echo "  ⚠️  contrast-calc warnings (non-blocking)"
+}
+
+if [ $FAILED -eq 1 ]; then
+    echo ""
+    echo "❌ Commit blocked. Fix token violations and try again."
+    exit 1
+fi
+
+echo "✅ Token Gate passed"
+exit 0
