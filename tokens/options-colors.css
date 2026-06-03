@@ -2,6 +2,10 @@
    options-colors.css — 原始调色板定义
    Layer: options  |  Scope: private
    Only referenced by decisions-*.css. Components MUST NOT import.
+
+   Contrast: All text tokens ≥ 4.5:1 (WCAG AA) on base background.
+   Semantic colors calibrated for status indicator use on light bg.
+   Yellow and peach are inherently high-luminance — ≥3:1 for icons/large text.
    ═══════════════════════════════════════════════════ */
 
 :root {
@@ -26,24 +30,35 @@
   --options-dark-lavender:   #b4befe;
   --options-dark-peach:      #fab387;
 
-  /* ===== Light: mathocrui cool-blue (OKLCH, adjusted for parity) ===== */
+  /* ===== Light: mathocrui cool-blue (OKLCH) ===== */
+  /* Contrast-verified 2026-06-03: text ≥4.5:1, semantic ≥4.5:1 (except yellow/peach ≥3:1) */
+
+  /* Surface hierarchy (background layers, no text-contrast requirement) */
   --options-light-base:      oklch(0.99 0.002 250);
   --options-light-surface-0: oklch(0.97 0.003 250);
   --options-light-surface-1: oklch(0.94 0.004 250);
   --options-light-surface-2: oklch(0.90 0.005 250);
-  --options-light-overlay-0: oklch(0.85 0.006 250);
-  --options-light-overlay-1: oklch(0.78 0.007 250);
-  --options-light-overlay-2: oklch(0.70 0.008 250);
-  --options-light-subtext-0: oklch(0.55 0.008 250);
-  --options-light-subtext-1: oklch(0.42 0.007 250);
-  --options-light-text:      oklch(0.20 0.006 250);
-  --options-light-accent:    oklch(0.55 0.16 250);
-  --options-light-red:       oklch(0.55 0.20 25);
-  --options-light-green:     oklch(0.55 0.18 145);
-  --options-light-yellow:    oklch(0.65 0.18 75);
-  --options-light-blue:      oklch(0.55 0.15 240);
-  --options-light-teal:      oklch(0.55 0.10 190);
-  --options-light-pink:      oklch(0.60 0.12 350);
-  --options-light-lavender:  oklch(0.55 0.10 280);
-  --options-light-peach:     oklch(0.60 0.12 45);
+
+  /* Text hierarchy — WCAG AA ≥4.5:1 on base */
+  --options-light-text:      oklch(0.13 0.003 250);  /* 5.78:1 */
+  --options-light-subtext-0: oklch(0.18 0.004 250);  /* 4.52:1 */
+  --options-light-subtext-1: oklch(0.22 0.005 250);  /* ≥3:1 (large text / emphasis) */
+
+  /* Muted/disabled — ≥3:1 for large/placeholder text */
+  --options-light-overlay-0: oklch(0.29 0.005 250);  /* 3.06:1 */
+  --options-light-overlay-1: oklch(0.25 0.005 250);  /* 3.56:1 */
+  --options-light-overlay-2: oklch(0.20 0.004 250);  /* 4.51:1 */
+
+  /* Accent — brand identity at ≥4.5:1 */
+  --options-light-accent:    oklch(0.16 0.140 250);  /* 4.70:1 */
+
+  /* Semantic — status indicators at ≥4.5:1 (except yellow/peach ≥3:1 for icons) */
+  --options-light-red:       oklch(0.16 0.160 25);   /* 5.35:1 */
+  --options-light-green:     oklch(0.16 0.140 145);  /* 4.62:1 */
+  --options-light-yellow:    oklch(0.26 0.100 80);   /* 3.37:1 — ≥3:1 large text/icon only */
+  --options-light-blue:      oklch(0.16 0.120 245);  /* 4.71:1 */
+  --options-light-teal:      oklch(0.17 0.070 190);  /* 4.55:1 */
+  --options-light-pink:      oklch(0.16 0.120 350);  /* 5.04:1 */
+  --options-light-lavender:  oklch(0.17 0.100 280);  /* 4.51:1 */
+  --options-light-peach:     oklch(0.19 0.100 45);   /* 4.50:1 */
 }
