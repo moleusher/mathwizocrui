@@ -47,24 +47,24 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
   // Status-based styling
   const statusStyles = {
     ok: {
-      bg: "bg-[var(--color-success)]/5",
-      border: isMinimalist ? "" : "border border-[var(--color-success)]/30",
+      bg: "bg-[var(--background-secondary)]",
+      border: isMinimalist ? "" : "border-l-2 border-l-[var(--color-success)] border border-[var(--border-primary)]",
       icon: CheckCircle2,
       iconColor: "text-[var(--color-success)]",
       label: "表现良好",
       labelColor: "text-[var(--color-success)]",
     },
     warn: {
-      bg: "bg-[var(--color-warning)]/5",
-      border: isMinimalist ? "" : "border border-[var(--color-warning)]/30",
+      bg: "bg-[var(--background-secondary)]",
+      border: isMinimalist ? "" : "border-l-2 border-l-[var(--color-warning)] border border-[var(--border-primary)]",
       icon: AlertTriangle,
       iconColor: "text-[var(--color-warning)]",
       label: "需注意",
       labelColor: "text-[var(--color-warning)]",
     },
     err: {
-      bg: "bg-[var(--color-error)]/5",
-      border: isMinimalist ? "" : "border border-dashed border-[var(--color-error)]/40",
+      bg: "bg-[var(--background-secondary)]",
+      border: isMinimalist ? "" : "border-l-2 border-l-[var(--color-error)] border border-dashed border-[var(--border-primary)]",
       icon: AlertTriangle,
       iconColor: "text-[var(--color-error)]",
       label: "需要改进",
@@ -180,7 +180,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
           <div
             className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
             style={{
-              background: "linear-gradient(to top, var(--background-primary) 0%, transparent 100%)",
+              background: "linear-gradient(to top, var(--background-secondary) 0%, transparent 100%)",
             }}
           />
         )}
