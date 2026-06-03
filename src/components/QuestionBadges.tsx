@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "../utils/cn";
-import type { QuestionType, Difficulty } from "../types/question";
+import type { QuestionType } from "../types/question";
 
 // ── Type mapping ──
 
@@ -12,20 +12,6 @@ const TYPE_LABEL_MAP: Record<QuestionType, string> = {
   proof: "证明题",
   geometry: "几何题",
   unknown: "未知",
-};
-
-const DIFFICULTY_LABEL_MAP: Record<Difficulty, string> = {
-  easy: "●▷▷",
-  medium: "●●▷",
-  hard: "●●●",
-  unknown: "---",
-};
-
-const DIFFICULTY_COLOR_MAP: Record<Difficulty, string> = {
-  easy: "text-[var(--color-success)]",
-  medium: "text-[var(--color-warning)]",
-  hard: "text-[var(--color-error)]",
-  unknown: "text-[var(--text-muted)]",
 };
 
 // ── QuestionBadge ──
@@ -52,30 +38,13 @@ export interface TypeBadgeProps {
 
 export const TypeBadge: React.FC<TypeBadgeProps> = ({ type }) => {
   return (
-    <span className="inline-block bg-[var(--background-primary)] border border-[var(--border-primary)] text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--background-primary)] border border-[var(--border-primary)] text-xs px-2 py-0.5 rounded text-[var(--text-primary)]">
       {TYPE_LABEL_MAP[type]}
     </span>
   );
 };
 
 TypeBadge.displayName = "TypeBadge";
-
-// ── DifficultyBadge ──
-
-export interface DifficultyBadgeProps {
-  difficulty: Difficulty;
-}
-
-export const DifficultyBadge: React.FC<DifficultyBadgeProps> = ({ difficulty }) => {
-  const colorClass = DIFFICULTY_COLOR_MAP[difficulty];
-  return (
-    <span className={cn("inline-block text-xs font-medium", colorClass)}>
-      {DIFFICULTY_LABEL_MAP[difficulty]}
-    </span>
-  );
-};
-
-DifficultyBadge.displayName = "DifficultyBadge";
 
 // ── CorrectionBadge ──
 

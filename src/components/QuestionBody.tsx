@@ -27,7 +27,7 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
     <div
       className={cn(
         "rounded-lg p-3",
-        isMinimalist ? "bg-[var(--background-primary)]" : "bg-[var(--background-primary)] border border-[var(--border-primary)]",
+        isMinimalist ? "bg-[var(--background-secondary)]" : "bg-[var(--background-secondary)] border border-[var(--border-primary)]",
         className,
       )}
     >

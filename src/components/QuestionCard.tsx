@@ -5,7 +5,6 @@ import type { ExamQuestion, BBox } from "../types/question";
 import {
   QuestionBadge,
   TypeBadge,
-  DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
   ConfidenceIndicator,
@@ -127,7 +126,6 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
       )}
       <QuestionBadge index={question.question_index} />
       <TypeBadge type={question.question_type} />
-      <DifficultyBadge difficulty={question.difficulty} />
       {question.teacher_correction && (
         <>
           {question.teacher_correction.mark && (

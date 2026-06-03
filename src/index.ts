@@ -73,7 +73,6 @@ export type { ErrorAnalysisPanelProps } from "./components/ErrorAnalysisPanel";
 export {
   QuestionBadge,
   TypeBadge,
-  DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
   KnowledgeBadge,
@@ -82,7 +81,6 @@ export {
 export type {
   QuestionBadgeProps,
   TypeBadgeProps,
-  DifficultyBadgeProps,
   CorrectionBadgeProps,
   ScoreDisplayProps,
   KnowledgeBadgeProps,

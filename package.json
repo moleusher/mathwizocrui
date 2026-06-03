@@ -12,10 +12,12 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./tokens/*.css": "./tokens/*.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "tokens/*.css"
   ],
   "scripts": {
     "dev": "vite",

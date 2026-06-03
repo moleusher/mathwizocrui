@@ -12,6 +12,7 @@ import { cn } from "../utils/cn";
 import type { ExamQuestion, BBox } from "../types/question";
 import { QuestionCard } from "./QuestionCard";
 import { QuestionSummary } from "./QuestionSummary";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 import {
   EmptyStateRoot,
   EmptyStateIcon,
@@ -276,9 +277,9 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
           </span>
 
           {/* Title (2-line clamp) */}
-          <span className="flex-1 line-clamp-2 text-sm text-[var(--text-muted)]">
-            {q.question_text}
-          </span>
+          <div className="flex-1 line-clamp-2 text-sm text-[var(--text-muted)]">
+            <MarkdownRenderer content={q.question_text} />
+          </div>
 
           {/* Knowledge tags */}
           {q.knowledge_points.length > 0 && (

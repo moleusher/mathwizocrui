@@ -1,9 +1,9 @@
 import React from "react";
 import { cn } from "../utils/cn";
+import { MarkdownRenderer } from "./MarkdownRenderer";
 import {
   QuestionBadge,
   TypeBadge,
-  DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
 } from "./QuestionBadges";
@@ -35,10 +35,9 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
     >
       <QuestionBadge index={question.question_index} />
 
-      {/* Desktop only: TypeBadge + DifficultyBadge */}
+      {/* Desktop only: TypeBadge */}
       <span className="hidden sm:inline-flex items-center gap-2">
         <TypeBadge type={question.question_type} />
-        <DifficultyBadge difficulty={question.difficulty} />
       </span>
 
       {/* CorrectionBadge + ScoreDisplay */}
@@ -52,9 +51,9 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
       )}
 
       {/* Truncated question text */}
-      <span className="flex-1 truncate text-xs text-[var(--text-muted)]">
-        {truncatedText}
-      </span>
+      <div className="flex-1 truncate text-xs text-[var(--text-muted)]">
+        <MarkdownRenderer content={truncatedText} />
+      </div>
     </div>
   );
 };

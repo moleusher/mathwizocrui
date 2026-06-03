@@ -42,7 +42,7 @@ const VARIANT_STYLES = {
   },
   unmarked: {
     border: "border-[var(--border-primary)]/20",
-    bg: "bg-[var(--background-primary)]",
+    bg: "bg-[var(--background-secondary)]",
     icon: Pencil,
     iconColor: "text-[var(--text-muted)]",
     labelColor: "text-[var(--text-muted)]",

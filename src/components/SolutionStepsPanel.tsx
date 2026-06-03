@@ -42,8 +42,8 @@ export const SolutionStepsPanel = React.forwardRef<HTMLDivElement, SolutionSteps
       data-slot="solution-steps"
       className={cn(
         "rounded-lg p-3",
-        !isMinimalist && "border border-[var(--border-primary)] bg-[var(--background-primary)]",
-        isMinimalist && "bg-[var(--background-primary)]",
+        !isMinimalist && "border border-[var(--border-primary)] bg-[var(--background-secondary)]",
+        isMinimalist && "bg-[var(--background-secondary)]",
         className,
       )}
     >

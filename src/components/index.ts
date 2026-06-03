@@ -50,7 +50,6 @@ export type { SocraticGuideProps } from "./SocraticGuide";
 export {
   QuestionBadge,
   TypeBadge,
-  DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
   ConfidenceIndicator,
@@ -60,7 +59,6 @@ export {
 export type {
   QuestionBadgeProps,
   TypeBadgeProps,
-  DifficultyBadgeProps,
   CorrectionBadgeProps,
   ScoreDisplayProps,
   ConfidenceIndicatorProps,
