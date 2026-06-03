@@ -42,14 +42,14 @@ export const RibbonButton = React.forwardRef<HTMLButtonElement, RibbonButtonProp
           "relative flex items-center justify-center size-12 flex-shrink-0",
           "transition-colors duration-150 ease-out",
           // Default state
-          "bg-transparent text-(--color-text-secondary)",
+          "bg-transparent text-(--text-secondary)",
           // Hover state
-          "hover:bg-(--color-surface-hover) hover:text-(--color-text)",
+          "hover:bg-(--background-hover) hover:text-(--text-primary)",
           // Active state — accent/10 bg + 3px accent left bar
           active &&
-            "bg-(--color-accent)/10 text-(--color-accent) shadow-[inset_3px_0_0_0_var(--color-accent)]",
+            "bg-(--interactive-accent)/10 text-(--interactive-accent) shadow-[inset_3px_0_0_0_var(--interactive-accent)]",
           // Focus-visible: use outline to avoid conflict with active inset shadow
-          "focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-primary)/30",
+          "focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--interactive-accent)/30",
           "focus-visible:z-10",
           "select-none",
         )}

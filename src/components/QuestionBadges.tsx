@@ -25,7 +25,7 @@ const DIFFICULTY_COLOR_MAP: Record<Difficulty, string> = {
   easy: "text-[var(--color-success)]",
   medium: "text-[var(--color-warning)]",
   hard: "text-[var(--color-error)]",
-  unknown: "text-[var(--color-text-muted)]",
+  unknown: "text-[var(--text-muted)]",
 };
 
 // ── QuestionBadge ──
@@ -36,7 +36,7 @@ export interface QuestionBadgeProps {
 
 export const QuestionBadge: React.FC<QuestionBadgeProps> = ({ index }) => {
   return (
-    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] text-sm font-bold">
+    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[var(--interactive-accent)] text-[var(--text-inverse)] text-sm font-bold">
       {index}
     </span>
   );
@@ -52,7 +52,7 @@ export interface TypeBadgeProps {
 
 export const TypeBadge: React.FC<TypeBadgeProps> = ({ type }) => {
   return (
-    <span className="inline-block bg-[var(--color-surface)] border border-[var(--color-border)] text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--background-primary)] border border-[var(--border-primary)] text-xs px-2 py-0.5 rounded">
       {TYPE_LABEL_MAP[type]}
     </span>
   );
@@ -91,7 +91,7 @@ export const CorrectionBadge: React.FC<CorrectionBadgeProps> = ({ mark }) => {
         ? "text-[var(--color-error)]"
         : mark === "?"
           ? "text-[var(--color-warning)]"
-          : "text-[var(--color-text-muted)]";
+          : "text-[var(--text-muted)]";
 
   return <span className={cn("inline-block text-sm font-semibold", colorClass)}>{mark}</span>;
 };
@@ -108,7 +108,7 @@ export interface ScoreDisplayProps {
 export const ScoreDisplay: React.FC<ScoreDisplayProps> = ({ score, maxScore }) => {
   const getScoreColor = (): string => {
     if (score == null) {
-      return "text-[var(--color-text-muted)]";
+      return "text-[var(--text-muted)]";
     }
     const ratio = score / maxScore;
     if (ratio >= 0.8) {
@@ -139,7 +139,7 @@ export interface KnowledgeBadgeProps {
 
 export const KnowledgeBadge: React.FC<KnowledgeBadgeProps> = ({ label }) => {
   return (
-    <span className="inline-block bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20 text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--interactive-accent)]/10 text-[var(--interactive-accent)] border border-[var(--interactive-accent)]/20 text-xs px-2 py-0.5 rounded">
       {label}
     </span>
   );
@@ -155,7 +155,7 @@ export interface PrerequisiteBadgeProps {
 
 export const PrerequisiteBadge: React.FC<PrerequisiteBadgeProps> = ({ label }) => {
   return (
-    <span className="inline-block bg-[var(--color-surface)] text-[var(--color-text-muted)] text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--background-primary)] text-[var(--text-muted)] text-xs px-2 py-0.5 rounded">
       ← {label}
     </span>
   );
@@ -189,7 +189,7 @@ export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
     <span
       className={cn(
         "inline-flex items-center text-xs cursor-help",
-        isLow ? "text-[var(--color-warning)] font-semibold" : "text-[var(--color-text-muted)]",
+        isLow ? "text-[var(--color-warning)] font-semibold" : "text-[var(--text-muted)]",
       )}
       title={
         hasConflict

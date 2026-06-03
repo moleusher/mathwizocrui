@@ -67,7 +67,7 @@ describe("SolutionStepsPanel", () => {
       expect(dots).toHaveLength(3);
 
       // First step: purple (brand-500)
-      expect(dots[0].getAttribute("style")).toContain("var(--color-brand-500)");
+      expect(dots[0].getAttribute("style")).toContain("var(--interactive-accent)");
       // Middle step: blue (info)
       expect(dots[1].getAttribute("style")).toContain("var(--color-info)");
       // Last step: green (success)

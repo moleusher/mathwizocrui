@@ -12,8 +12,8 @@ type Story = StoryObj<typeof TopBar>;
 
 export const Default: Story = {
   args: {
-    left: <span className="text-sm text-(--color-text-muted)">← Back to Projects</span>,
+    left: <span className="text-sm text-(--text-muted)">← Back to Projects</span>,
     center: <span className="text-sm font-semibold">数学批改助手</span>,
-    right: <span className="text-xs text-(--color-text-muted)">v0.8.0</span>,
+    right: <span className="text-xs text-(--text-muted)">v0.8.0</span>,
   },
 };

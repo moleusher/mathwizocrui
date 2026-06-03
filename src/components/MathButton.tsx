@@ -19,12 +19,12 @@ export interface MathButtonProps extends React.ComponentProps<"button"> {
 
 const variantStyles: Record<MathButtonVariant, string> = {
   primary:
-    "bg-(--color-primary) text-(--color-primary-foreground) hover:brightness-90 active:brightness-75",
+    "bg-(--interactive-accent) text-(--text-inverse) hover:brightness-90 active:brightness-75",
   secondary:
-    "bg-(--color-brand-100) text-(--color-brand-700) hover:bg-(--color-brand-200) active:bg-(--color-brand-300)",
+    "bg-(--background-secondary) text-(--interactive-accent-hover) hover:bg-(--background-tertiary) active:bg-(--background-tertiary)",
   outline:
-    "border border-(--color-border) bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
-  ghost: "bg-transparent hover:bg-(--color-brand-50) active:bg-(--color-brand-100)",
+    "border border-(--border-primary) bg-transparent hover:bg-(--background-hover) active:bg-(--background-secondary)",
+  ghost: "bg-transparent hover:bg-(--background-hover) active:bg-(--background-secondary)",
   destructive: "bg-[var(--color-error)] text-white hover:opacity-90 active:opacity-80",
 };
 
@@ -61,7 +61,7 @@ export const MathButton = React.forwardRef<HTMLButtonElement, MathButtonProps>(
         className={cn(
           // Base
           "inline-flex items-center justify-center font-medium transition-all duration-150",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)",
+          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--interactive-accent)",
           "disabled:pointer-events-none disabled:opacity-50",
           // Variant + Size
           variantStyles[variant],

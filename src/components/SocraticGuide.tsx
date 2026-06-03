@@ -83,7 +83,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
           {statusStyles.label}
         </span>
         {analysis?.type && (
-          <span className="ml-auto text-xs bg-[var(--color-bg)]/50 px-2 py-0.5 rounded-full">
+          <span className="ml-auto text-xs bg-[var(--background-primary)]/50 px-2 py-0.5 rounded-full">
             {analysis.type}
           </span>
         )}
@@ -102,7 +102,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
               <TrendingUp className="w-3.5 h-3.5 text-[var(--color-success)]" />
               <span className="text-xs font-medium text-[var(--color-success)]">优势分析</span>
             </div>
-            <ul className="text-sm text-[var(--color-text)] space-y-0.5">
+            <ul className="text-sm text-[var(--text-primary)] space-y-0.5">
               {strengths.map((s, i) => (
                 <li key={i} className="flex items-start gap-1">
                   <span className="text-[var(--color-success)] mt-0.5">•</span>
@@ -120,21 +120,21 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
               <Zap className="w-3.5 h-3.5 text-[var(--color-error)]" />
               <span className="text-xs font-medium text-[var(--color-error)]">错误原因</span>
             </div>
-            <p className="text-sm text-[var(--color-text)]">{analysis.cause}</p>
+            <p className="text-sm text-[var(--text-primary)]">{analysis.cause}</p>
           </div>
         )}
 
         {/* 3. Improvement Suggestions — blue left border */}
         {improvements && improvements.length > 0 && (
-          <div className="border-l-2 border-[var(--color-accent)] pl-3 py-1">
+          <div className="border-l-2 border-[var(--interactive-accent)] pl-3 py-1">
             <div className="flex items-center gap-1 mb-1">
-              <Lightbulb className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-              <span className="text-xs font-medium text-[var(--color-accent)]">改进建议</span>
+              <Lightbulb className="w-3.5 h-3.5 text-[var(--interactive-accent)]" />
+              <span className="text-xs font-medium text-[var(--interactive-accent)]">改进建议</span>
             </div>
-            <ul className="text-sm text-[var(--color-text)] space-y-0.5">
+            <ul className="text-sm text-[var(--text-primary)] space-y-0.5">
               {improvements.map((imp, i) => (
                 <li key={i} className="flex items-start gap-1">
-                  <span className="text-[var(--color-accent)] mt-0.5">→</span>
+                  <span className="text-[var(--interactive-accent)] mt-0.5">→</span>
                   {imp}
                 </li>
               ))}
@@ -144,28 +144,28 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
 
         {/* Fallback: legacy suggestion */}
         {analysis?.suggestion && !improvements && (
-          <div className="border-l-2 border-[var(--color-accent)] pl-3 py-1">
+          <div className="border-l-2 border-[var(--interactive-accent)] pl-3 py-1">
             <div className="flex items-center gap-1 mb-1">
-              <Lightbulb className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-              <span className="text-xs font-medium text-[var(--color-accent)]">建议</span>
+              <Lightbulb className="w-3.5 h-3.5 text-[var(--interactive-accent)]" />
+              <span className="text-xs font-medium text-[var(--interactive-accent)]">建议</span>
             </div>
-            <p className="text-sm text-[var(--color-text)]">{analysis.suggestion}</p>
+            <p className="text-sm text-[var(--text-primary)]">{analysis.suggestion}</p>
           </div>
         )}
 
         {/* 4. Knowledge Dependency Chain */}
         {knowledgeChain && (
-          <div className="border-l-2 border-[var(--color-accent)]/50 pl-3 py-1">
+          <div className="border-l-2 border-[var(--interactive-accent)]/50 pl-3 py-1">
             <div className="flex items-center gap-1 mb-2">
-              <BookOpen className="w-3.5 h-3.5 text-[var(--color-accent)]/70" />
-              <span className="text-xs font-medium text-[var(--color-accent)]/70">知识依赖链</span>
+              <BookOpen className="w-3.5 h-3.5 text-[var(--interactive-accent)]/70" />
+              <span className="text-xs font-medium text-[var(--interactive-accent)]/70">知识依赖链</span>
             </div>
             <div className="flex items-center gap-1.5 text-xs">
-              <span className="bg-[var(--color-bg)]/50 px-2 py-0.5 rounded">{knowledgeChain.base}</span>
-              <span className="text-[var(--color-text-muted)]">→</span>
-              <span className="bg-[var(--color-bg)]/50 px-2 py-0.5 rounded">{knowledgeChain.dep}</span>
-              <span className="text-[var(--color-text-muted)]">→</span>
-              <span className="bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded font-medium">
+              <span className="bg-[var(--background-primary)]/50 px-2 py-0.5 rounded">{knowledgeChain.base}</span>
+              <span className="text-[var(--text-muted)]">→</span>
+              <span className="bg-[var(--background-primary)]/50 px-2 py-0.5 rounded">{knowledgeChain.dep}</span>
+              <span className="text-[var(--text-muted)]">→</span>
+              <span className="bg-[var(--interactive-accent)]/10 text-[var(--interactive-accent)] px-2 py-0.5 rounded font-medium">
                 {knowledgeChain.result}
               </span>
             </div>
@@ -173,14 +173,14 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
         )}
 
         {/* AI disclaimer */}
-        <p className="text-xs text-[var(--color-text-muted)]">AI 生成，仅供参考</p>
+        <p className="text-xs text-[var(--text-muted)]">AI 生成，仅供参考</p>
 
         {/* Gradient mask overlay — when collapsed */}
         {!isExpanded && (
           <div
             className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
             style={{
-              background: "linear-gradient(to top, var(--color-surface) 0%, transparent 100%)",
+              background: "linear-gradient(to top, var(--background-primary) 0%, transparent 100%)",
             }}
           />
         )}
@@ -190,7 +190,7 @@ export const SocraticGuide: React.FC<SocraticGuideProps> = React.forwardRef<HTML
       <div className="flex justify-center mt-2">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+          className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
           aria-expanded={isExpanded}
           aria-controls={ANALYSIS_ID}
         >

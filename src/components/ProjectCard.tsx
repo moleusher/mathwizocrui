@@ -124,10 +124,10 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         aria-label={getCardAriaLabel(project.title, dashboardStatus)}
         className={cn(
           "flex items-center gap-3 p-3 rounded-lg cursor-pointer",
-          isMinimalist ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface)] border border-[var(--color-border)] shadow-[var(--shadow-sm)]",
-          !isMinimalist && "hover:shadow-[var(--shadow-md)] hover:border-[var(--color-brand-500)]",
-          isMinimalist && "hover:bg-[var(--color-brand-50)]",
-          "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
+          isMinimalist ? "bg-[var(--background-primary)]" : "bg-[var(--background-primary)] border border-[var(--border-primary)] shadow-[var(--shadow-sm)]",
+          !isMinimalist && "hover:shadow-[var(--shadow-md)] hover:border-[var(--interactive-accent)]",
+          isMinimalist && "hover:bg-[var(--background-hover)]",
+          "focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)] focus-visible:outline-offset-2",
           "transition-all duration-200",
           className,
         )}
@@ -140,20 +140,20 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           <img
             src={thumbnailUrl}
             alt={project.title}
-            className="w-12 h-16 rounded-sm object-cover flex-shrink-0 bg-[var(--color-border)]"
+            className="w-12 h-16 rounded-sm object-cover flex-shrink-0 bg-[var(--border-primary)]"
           />
         ) : (
-          <div className="w-12 h-16 rounded-sm flex-shrink-0 bg-[var(--color-border)] flex items-center justify-center text-2xl text-[var(--color-text-muted)]">
+          <div className="w-12 h-16 rounded-sm flex-shrink-0 bg-[var(--border-primary)] flex items-center justify-center text-2xl text-[var(--text-muted)]">
             📄
           </div>
         )}
 
         {/* Meta */}
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-medium truncate text-[var(--color-text)]">
+          <div className="text-sm font-medium truncate text-[var(--text-primary)]">
             {project.title}
           </div>
-          <div className="text-xs text-[var(--color-text-muted)] mt-0.5">
+          <div className="text-xs text-[var(--text-muted)] mt-0.5">
             <span>{project.subject}</span>
             <span> · </span>
             <span>{project.grade}</span>
@@ -173,11 +173,11 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
                 data-status={dashboardStatus}
                 className={cn(
                   "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
-                  "bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-muted)]",
+                  "bg-[var(--background-primary)] border-[var(--border-primary)] text-[var(--text-muted)]",
                 )}
                 title={`未知状态: ${dashboardStatus}`}
               >
-                <span className="size-1.5 rounded-full bg-[var(--color-text-muted)]" />
+                <span className="size-1.5 rounded-full bg-[var(--text-muted)]" />
                 {dashboardStatus}
               </span>
             )}
@@ -188,7 +188,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
                   aria-label="更多操作"
                   variant="tertiary"
                   size="sm"
-                  className="text-[var(--color-text-muted)] min-w-unit-7 w-7 h-7"
+                  className="text-[var(--text-muted)] min-w-unit-7 w-7 h-7"
                 >
                   <EllipsisVertical className="size-4" />
                 </Button>
@@ -229,9 +229,9 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           </div>
           {showProgress && (
             <div data-slot="project-card-progress" className="w-24">
-              <div className="h-1 rounded-full bg-[var(--color-border)] overflow-hidden">
+              <div className="h-1 rounded-full bg-[var(--border-primary)] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-[var(--color-brand-500)] transition-all duration-500"
+                  className="h-full rounded-full bg-[var(--interactive-accent)] transition-all duration-500"
                   style={{ width: `${Math.min(100, Math.max(0, progress ?? 0))}%` }}
                 />
               </div>

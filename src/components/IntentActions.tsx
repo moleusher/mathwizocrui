@@ -50,7 +50,7 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
               onClick={onReanalyze}
               className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
                 bg-[var(--color-error)]/10 text-[var(--color-error)] hover:bg-[var(--color-error)]/20
-                transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
+                transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)]"
             >
               重新分析
             </button>
@@ -61,12 +61,12 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
       if (isAnalyzing) {
         return (
           <div className="flex flex-col items-center gap-3 py-4">
-            <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-              <span className="inline-block w-4 h-4 border-2 border-[var(--color-border)] border-t-[var(--color-brand-500)] rounded-full animate-spin" />
+            <div className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
+              <span className="inline-block w-4 h-4 border-2 border-[var(--border-primary)] border-t-[var(--interactive-accent)] rounded-full animate-spin" />
               分析中...
             </div>
-            <div className="w-full h-1 rounded-full bg-[var(--color-border)] overflow-hidden">
-              <div className="h-full rounded-full bg-[var(--color-brand-500)] animate-pulse w-2/3" />
+            <div className="w-full h-1 rounded-full bg-[var(--border-primary)] overflow-hidden">
+              <div className="h-full rounded-full bg-[var(--interactive-accent)] animate-pulse w-2/3" />
             </div>
           </div>
         );
@@ -79,9 +79,9 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
               type="button"
               onClick={onViewPrompt}
               className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
-                bg-[var(--color-brand-500)] text-[var(--color-primary-foreground)]
-                hover:bg-[var(--color-brand-700)] transition-colors duration-200
-                focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
+                bg-[var(--interactive-accent)] text-[var(--text-inverse)]
+                hover:bg-[var(--interactive-accent-hover)] transition-colors duration-200
+                focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)]"
             >
               查看提示词
             </button>
@@ -89,9 +89,9 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
               type="button"
               onClick={onReanalyze}
               className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
-                border border-[var(--color-border)] text-[var(--color-text)]
-                hover:border-[var(--color-brand-500)] hover:text-[var(--color-brand-500)]
-                transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
+                border border-[var(--border-primary)] text-[var(--text-primary)]
+                hover:border-[var(--interactive-accent)] hover:text-[var(--interactive-accent)]
+                transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)]"
             >
               重新分析
             </button>
@@ -105,9 +105,9 @@ export const IntentActions = React.forwardRef<HTMLDivElement, IntentActionsProps
           data-state="idle"
           onClick={onStartAnalysis}
           className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium
-            bg-[var(--color-brand-500)] text-[var(--color-primary-foreground)]
-            hover:bg-[var(--color-brand-700)] transition-colors duration-200
-            focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)]"
+            bg-[var(--interactive-accent)] text-[var(--text-inverse)]
+            hover:bg-[var(--interactive-accent-hover)] transition-colors duration-200
+            focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)]"
         >
           开始分析
         </button>

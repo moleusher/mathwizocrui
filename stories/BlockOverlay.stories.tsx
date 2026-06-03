@@ -12,7 +12,7 @@ type Story = StoryObj<typeof BlockOverlay>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ position: "relative", width: 400, height: 300, background: "#f0f4f8", borderRadius: 8 }}>
+    <div style={{ position: "relative", width: 400, height: 300, background: "var(--background-primary)", borderRadius: 8 }}>
       <BlockOverlay
         blocks={[
           { id: "1", x: 10, y: 10, width: 35, height: 12, color: "border-emerald-500", label: "Q1" },

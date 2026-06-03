@@ -55,7 +55,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
         {showEdges && (
           <button
             type="button"
-            className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
+            className={cn(btnClass, "hover:bg-(--background-hover) text-(--text-muted)")}
             disabled={current === 1}
             onClick={() => {
               onPageChange(1);
@@ -68,7 +68,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
 
         <button
           type="button"
-          className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
+          className={cn(btnClass, "hover:bg-(--background-hover) text-(--text-primary)")}
           disabled={current === 1}
           onClick={() => {
             onPageChange(current - 1);
@@ -83,7 +83,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
             p === "…" ? (
               <span
                 key={`dots-${i}`}
-                className="size-8 flex items-center justify-center text-(--color-text-muted) text-sm"
+                className="size-8 flex items-center justify-center text-(--text-muted) text-sm"
               >
                 …
               </span>
@@ -94,8 +94,8 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
                 className={cn(
                   btnClass,
                   p === current
-                    ? "bg-(--color-primary) text-(--color-primary-foreground)"
-                    : "hover:bg-(--color-brand-50) text-(--color-text)",
+                    ? "bg-(--interactive-accent) text-(--text-inverse)"
+                    : "hover:bg-(--background-hover) text-(--text-primary)",
                 )}
                 onClick={() => {
                   onPageChange(p);
@@ -109,7 +109,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
 
         <button
           type="button"
-          className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text)")}
+          className={cn(btnClass, "hover:bg-(--background-hover) text-(--text-primary)")}
           disabled={current === total}
           onClick={() => {
             onPageChange(current + 1);
@@ -122,7 +122,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
         {showEdges && (
           <button
             type="button"
-            className={cn(btnClass, "hover:bg-(--color-brand-50) text-(--color-text-muted)")}
+            className={cn(btnClass, "hover:bg-(--background-hover) text-(--text-muted)")}
             disabled={current === total}
             onClick={() => {
               onPageChange(total);
@@ -133,7 +133,7 @@ export const ImagePagination = React.forwardRef<HTMLDivElement, ImagePaginationP
           </button>
         )}
 
-        <span className="ml-2 text-xs text-(--color-text-muted)">
+        <span className="ml-2 text-xs text-(--text-muted)">
           {current} / {total}
         </span>
       </div>

@@ -144,8 +144,8 @@ export function FilterBar({ filter, counts, onFilterChange }: FilterBarProps) {
           className={cn(
             "px-3 py-1.5 text-sm transition-colors",
             filter === opt.key
-              ? "text-[var(--color-primary)] font-semibold border-b-2 border-[var(--color-primary)]"
-              : "text-[var(--color-text-muted)] hover:text-[var(--color-text)]",
+              ? "text-[var(--interactive-accent)] font-semibold border-b-2 border-[var(--interactive-accent)]"
+              : "text-[var(--text-muted)] hover:text-[var(--text-primary)]",
           )}
         >
           {opt.key === "all"
@@ -254,8 +254,8 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
           }}
           className={cn(
             "flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors",
-            "border-b border-[var(--color-border)] last:border-b-0",
-            isActive && "bg-[var(--color-accent)]/10",
+            "border-b border-[var(--border-primary)] last:border-b-0",
+            isActive && "bg-[var(--interactive-accent)]/10",
           )}
         >
           {/* Status dot */}
@@ -266,17 +266,17 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
               status === "correct" && "bg-[var(--color-success)]",
               status === "wrong" && "bg-[var(--color-error)]",
               status === "partial" && "bg-[var(--color-warning)]",
-              status === "unmarked" && "bg-[var(--color-text-muted)]",
+              status === "unmarked" && "bg-[var(--text-muted)]",
             )}
           />
 
           {/* Question number */}
-          <span className="text-sm font-medium text-[var(--color-text)] min-w-[24px] shrink-0 tabular-nums">
+          <span className="text-sm font-medium text-[var(--text-primary)] min-w-[24px] shrink-0 tabular-nums">
             {q.question_index}.
           </span>
 
           {/* Title (2-line clamp) */}
-          <span className="flex-1 line-clamp-2 text-sm text-[var(--color-text-muted)]">
+          <span className="flex-1 line-clamp-2 text-sm text-[var(--text-muted)]">
             {q.question_text}
           </span>
 
@@ -287,7 +287,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
                 <span
                   key={kp}
                   data-slot="flow-tag"
-                  className="px-1.5 py-0.5 text-xs rounded bg-[var(--color-brand)]/10 text-[var(--color-brand)]"
+                  className="px-1.5 py-0.5 text-xs rounded bg-[var(--interactive-accent)]/10 text-[var(--interactive-accent)]"
                 >
                   {kp}
                 </span>
@@ -307,7 +307,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-24 rounded-[var(--radius-lg)] bg-[var(--color-surface)] animate-pulse border border-[var(--color-border)]"
+              className="h-24 rounded-[var(--radius-lg)] bg-[var(--background-primary)] animate-pulse border border-[var(--border-primary)]"
             />
           ))}
         </div>
@@ -316,12 +316,12 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
       content = (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <AlertTriangle className="w-8 h-8 text-[var(--color-error)]" />
-          <p className="mt-3 text-sm text-[var(--color-text-muted)]">{error}</p>
+          <p className="mt-3 text-sm text-[var(--text-muted)]">{error}</p>
           {onRetry && (
             <button
               type="button"
               onClick={onRetry}
-              className="mt-4 px-4 py-2 text-sm bg-[var(--color-primary)] text-[var(--color-primary-foreground)] rounded-lg hover:opacity-90 transition-opacity"
+              className="mt-4 px-4 py-2 text-sm bg-[var(--interactive-accent)] text-[var(--text-inverse)] rounded-lg hover:opacity-90 transition-opacity"
             >
               重试
             </button>
@@ -339,7 +339,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
         </EmptyStateRoot>
       );
     } else if (variant === "flow") {
-      content = <div className="divide-y divide-[var(--color-border)]">{filteredQuestions.map(renderFlowItem)}</div>;
+      content = <div className="divide-y divide-[var(--border-primary)]">{filteredQuestions.map(renderFlowItem)}</div>;
     } else if (browseMode === "scroll") {
       /* ── Scroll mode ── */
       content = (
@@ -368,7 +368,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
               key={String(q.question_index)}
               className={cn(
                 activeIndex === q.question_index &&
-                  "ring-2 ring-[var(--color-primary)] rounded-[var(--radius-lg)]",
+                  "ring-2 ring-[var(--interactive-accent)] rounded-[var(--radius-lg)]",
               )}
             >
               <AccordionHeading>

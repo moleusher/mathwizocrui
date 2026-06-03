@@ -2,135 +2,25 @@
 @import "@heroui/styles";
 @import "katex/dist/katex.min.css";
 
+/* ── Three-Layer Design Tokens ──
+   Imports the new decisions layer. Dark tokens are on :root by default.
+   Light tokens apply via [data-theme="light"]. */
+@import "../../tokens/decisions-color-dark.css";
+@import "../../tokens/decisions-color-light.css";
+
 /* ── HeroUI 3 ── */
 /* HeroUI v3 styles imported via @heroui/styles package.
    Components use data attributes for theming. */
 
-/* ── Math-OCR Design Tokens ── */
+/* ── Radius ── */
 :root {
-  /* Brand palette — warm technical */
-  --color-brand-50: oklch(0.97 0.01 250);
-  --color-brand-100: oklch(0.93 0.02 250);
-  --color-brand-200: oklch(0.85 0.05 250);
-  --color-brand-300: oklch(0.75 0.08 250);
-  --color-brand-400: oklch(0.65 0.12 250);
-  --color-brand-500: oklch(0.55 0.16 250);
-  --color-brand-600: oklch(0.45 0.14 250);
-  --color-brand-700: oklch(0.35 0.11 250);
-  --color-brand-800: oklch(0.25 0.08 250);
-  --color-brand-900: oklch(0.18 0.05 250);
-
-  /* Semantic roles */
-  --color-primary: var(--color-brand-500);
-  --color-primary-foreground: #fff;
-  --color-surface: oklch(0.99 0.001 250);
-  --color-surface-raised: #fff;
-  --color-border: oklch(0.88 0.01 250);
-  --color-text: oklch(0.15 0.01 250);
-  --color-text-muted: oklch(0.45 0.01 250);
-
-  /* Accent — slightly brighter than primary for supplementary emphasis */
-  --color-accent: var(--color-brand-400);
-  --color-accent-foreground: #fff;
-
-  /* Background aliases — backward-compatible mappings */
-  --color-bg: var(--color-surface);
-  --color-bg-secondary: oklch(0.96 0.005 250);
-  --color-bg-raised: var(--color-surface-raised);
-
-  /* Text hierarchy aliases */
-  --color-text-primary: var(--color-text);
-  --color-text-secondary: var(--color-text-muted);
-
-  /* Border hierarchy */
-  --color-border-light: oklch(0.93 0.01 250);
-  --color-border-strong: oklch(0.7 0.01 250);
-
-  /* Interactive states — primary */
-  --color-primary-hover: oklch(from var(--color-primary) calc(l + 0.08) c h);
-  --color-primary-active: oklch(from var(--color-primary) calc(l - 0.05) c h);
-  --color-primary-disabled: oklch(0.85 0.03 250);
-
-  /* Interactive states — accent */
-  --color-accent-hover: oklch(from var(--color-accent) calc(l + 0.08) c h);
-  --color-accent-active: oklch(from var(--color-accent) calc(l - 0.05) c h);
-  --color-accent-disabled: oklch(0.85 0.03 250);
-
-  /* Interactive states — surface */
-  --color-surface-hover: oklch(0.95 0.005 250);
-
-  /* Interactive states — error */
-  --color-error-hover: oklch(from var(--color-error) calc(l - 0.06) c h);
-
-  /* Focus ring */
-  --focus-ring: 0 0 0 3px oklch(from var(--color-primary) l c h / 0.3);
-
-  /* Semantic feedback */
-  --color-info: oklch(0.6 0.12 250);
-  --color-info-bg: oklch(0.93 0.04 250);
-  --color-success: oklch(0.55 0.18 145);
-  --color-success-bg: oklch(0.95 0.05 145);
-  --color-warning: oklch(0.65 0.18 75);
-  --color-warning-bg: oklch(0.95 0.05 75);
-  --color-error: oklch(0.55 0.2 25);
-  --color-error-bg: oklch(0.95 0.05 25);
-
-  /* Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08);
-}
-
-/* Dark theme */
-.dark {
-  --color-primary: var(--color-brand-400);
-  --color-primary-foreground: var(--color-brand-950);
-  --color-surface: oklch(0.13 0.01 250);
-  --color-surface-raised: oklch(0.18 0.01 250);
-  --color-border: oklch(0.25 0.01 250);
-  --color-text: oklch(0.92 0.005 250);
-  --color-text-muted: oklch(0.6 0.01 250);
-
-  /* Accent — dark mode */
-  --color-accent: var(--color-brand-400);
-  --color-accent-foreground: oklch(0.15 0.01 250);
-
-  /* Background — dark mode */
-  --color-bg-secondary: oklch(0.15 0.01 250);
-
-  /* Border hierarchy — dark mode */
-  --color-border-light: oklch(0.2 0.01 250);
-  --color-border-strong: oklch(0.35 0.01 250);
-
-  /* Interactive states — dark mode */
-  --color-primary-disabled: oklch(0.25 0.03 250);
-  --color-accent-disabled: oklch(0.25 0.03 250);
-  --color-surface-hover: oklch(0.20 0.01 250);
-  --color-error-hover: oklch(from var(--color-error) calc(l + 0.06) c h);
-
-  /* Dark theme feedback */
-  --color-info: oklch(0.65 0.12 250);
-  --color-info-bg: oklch(0.2 0.04 250);
-  --color-success: oklch(0.65 0.18 145);
-  --color-success-bg: oklch(0.2 0.05 145);
-  --color-warning: oklch(0.7 0.18 75);
-  --color-warning-bg: oklch(0.2 0.05 75);
-  --color-error: oklch(0.65 0.2 25);
-  --color-error-bg: oklch(0.2 0.05 25);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Responsive breakpoint tokens ── */
-/* Used for reference in component logic; not consumed by Tailwind directly */
 @theme {
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -145,21 +35,21 @@
   line-height: 1.6;
 }
 
-/* ── KaTeX Dark Mode ── */
-.dark .katex {
-  color: var(--color-text);
+/* ── KaTeX Theming ── */
+.katex {
+  color: var(--text-primary);
 }
-.dark .katex .mathnormal,
-.dark .katex .mord,
-.dark .katex .mathrm,
-.dark .katex .mathit,
-.dark .katex .mathbf {
-  color: var(--color-text);
+.katex .mathnormal,
+.katex .mord,
+.katex .mathrm,
+.katex .mathit,
+.katex .mathbf {
+  color: var(--text-primary);
 }
-.dark .katex .mbin,
-.dark .katex .mrel {
-  color: var(--color-text);
+.katex .mbin,
+.katex .mrel {
+  color: var(--text-primary);
 }
-.dark .katex-html {
-  color: var(--color-text);
+.katex-html {
+  color: var(--text-primary);
 }

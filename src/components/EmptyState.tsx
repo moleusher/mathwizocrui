@@ -44,7 +44,7 @@ export const EmptyStateIcon = React.forwardRef<HTMLDivElement, EmptyStateIconPro
         data-slot="empty-state-icon"
         className={cn(
           "flex items-center justify-center size-16 rounded-full",
-          "bg-(--color-brand-100) text-(--color-brand-500)",
+          "bg-(--background-secondary) text-(--interactive-accent)",
           className,
         )}
         {...props}
@@ -65,7 +65,7 @@ export const EmptyStateTitle = React.forwardRef<HTMLHeadingElement, EmptyStateTi
       <h3
         ref={ref}
         data-slot="empty-state-title"
-        className={cn("text-lg font-semibold text-(--color-text)", className)}
+        className={cn("text-lg font-semibold text-(--text-primary)", className)}
         {...props}
       >
         {children}
@@ -86,7 +86,7 @@ export const EmptyStateDescription = React.forwardRef<
     <p
       ref={ref}
       data-slot="empty-state-description"
-      className={cn("text-sm text-(--color-text-muted) max-w-md", className)}
+      className={cn("text-sm text-(--text-muted) max-w-md", className)}
       {...props}
     >
       {children}

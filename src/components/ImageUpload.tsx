@@ -198,9 +198,9 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
         className={cn(
           "relative flex flex-col items-center justify-center gap-3 rounded-(--radius-lg) border-2 border-dashed p-8 transition-colors duration-150",
           !hasFiles && "cursor-pointer",
-          "border-(--color-border) bg-(--color-surface)",
-          isDragging && "border-(--color-primary) bg-(--color-brand-50)",
-          error && "border-[var(--color-error)] bg-[var(--color-error-bg)]",
+          "border-(--border-primary) bg-(--background-primary)",
+          isDragging && "border-(--interactive-accent) bg-(--background-hover)",
+          error && "border-[var(--color-error)] bg-[var(--color-error)/10]",
           className,
         )}
         onClick={() => {
@@ -245,7 +245,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
             {isImage && previewUrl ? (
               <ImagePreview src={previewUrl} alt={currentFile?.name ?? ""} />
             ) : (
-              <div className="w-full h-48 flex items-center justify-center text-(--color-text-muted) text-sm">
+              <div className="w-full h-48 flex items-center justify-center text-(--text-muted) text-sm">
                 {currentFile?.name ?? "Unsupported file"}
               </div>
             )}
@@ -260,7 +260,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               />
             )}
 
-            <div className="flex items-center gap-3 text-sm text-(--color-text-muted)">
+            <div className="flex items-center gap-3 text-sm text-(--text-muted)">
               <span>
                 {files.length} file{files.length !== 1 ? "s" : ""} selected
               </span>
@@ -280,8 +280,8 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
             </div>
 
             {multiple && (
-              <div className="w-full pt-4 border-t border-(--color-border) flex flex-col items-center gap-2">
-                <p className="text-xs text-(--color-text-muted)">
+              <div className="w-full pt-4 border-t border-(--border-primary) flex flex-col items-center gap-2">
+                <p className="text-xs text-(--text-muted)">
                   Add more files by dropping or browsing
                 </p>
                 <MathButton variant="outline" size="sm" type="button" onClick={openFilePicker}>
@@ -305,7 +305,7 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               strokeLinejoin="round"
               className={cn(
                 "transition-colors",
-                isDragging ? "text-(--color-primary)" : "text-(--color-text-muted)",
+                isDragging ? "text-(--interactive-accent)" : "text-(--text-muted)",
               )}
             >
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -317,12 +317,12 @@ export const ImageUpload = React.forwardRef<HTMLDivElement, ImageUploadProps>(
               <p
                 className={cn(
                   "text-sm font-medium",
-                  isDragging ? "text-(--color-primary)" : "text-(--color-text)",
+                  isDragging ? "text-(--interactive-accent)" : "text-(--text-primary)",
                 )}
               >
                 {label}
               </p>
-              {hint && <p className="mt-1 text-xs text-(--color-text-muted)">{hint}</p>}
+              {hint && <p className="mt-1 text-xs text-(--text-muted)">{hint}</p>}
               {error && <p className="mt-1 text-xs text-[var(--color-error)]">{error}</p>}
             </div>
 

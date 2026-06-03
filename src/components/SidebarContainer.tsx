@@ -98,7 +98,7 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
           data-slot="sidebar-container"
           data-collapsed={collapsed || undefined}
           className={cn(
-            "flex-shrink-0 overflow-hidden bg-(--color-surface) border-r border-(--color-border-light)",
+            "flex-shrink-0 overflow-hidden bg-(--background-primary) border-r border-(--border-secondary)",
             "transition-[width] duration-200 ease-out",
             // Overlay on mobile when expanded
             isOverlay &&
@@ -121,7 +121,7 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
           {collapsedShowRibbon && (
             <div
               data-slot="sidebar-ribbon"
-              className="flex flex-col items-center py-2 gap-1 w-12 border-r border-(--color-border-light) bg-(--color-bg-secondary)"
+              className="flex flex-col items-center py-2 gap-1 w-12 border-r border-(--border-secondary) bg-(--background-secondary)"
             >
               {tabs.map((tab) => (
                 <RibbonButton
@@ -144,7 +144,7 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
               {/* TabBar */}
               <div
                 data-slot="sidebar-tabbar"
-                className="flex items-center h-10 border-b border-(--color-border-light) shrink-0"
+                className="flex items-center h-10 border-b border-(--border-secondary) shrink-0"
               >
                 {tabs.map((tab) => (
                   <button
@@ -158,10 +158,10 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
                     className={cn(
                       "flex-1 flex items-center justify-center gap-1.5 h-full text-sm font-medium",
                       "transition-colors duration-150 ease-out",
-                      "focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--color-primary)/30",
+                      "focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-(--interactive-accent)/30",
                       tab.key === activeTab
-                        ? "text-(--color-primary) shadow-[inset_0_-2px_0_0_var(--color-primary)]"
-                        : "text-(--color-text-secondary) hover:text-(--color-text)",
+                        ? "text-(--interactive-accent) shadow-[inset_0_-2px_0_0_var(--interactive-accent)]"
+                        : "text-(--text-secondary) hover:text-(--text-primary)",
                     )}
                   >
                     <span className="size-4 flex items-center justify-center" aria-hidden="true">
@@ -186,9 +186,9 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
                   aria-label="折叠侧栏"
                   className={cn(
                     "flex items-center justify-center size-8 mr-1 shrink-0 rounded-(--radius-sm)",
-                    "text-(--color-text-secondary) hover:bg-(--color-surface-hover) hover:text-(--color-text)",
+                    "text-(--text-secondary) hover:bg-(--background-hover) hover:text-(--text-primary)",
                     "transition-colors duration-150",
-                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)/30",
+                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--interactive-accent)/30",
                   )}
                 >
                   <X className="size-4" />
@@ -226,10 +226,10 @@ export const SidebarContainer = React.forwardRef<HTMLDivElement, SidebarContaine
             aria-label="展开侧栏"
             className={cn(
               "fixed top-4 left-2 z-20 flex items-center justify-center",
-              "size-8 rounded-(--radius-sm) bg-(--color-surface) border border-(--color-border-light)",
-              "text-(--color-text-secondary) hover:text-(--color-text) hover:bg-(--color-surface-hover)",
+              "size-8 rounded-(--radius-sm) bg-(--background-primary) border border-(--border-secondary)",
+              "text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--background-hover)",
               "transition-colors duration-150 shadow-(--shadow-sm)",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)/30",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--interactive-accent)/30",
             )}
           >
             <PanelLeftOpen className="size-4" />

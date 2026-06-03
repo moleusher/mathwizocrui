@@ -52,7 +52,7 @@ export const IntentSelector: React.FC<IntentSelectorProps> = ({
 
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-medium text-foreground-secondary">
+      <h3 className="text-sm font-medium text-(--text-secondary)">
         选择分析模式
       </h3>
       <div className="grid grid-cols-2 gap-2">
@@ -69,34 +69,34 @@ export const IntentSelector: React.FC<IntentSelectorProps> = ({
                 onIntentChange(isActive ? null : item.id);
               }}
               className={cn(
-                "flex flex-col items-center gap-1 p-3 rounded-card border text-xs transition-all",
+                "flex flex-col items-center gap-1 p-3 rounded-lg border text-xs transition-all",
                 isActive &&
-                  "border-accent bg-block-formula text-accent ring-1 ring-accent/40",
+                  "border-(--interactive-accent) bg-(--interactive-accent)/10 text-(--interactive-accent) ring-1 ring-(--interactive-accent)/40",
                 isSuggested &&
                   !activeIntent &&
-                  "border-accent/50 bg-block-formula/50 text-foreground-primary",
+                  "border-(--interactive-accent)/50 bg-(--interactive-accent)/5 text-(--text-primary)",
                 !isActive &&
                   !(isSuggested && !activeIntent) &&
-                  "border-border text-foreground-secondary hover:border-border-light",
+                  "border-(--border-primary) text-(--text-secondary) hover:border-(--border-secondary)",
                 disabled && "opacity-50 cursor-not-allowed",
                 !disabled && "cursor-pointer",
               )}
             >
               <Icon size={18} />
               <span className="font-medium">{item.label}</span>
-              <span className="text-foreground-muted">{item.hint}</span>
+              <span className="text-(--text-muted)">{item.hint}</span>
             </button>
           );
         })}
       </div>
       {!activeIntent && selectedCount > 0 && (
-        <p className="text-xs text-foreground-muted">
+        <p className="text-xs text-(--text-muted)">
           已选 {selectedCount} 题 · 推荐
           {suggested === "single_question" ? "单题精讲" : "知识点串联"}
         </p>
       )}
       {activeIntent && selectedCount > 0 && (
-        <p className="text-xs text-foreground-secondary">
+        <p className="text-xs text-(--text-secondary)">
           已选 {selectedCount} 题 · 当前:{" "}
           {intents.find((i) => i.id === activeIntent)?.label}
         </p>

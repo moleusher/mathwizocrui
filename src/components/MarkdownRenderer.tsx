@@ -73,7 +73,7 @@ class MarkdownErrorBoundary extends React.Component<
           className={cn(
             "whitespace-pre-wrap break-words rounded-(--radius-md)",
             "bg-(--color-error)/5 border border-(--color-error)/20",
-            "p-3 text-sm text-(--color-text)",
+            "p-3 text-sm text-(--text-primary)",
           )}
         >
           {this.props.content}
@@ -148,17 +148,17 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   const renderContent = (
     <div
       className={cn(
-        "prose prose-sm max-w-none text-(--color-text)",
+        "prose prose-sm max-w-none text-(--text-primary)",
         // Table styling
         "[&_table]:w-full [&_table]:border-collapse",
-        "[&_th]:border [&_th]:border-(--color-border) [&_th]:px-3 [&_th]:py-1.5 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold",
-        "[&_td]:border [&_td]:border-(--color-border) [&_td]:px-3 [&_td]:py-1.5 [&_td]:text-sm",
+        "[&_th]:border [&_th]:border-(--border-primary) [&_th]:px-3 [&_th]:py-1.5 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold",
+        "[&_td]:border [&_td]:border-(--border-primary) [&_td]:px-3 [&_td]:py-1.5 [&_td]:text-sm",
         // Code styling
-        "[&_code]:rounded [&_code]:bg-(--color-brand-50) [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs",
-        "[&_pre]:rounded-(--radius-md) [&_pre]:bg-(--color-brand-50) [&_pre]:p-3 [&_pre]:overflow-x-auto",
+        "[&_code]:rounded [&_code]:bg-(--background-hover) [&_code]:px-1 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs",
+        "[&_pre]:rounded-(--radius-md) [&_pre]:bg-(--background-hover) [&_pre]:p-3 [&_pre]:overflow-x-auto",
         "[&_pre_code]:bg-transparent [&_pre_code]:p-0",
         // Link styling
-        "[&_a]:text-(--color-primary) [&_a]:underline",
+        "[&_a]:text-(--interactive-accent) [&_a]:underline",
         // List styling
         "[&_ul]:list-disc [&_ul]:pl-6",
         "[&_ol]:list-decimal [&_ol]:pl-6",

@@ -26,10 +26,10 @@ const sampleTabs: SidebarTab[] = [
         {[1, 2, 3, 4, 5].map((i) => (
           <div
             key={i}
-            className="p-2 rounded text-sm hover:bg-(--color-surface-hover) cursor-pointer transition-colors"
+            className="p-2 rounded text-sm hover:bg-(--background-hover) cursor-pointer transition-colors"
           >
             <div className="font-medium">题目 {i}</div>
-            <div className="text-xs text-(--color-text-muted) mt-0.5">
+            <div className="text-xs text-(--text-muted) mt-0.5">
               得分: {[8, 10, 6, 9, 7][i - 1]}/10
             </div>
           </div>
@@ -42,7 +42,7 @@ const sampleTabs: SidebarTab[] = [
     icon: <FileText />,
     label: "试卷原图",
     content: (
-      <div className="p-3 flex items-center justify-center h-48 text-(--color-text-muted) text-sm">
+      <div className="p-3 flex items-center justify-center h-48 text-(--text-muted) text-sm">
         试卷原图区域
       </div>
     ),
@@ -57,7 +57,7 @@ const sampleTabs: SidebarTab[] = [
         <input
           type="text"
           placeholder="搜索..."
-          className="w-full px-3 py-2 text-sm border border-(--color-border-light) rounded-(--radius-md) bg-(--color-surface) focus:outline-(--color-primary)/30"
+          className="w-full px-3 py-2 text-sm border border-(--border-secondary) rounded-(--radius-md) bg-(--background-primary) focus:outline-(--interactive-accent)/30"
         />
       </div>
     ),
@@ -70,11 +70,11 @@ const sampleTabs: SidebarTab[] = [
       <div className="p-3 space-y-3 text-sm">
         <div className="flex items-center justify-between">
           <span>自动保存</span>
-          <span className="text-(--color-text-muted)">已开启</span>
+          <span className="text-(--text-muted)">已开启</span>
         </div>
         <div className="flex items-center justify-between">
           <span>显示答案</span>
-          <span className="text-(--color-text-muted)">已开启</span>
+          <span className="text-(--text-muted)">已开启</span>
         </div>
       </div>
     ),
@@ -96,7 +96,7 @@ function SidebarDemo({
   const [activeTab, setActiveTab] = useState(tabs[0]?.key ?? "");
 
   return (
-    <div className="flex h-[500px] border border-(--color-border) rounded-(--radius-lg) overflow-hidden bg-(--color-surface)">
+    <div className="flex h-[500px] border border-(--border-primary) rounded-(--radius-lg) overflow-hidden bg-(--background-primary)">
       <SidebarContainer
         collapsed={collapsed}
         onToggleCollapse={() => {
@@ -107,7 +107,7 @@ function SidebarDemo({
         onTabChange={setActiveTab}
         width={width}
       />
-      <main className="flex-1 flex items-center justify-center text-(--color-text-muted) text-sm">
+      <main className="flex-1 flex items-center justify-center text-(--text-muted) text-sm">
         主内容区域
       </main>
     </div>
@@ -136,7 +136,7 @@ export const TwoTabs: Story = {
         icon: <List />,
         label: "题目列表",
         content: (
-          <div className="p-3 text-sm text-(--color-text-muted)">题目列表内容</div>
+          <div className="p-3 text-sm text-(--text-muted)">题目列表内容</div>
         ),
       },
       {
@@ -144,7 +144,7 @@ export const TwoTabs: Story = {
         icon: <FileText />,
         label: "试卷原图",
         content: (
-          <div className="p-3 text-sm text-(--color-text-muted)">试卷原图内容</div>
+          <div className="p-3 text-sm text-(--text-muted)">试卷原图内容</div>
         ),
       },
     ];
@@ -154,7 +154,7 @@ export const TwoTabs: Story = {
 
 export const EmptyContent: Story = {
   render: () => (
-    <div className="flex h-[300px] border border-(--color-border) rounded-(--radius-lg) overflow-hidden bg-(--color-surface)">
+    <div className="flex h-[300px] border border-(--border-primary) rounded-(--radius-lg) overflow-hidden bg-(--background-primary)">
       <SidebarContainer
         collapsed={false}
         onToggleCollapse={() => {}}
@@ -164,7 +164,7 @@ export const EmptyContent: Story = {
             icon: <List />,
             label: "空面板",
             content: (
-              <div className="flex items-center justify-center h-32 text-(--color-text-muted) text-sm">
+              <div className="flex items-center justify-center h-32 text-(--text-muted) text-sm">
                 暂无内容
               </div>
             ),

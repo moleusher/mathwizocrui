@@ -37,9 +37,9 @@ const STATUS_CONFIG: Record<
   },
   queued: {
     label: "排队中",
-    base: "bg-[var(--color-surface)] border-[var(--color-border)]",
-    dot: "bg-[var(--color-text-muted)]",
-    text: "text-[var(--color-text-muted)]",
+    base: "bg-[var(--background-primary)] border-[var(--border-primary)]",
+    dot: "bg-[var(--text-muted)]",
+    text: "text-[var(--text-muted)]",
   },
   running: {
     label: "运行中",
@@ -61,9 +61,9 @@ const STATUS_CONFIG: Record<
   },
   cancelled: {
     label: "已取消",
-    base: "bg-[var(--color-surface)] border-[var(--color-border)]",
-    dot: "bg-[var(--color-text-muted)]",
-    text: "text-[var(--color-text-muted)]",
+    base: "bg-[var(--background-primary)] border-[var(--border-primary)]",
+    dot: "bg-[var(--text-muted)]",
+    text: "text-[var(--text-muted)]",
   },
   // v0.2.0 新增 — Dashboard pipeline 状态
   uploading: {
@@ -74,15 +74,15 @@ const STATUS_CONFIG: Record<
   },
   ocr: {
     label: "识别中",
-    base: "bg-[var(--color-brand-500)]/10 border-[var(--color-brand-500)]/20",
-    dot: "bg-[var(--color-brand-500)]",
-    text: "text-[var(--color-brand-500)]",
+    base: "bg-[var(--interactive-accent)]/10 border-[var(--interactive-accent)]/20",
+    dot: "bg-[var(--interactive-accent)]",
+    text: "text-[var(--interactive-accent)]",
   },
   analyzing: {
     label: "分析中",
-    base: "bg-[var(--color-brand-500)]/10 border-[var(--color-brand-500)]/20",
-    dot: "bg-[var(--color-brand-500)]",
-    text: "text-[var(--color-brand-500)]",
+    base: "bg-[var(--interactive-accent)]/10 border-[var(--interactive-accent)]/20",
+    dot: "bg-[var(--interactive-accent)]",
+    text: "text-[var(--interactive-accent)]",
   },
 };
 

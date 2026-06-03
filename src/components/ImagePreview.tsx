@@ -84,7 +84,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         data-slot="image-preview"
         data-zoom={zoom > 1 ? zoom : undefined}
         className={cn(
-          "relative overflow-hidden rounded-(--radius-md) bg-(--color-brand-50) select-none",
+          "relative overflow-hidden rounded-(--radius-md) bg-(--background-hover) select-none",
           zoomable && "cursor-zoom-in",
           zoom > 1 && "cursor-grab",
           isDragging && "cursor-grabbing",
@@ -100,8 +100,8 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
         {!isLoaded && !hasError && (
           <div className="absolute inset-0 flex items-center justify-center">
             {placeholder ?? (
-              <div className="flex flex-col items-center gap-2 text-(--color-text-muted) text-sm">
-                <div className="size-6 border-2 border-(--color-brand-200) border-t-(--color-primary) rounded-full animate-spin" />
+              <div className="flex flex-col items-center gap-2 text-(--text-muted) text-sm">
+                <div className="size-6 border-2 border-(--background-tertiary) border-t-(--interactive-accent) rounded-full animate-spin" />
                 Loading...
               </div>
             )}
@@ -148,7 +148,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
                 e.stopPropagation();
                 setZoom((z) => Math.max(1, z - 0.5));
               }}
-              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
+              className="size-8 flex items-center justify-center rounded bg-[var(--background-primary)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--background-primary)]"
             >
               −
             </button>
@@ -159,7 +159,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
                 e.stopPropagation();
                 resetZoom();
               }}
-              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
+              className="size-8 flex items-center justify-center rounded bg-[var(--background-primary)]/80 text-xs shadow-[var(--shadow-sm)] hover:bg-[var(--background-primary)]"
             >
               {Math.round(zoom * 100)}%
             </button>
@@ -170,7 +170,7 @@ export const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
                 e.stopPropagation();
                 setZoom((z) => Math.min(maxZoom, z + 0.5));
               }}
-              className="size-8 flex items-center justify-center rounded bg-[var(--color-surface)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--color-surface)]"
+              className="size-8 flex items-center justify-center rounded bg-[var(--background-primary)]/80 text-xs font-bold shadow-[var(--shadow-sm)] hover:bg-[var(--background-primary)]"
             >
               +
             </button>

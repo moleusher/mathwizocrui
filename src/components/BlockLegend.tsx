@@ -31,7 +31,7 @@ export const BlockLegend = React.forwardRef<HTMLDivElement, BlockLegendProps>(
         {blocks.map((block) => (
           <div key={block.id} className="flex items-center gap-1.5">
             <span className={cn("size-2.5 rounded-full flex-shrink-0", block.color)} />
-            <span className="text-xs text-(--color-text)">{block.label}</span>
+            <span className="text-xs text-(--text-primary)">{block.label}</span>
           </div>
         ))}
       </div>

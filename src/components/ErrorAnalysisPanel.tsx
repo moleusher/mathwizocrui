@@ -52,11 +52,11 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
         style={{ maxHeight: isExpanded ? "none" : `${maxHeight}px`, overflow: "hidden" }}
       >
         {/* Cause text */}
-        <p className="text-sm text-[var(--color-text)] mb-1">{analysis.cause}</p>
+        <p className="text-sm text-[var(--text-primary)] mb-1">{analysis.cause}</p>
 
         {/* Suggestion */}
         {analysis.suggestion && (
-          <p className="text-sm text-[var(--color-text)] mb-1">
+          <p className="text-sm text-[var(--text-primary)] mb-1">
             <span role="img" aria-label="建议">
               💡
             </span>{" "}
@@ -65,14 +65,14 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
         )}
 
         {/* AI disclaimer */}
-        <p className="text-xs text-[var(--color-text-muted)] mt-2">⚠️ AI 生成，仅供参考</p>
+        <p className="text-xs text-[var(--text-muted)] mt-2">⚠️ AI 生成，仅供参考</p>
 
         {/* Gradient mask overlay — only when collapsed */}
         {!isExpanded && (
           <div
             className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
             style={{
-              background: "linear-gradient(to top, var(--color-surface) 0%, transparent 100%)",
+              background: "linear-gradient(to top, var(--background-primary) 0%, transparent 100%)",
             }}
           />
         )}

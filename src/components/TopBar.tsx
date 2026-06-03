@@ -17,7 +17,7 @@ export const TopBar = React.forwardRef<HTMLElement, TopBarProps>(
         ref={ref}
         data-slot="top-bar"
         className={cn(
-          "flex items-center justify-between h-14 px-4 border-b border-(--color-border) bg-(--color-surface)",
+          "flex items-center justify-between h-14 px-4 border-b border-(--border-primary) bg-(--background-primary)",
           className,
         )}
         {...props}

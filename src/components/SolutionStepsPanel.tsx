@@ -16,7 +16,7 @@ export interface SolutionStepsPanelProps {
 const STEPS_ID = "solution-steps-content";
 
 function getDotColor(index: number, total: number): string {
-  if (index === 0) return "var(--color-brand-500)";
+  if (index === 0) return "var(--interactive-accent)";
   if (index === total - 1) return "var(--color-success)";
   return "var(--color-info)";
 }
@@ -42,15 +42,15 @@ export const SolutionStepsPanel = React.forwardRef<HTMLDivElement, SolutionSteps
       data-slot="solution-steps"
       className={cn(
         "rounded-lg p-3",
-        !isMinimalist && "border border-[var(--color-border)] bg-[var(--color-surface)]",
-        isMinimalist && "bg-[var(--color-surface)]",
+        !isMinimalist && "border border-[var(--border-primary)] bg-[var(--background-primary)]",
+        isMinimalist && "bg-[var(--background-primary)]",
         className,
       )}
     >
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
-        <Lightbulb className="w-4 h-4 text-[var(--color-primary)]" />
-        <span className="text-xs font-medium text-[var(--color-text-muted)]">解题步骤</span>
+        <Lightbulb className="w-4 h-4 text-[var(--interactive-accent)]" />
+        <span className="text-xs font-medium text-[var(--text-muted)]">解题步骤</span>
       </div>
 
       {/* Steps content */}
@@ -82,13 +82,13 @@ export const SolutionStepsPanel = React.forwardRef<HTMLDivElement, SolutionSteps
                       <div
                         data-timeline-line
                         className="w-0.5 flex-1 min-h-4"
-                        style={{ backgroundColor: "var(--color-border)" }}
+                        style={{ backgroundColor: "var(--border-primary)" }}
                       />
                     )}
                   </div>
                   {/* Step content */}
                   <div className={cn("pb-6 flex-1", isLast && "pb-0")}>
-                    <div className="text-sm text-[var(--color-text)]">
+                    <div className="text-sm text-[var(--text-primary)]">
                       <MarkdownRenderer content={step.content} />
                     </div>
                   </div>
@@ -100,7 +100,7 @@ export const SolutionStepsPanel = React.forwardRef<HTMLDivElement, SolutionSteps
           <>
             <ol className="list-decimal pl-5 space-y-2">
               {steps.map((step) => (
-                <li key={step.step} className="text-sm text-[var(--color-text)]">
+                <li key={step.step} className="text-sm text-[var(--text-primary)]">
                   <MarkdownRenderer content={step.content} />
                 </li>
               ))}
@@ -111,7 +111,7 @@ export const SolutionStepsPanel = React.forwardRef<HTMLDivElement, SolutionSteps
               <div
                 className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to top, var(--color-surface) 0%, transparent 100%)",
+                  background: "linear-gradient(to top, var(--background-primary) 0%, transparent 100%)",
                 }}
               />
             )}

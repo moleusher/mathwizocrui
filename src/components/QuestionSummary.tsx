@@ -52,7 +52,7 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
       )}
 
       {/* Truncated question text */}
-      <span className="flex-1 truncate text-xs text-[var(--color-text-muted)]">
+      <span className="flex-1 truncate text-xs text-[var(--text-muted)]">
         {truncatedText}
       </span>
     </div>

@@ -27,7 +27,7 @@ export const FormulaRenderer = React.forwardRef<HTMLSpanElement, FormulaRenderer
         data-slot="formula-renderer"
         data-display={display}
         className={cn(
-          "font-mono text-sm text-(--color-text)",
+          "font-mono text-sm text-(--text-primary)",
           display === "block" && "block my-2",
           display === "inline" && "inline",
           className,

@@ -121,7 +121,7 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
           type="checkbox"
           checked={selected}
           onChange={(e) => onSelect?.(question.question_index, e.target.checked)}
-          className="w-4 h-4 accent-[var(--color-primary)] cursor-pointer"
+          className="w-4 h-4 accent-[var(--interactive-accent)] cursor-pointer"
           onClick={(e) => e.stopPropagation()}
         />
       )}
@@ -215,11 +215,11 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
       ref={ref}
       data-slot="question-card"
       className={cn(
-        !isMinimalist && "border border-[var(--color-border)] shadow-[var(--shadow-sm)]",
-        isMinimalist && "bg-[var(--color-surface)]",
+        !isMinimalist && "border border-[var(--border-primary)] shadow-[var(--shadow-sm)]",
+        isMinimalist && "bg-[var(--background-primary)]",
         "rounded-[var(--radius-lg)]",
-        isSelected && "ring-2 ring-[var(--color-primary)]",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]",
+        isSelected && "ring-2 ring-[var(--interactive-accent)]",
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--interactive-accent)]",
         className,
       )}
       onClick={handleClick}

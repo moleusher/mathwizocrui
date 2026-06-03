@@ -29,7 +29,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
       <div
         ref={ref}
         data-slot="app-layout"
-        className={cn("flex h-screen overflow-hidden bg-(--color-surface)", className)}
+        className={cn("flex h-screen overflow-hidden bg-(--background-primary)", className)}
         {...props}
       >
         {/* Sidebar */}
@@ -38,7 +38,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
             data-slot="app-sidebar"
             data-collapsed={sidebarCollapsed || undefined}
             className={cn(
-              "flex-shrink-0 border-r border-(--color-border) bg-(--color-surface) transition-all duration-200 overflow-hidden",
+              "flex-shrink-0 border-r border-(--border-primary) bg-(--background-primary) transition-all duration-200 overflow-hidden",
               sidebarCollapsed ? "w-0" : "",
             )}
             style={{ width: sidebarCollapsed ? 0 : sidebarWidth }}

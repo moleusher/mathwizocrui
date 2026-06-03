@@ -20,7 +20,7 @@ export const MarkdownViewer = React.forwardRef<HTMLDivElement, MarkdownViewerPro
         data-slot="markdown-viewer"
         data-prose={prose}
         className={cn(
-          "text-(--color-text)",
+          "text-(--text-primary)",
           prose === "standard" && "prose prose-sm max-w-none",
           prose === "compact" && "text-sm leading-relaxed",
           className,

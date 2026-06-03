@@ -73,7 +73,7 @@ export const ActiveWithBadge: Story = {
  */
 export const ButtonGroup: Story = {
   render: () => (
-    <div className="flex flex-col w-12 border-r border-(--color-border-light) bg-(--color-bg-secondary) py-2">
+    <div className="flex flex-col w-12 border-r border-(--border-secondary) bg-(--background-secondary) py-2">
       <RibbonButton icon={<List />} label="题目列表" active badge={5} onClick={() => {}} />
       <RibbonButton icon={<FileText />} label="试卷原图" onClick={() => {}} />
       <RibbonButton icon={<Search />} label="搜索" badge="" onClick={() => {}} />

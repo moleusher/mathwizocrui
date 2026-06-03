@@ -36,7 +36,7 @@ export const CardActions = React.forwardRef<HTMLSpanElement, CardActionsProps>(
         data-slot="card-actions"
         className={cn(
           "cursor-pointer text-xs font-medium",
-          "text-[var(--color-brand-500)] hover:text-[var(--color-brand-700)]",
+          "text-[var(--interactive-accent)] hover:text-[var(--interactive-accent-hover)]",
           "transition-colors duration-200",
           className,
         )}

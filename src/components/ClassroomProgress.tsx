@@ -41,12 +41,12 @@ export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgr
         data-slot="classroom-progress"
         className={cn(
           "p-4 rounded-lg",
-          isMinimalist ? "bg-[var(--color-surface)]" : "border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-sm)]",
+          isMinimalist ? "bg-[var(--background-primary)]" : "border border-[var(--border-primary)] bg-[var(--background-primary)] shadow-[var(--shadow-sm)]",
           className,
         )}
         {...props}
       >
-        <div className="text-sm font-medium text-[var(--color-brand-500)] mb-3">{headerText}</div>
+        <div className="text-sm font-medium text-[var(--interactive-accent)] mb-3">{headerText}</div>
 
         <div className="flex flex-col gap-2">
           {stages.map((s) => (
@@ -63,33 +63,33 @@ export const ClassroomProgress = React.forwardRef<HTMLDivElement, ClassroomProgr
                 className={cn(
                   "text-sm flex-1",
                   s.status === "completed" && "text-[var(--color-success)]",
-                  s.status === "active" && "text-[var(--color-brand-500)] font-medium",
-                  s.status === "pending" && "text-[var(--color-text-muted)]",
+                  s.status === "active" && "text-[var(--interactive-accent)] font-medium",
+                  s.status === "pending" && "text-[var(--text-muted)]",
                   s.status === "failed" && "text-[var(--color-error)]",
                 )}
               >
                 {s.label}
               </span>
               {s.status === "active" && (
-                <span className="text-xs text-[var(--color-brand-500)]">{s.progress}%</span>
+                <span className="text-xs text-[var(--interactive-accent)]">{s.progress}%</span>
               )}
               {s.status === "completed" && (
                 <span className="text-xs text-[var(--color-success)]">✓ 完成</span>
               )}
               {s.status === "pending" && (
-                <span className="text-xs text-[var(--color-text-muted)]">等待中</span>
+                <span className="text-xs text-[var(--text-muted)]">等待中</span>
               )}
             </div>
           ))}
         </div>
 
         {allComplete && classroomUrl && (
-          <div className="mt-3 pt-3 border-t border-[var(--color-border)]">
+          <div className="mt-3 pt-3 border-t border-[var(--border-primary)]">
             <button
               type="button"
               onClick={onOpenClassroom}
               className="text-sm cursor-pointer font-medium
-                text-[var(--color-brand-500)] hover:text-[var(--color-brand-700)]
+                text-[var(--interactive-accent)] hover:text-[var(--interactive-accent-hover)]
                 transition-colors duration-200 bg-transparent border-0 p-0"
             >
               打开课堂

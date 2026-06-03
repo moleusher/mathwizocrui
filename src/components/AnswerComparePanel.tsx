@@ -41,11 +41,11 @@ const VARIANT_STYLES = {
     label: "学生作答",
   },
   unmarked: {
-    border: "border-[var(--color-border)]/20",
-    bg: "bg-[var(--color-bg)]",
+    border: "border-[var(--border-primary)]/20",
+    bg: "bg-[var(--background-primary)]",
     icon: Pencil,
-    iconColor: "text-[var(--color-text-muted)]",
-    labelColor: "text-[var(--color-text-muted)]",
+    iconColor: "text-[var(--text-muted)]",
+    labelColor: "text-[var(--text-muted)]",
     label: "学生作答",
   },
 } as const;

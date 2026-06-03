@@ -50,10 +50,10 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
             }
             className={cn(
               "absolute pointer-events-auto cursor-pointer transition-all border-2 rounded-sm",
-              block.color || "border-(--color-primary)", // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
+              block.color || "border-(--interactive-accent)", // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
               block.active
-                ? "border-(--color-primary) bg-(--color-primary)/10"
-                : "bg-transparent hover:bg-(--color-primary)/5",
+                ? "border-(--interactive-accent) bg-(--interactive-accent)/10"
+                : "bg-transparent hover:bg-(--interactive-accent)/5",
             )}
             style={{
               left: `${block.x}%`,
@@ -65,7 +65,7 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
             title={block.label}
           >
             {block.label && (
-              <span className="absolute -top-5 left-0 text-[10px] font-medium bg-[var(--color-surface)]/90 px-1 rounded whitespace-nowrap shadow-[var(--shadow-sm)]">
+              <span className="absolute -top-5 left-0 text-[10px] font-medium bg-[var(--background-primary)]/90 px-1 rounded whitespace-nowrap shadow-[var(--shadow-sm)]">
                 {block.label}
               </span>
             )}

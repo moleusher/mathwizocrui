@@ -69,8 +69,8 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
           className={cn(
             "flex gap-0.5",
             orientation === "horizontal"
-              ? "flex-row border-b border-(--color-border)"
-              : "flex-col border-r border-(--color-border) min-w-32",
+              ? "flex-row border-b border-(--border-primary)"
+              : "flex-col border-r border-(--border-primary) min-w-32",
           )}
           role="tablist"
         >
@@ -91,20 +91,20 @@ export const AnalysisTabs = React.forwardRef<HTMLDivElement, AnalysisTabsProps>(
                   ? cn(
                       "border-b-2 -mb-px",
                       activeId === tab.id
-                        ? "border-(--color-primary) text-(--color-primary)"
-                        : "border-transparent text-(--color-text-muted) hover:text-(--color-text)",
+                        ? "border-(--interactive-accent) text-(--interactive-accent)"
+                        : "border-transparent text-(--text-muted) hover:text-(--text-primary)",
                     )
                   : cn(
                       "border-r-2 -mr-px text-left",
                       activeId === tab.id
-                        ? "border-(--color-primary) text-(--color-primary) bg-(--color-brand-50)"
-                        : "border-transparent text-(--color-text-muted) hover:text-(--color-text)",
+                        ? "border-(--interactive-accent) text-(--interactive-accent) bg-(--background-hover)"
+                        : "border-transparent text-(--text-muted) hover:text-(--text-primary)",
                     ),
               )}
             >
               {tab.label}
               {tab.badge !== undefined && tab.badge > 0 && (
-                <span className="inline-flex items-center justify-center size-4 rounded-full bg-(--color-brand-100) text-(--color-brand-700) text-[10px] font-semibold">
+                <span className="inline-flex items-center justify-center size-4 rounded-full bg-(--background-secondary) text-(--interactive-accent-hover) text-[10px] font-semibold">
                   {tab.badge}
                 </span>
               )}

@@ -27,21 +27,21 @@ export const QuestionBody: React.FC<QuestionBodyProps> = ({
     <div
       className={cn(
         "rounded-lg p-3",
-        isMinimalist ? "bg-[var(--color-surface)]" : "bg-[var(--color-surface)] border border-[var(--color-border)]",
+        isMinimalist ? "bg-[var(--background-primary)]" : "bg-[var(--background-primary)] border border-[var(--border-primary)]",
         className,
       )}
     >
       {/* Header */}
       <div className="flex items-center gap-1.5 mb-2">
-        <BookOpen className="w-4 h-4 text-[var(--color-text-muted)]" />
-        <span className="text-xs font-medium text-[var(--color-text-muted)]">题目原文</span>
+        <BookOpen className="w-4 h-4 text-[var(--text-muted)]" />
+        <span className="text-xs font-medium text-[var(--text-muted)]">题目原文</span>
       </div>
 
       {/* Text content */}
       {renderMode === "markdown" ? (
         <MarkdownRenderer content={text} />
       ) : (
-        <div className="text-sm text-[var(--color-text)] whitespace-pre-wrap">{text}</div>
+        <div className="text-sm text-[var(--text-primary)] whitespace-pre-wrap">{text}</div>
       )}
 
       {/* Images */}
@@ -78,7 +78,7 @@ function ImageThumbnail({ image, index, onImageClick, isMinimalist }: ImageThumb
 
   if (hasError) {
     return (
-      <div className={cn("flex items-center justify-center mt-2 rounded-md max-h-48 min-h-[80px] min-w-[120px] text-xs text-[var(--color-text-muted)]", isMinimalist ? "bg-[var(--color-surface)]" : "border border-[var(--color-border)] bg-[var(--color-surface)]")}>
+      <div className={cn("flex items-center justify-center mt-2 rounded-md max-h-48 min-h-[80px] min-w-[120px] text-xs text-[var(--text-muted)]", isMinimalist ? "bg-[var(--background-primary)]" : "border border-[var(--border-primary)] bg-[var(--background-primary)]")}>
         图片加载失败
       </div>
     );
@@ -89,7 +89,7 @@ function ImageThumbnail({ image, index, onImageClick, isMinimalist }: ImageThumb
       src={image.url}
       alt={image.caption ?? `题目图片 ${index + 1}`}
       loading="lazy"
-      className={cn("mt-2 rounded-md max-h-48 object-contain cursor-pointer", isMinimalist ? "" : "border border-[var(--color-border)]")}
+      className={cn("mt-2 rounded-md max-h-48 object-contain cursor-pointer", isMinimalist ? "" : "border border-[var(--border-primary)]")}
       onClick={() => onImageClick?.(image, index)}
       onError={() => {
         setHasError(true);
