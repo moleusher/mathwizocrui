@@ -1,5 +1,9 @@
 import type { Preview } from "@storybook/react";
 import "../src/tokens/globals.css";
+import "../tokens/decisions-color-dark.css";
+import "../tokens/decisions-color-light.css";
+import "../tokens/decisions-spacing.css";
+import "../tokens/decisions-typography.css";
 
 const preview: Preview = {
   parameters: {

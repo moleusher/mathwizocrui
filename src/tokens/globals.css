@@ -3,10 +3,13 @@
 @import "katex/dist/katex.min.css";
 
 /* ── Three-Layer Design Tokens ──
-   Imports the new decisions layer. Dark tokens are on :root by default.
-   Light tokens apply via [data-theme="light"]. */
-@import "../../tokens/decisions-color-dark.css";
-@import "../../tokens/decisions-color-light.css";
+   Consumers import token CSS files directly:
+     @import "@mathwiz/ui-ocr/tokens/decisions-color-dark.css";
+     @import "@mathwiz/ui-ocr/tokens/decisions-color-light.css";
+     @import "@mathwiz/ui-ocr/tokens/decisions-spacing.css";
+     @import "@mathwiz/ui-ocr/tokens/decisions-typography.css";
+   Storybook imports tokens via .storybook/preview-head.html.
+*/
 
 /* ── HeroUI 3 ── */
 /* HeroUI v3 styles imported via @heroui/styles package.
