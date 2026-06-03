@@ -41,7 +41,7 @@ const VARIANT_STYLES = {
     label: "学生作答",
   },
   unmarked: {
-    border: "border-[var(--border-primary)]/20",
+    border: "border-[var(--border-primary)]",
     bg: "bg-[var(--background-secondary)]",
     icon: Pencil,
     iconColor: "text-[var(--text-muted)]",

@@ -7,7 +7,6 @@ import {
   KnowledgeBadge,
   PrerequisiteBadge,
 } from "./QuestionBadges";
-import { QuestionHeaderBadges } from "./QuestionHeaderBadges";
 import { QuestionBody } from "./QuestionBody";
 import { AnswerComparePanel } from "./AnswerComparePanel";
 import { TeacherCommentPanel } from "./TeacherCommentPanel";
@@ -121,7 +120,6 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
           onClick={(e) => e.stopPropagation()}
         />
       )}
-      <QuestionHeaderBadges question={question} />
       {question.teacher_correction && question.fusion_meta && (
         <ConfidenceIndicator
           confidence={question.fusion_meta.confidence_per_field.is_correct}

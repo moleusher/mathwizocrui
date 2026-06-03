@@ -15,7 +15,7 @@ export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({ commen
     <div
       className={cn(
         "rounded-lg p-2.5",
-        isMinimalist ? "bg-[var(--color-error)]/5" : "border border-[var(--color-error)]/20 bg-[var(--color-error)]/5",
+        isMinimalist ? "bg-[var(--background-secondary)]" : "border-l-2 border-l-[var(--color-error)] border border-[var(--border-primary)] bg-[var(--background-secondary)]",
         className,
       )}
     >

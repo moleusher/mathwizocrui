@@ -35,19 +35,6 @@ describe("TypeBadge", () => {
   });
 });
 
-describe("DifficultyBadge", () => {
-  it.each([
-    ["easy", "●▷▷"],
-    ["medium", "●●▷"],
-    ["hard", "●●●"],
-    ["unknown", "---"],
-  ] as const)("renders %s as %s", async (difficulty, expected) => {
-    const { DifficultyBadge } = await renderBadges();
-    render(<DifficultyBadge difficulty={difficulty} />);
-    expect(screen.getByText(expected)).toBeInTheDocument();
-  });
-});
-
 describe("CorrectionBadge", () => {
   it("renders checkmark", async () => {
     const { CorrectionBadge } = await renderBadges();

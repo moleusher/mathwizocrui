@@ -114,7 +114,6 @@ describe("QuestionCard", () => {
     // Header: badge, type, difficulty, correction, score
     expect(screen.getByText("1")).toBeInTheDocument(); // QuestionBadge
     expect(screen.getByText("计算题")).toBeInTheDocument(); // TypeBadge
-    expect(screen.getByText("●●▷")).toBeInTheDocument(); // DifficultyBadge: medium
     expect(screen.getByText("✗")).toBeInTheDocument(); // CorrectionBadge
     expect(screen.getByText("2/5")).toBeInTheDocument(); // ScoreDisplay
 

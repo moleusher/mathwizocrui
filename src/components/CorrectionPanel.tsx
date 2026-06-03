@@ -16,7 +16,7 @@ export const CorrectionPanel: React.FC<CorrectionPanelProps> = ({ text, variant 
     <div
       className={cn(
         "rounded-lg p-2.5",
-        isMinimalist ? "bg-[var(--color-info)]/5" : "border border-[var(--color-info)]/20 bg-[var(--color-info)]/5",
+        isMinimalist ? "bg-[var(--background-secondary)]" : "border-l-2 border-l-[var(--color-info)] border border-[var(--border-primary)] bg-[var(--background-secondary)]",
         className,
       )}
     >

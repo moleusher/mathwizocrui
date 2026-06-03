@@ -30,8 +30,8 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
       className={cn(
         "rounded-lg p-3",
         isMinimalist
-          ? "bg-[var(--color-error)]/5"
-          : "border border-dashed border-[var(--color-error)]/40 bg-[var(--color-error)]/5",
+          ? "bg-[var(--background-secondary)]"
+          : "border-l-2 border-l-[var(--color-error)] border border-dashed border-[var(--border-primary)] bg-[var(--background-secondary)]",
         className,
       )}
     >

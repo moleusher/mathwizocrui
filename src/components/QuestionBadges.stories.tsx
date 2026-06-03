@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   QuestionBadge,
   TypeBadge,
-  DifficultyBadge,
   CorrectionBadge,
   ScoreDisplay,
   KnowledgeBadge,
@@ -49,21 +48,6 @@ export const TypeBadgeAll: StoryObj<typeof TypeBadge> = {
 };
 
 TypeBadgeAll.storyName = "TypeBadge";
-
-// ── DifficultyBadge ──
-
-export const DifficultyBadgeAll: StoryObj<typeof DifficultyBadge> = {
-  render: () => (
-    <div className="flex gap-2">
-      <DifficultyBadge difficulty="easy" />
-      <DifficultyBadge difficulty="medium" />
-      <DifficultyBadge difficulty="hard" />
-      <DifficultyBadge difficulty="unknown" />
-    </div>
-  ),
-};
-
-DifficultyBadgeAll.storyName = "DifficultyBadge";
 
 // ── CorrectionBadge ──
 
