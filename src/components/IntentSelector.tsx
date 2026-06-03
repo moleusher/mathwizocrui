@@ -69,7 +69,7 @@ export const IntentSelector: React.FC<IntentSelectorProps> = ({
                 onIntentChange(isActive ? null : item.id);
               }}
               className={cn(
-                "flex flex-col items-center gap-1 p-3 rounded-lg border text-xs transition-all",
+                "flex flex-col items-center gap-1 p-3 rounded-lg border text-xs transition-colors",
                 isActive &&
                   "border-(--interactive-accent) bg-(--interactive-accent)/10 text-(--interactive-accent) ring-1 ring-(--interactive-accent)/40",
                 isSuggested &&

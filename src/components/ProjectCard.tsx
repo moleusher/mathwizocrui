@@ -128,7 +128,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           !isMinimalist && "hover:shadow-[var(--shadow-md)] hover:border-[var(--interactive-accent)]",
           isMinimalist && "hover:bg-[var(--background-hover)]",
           "focus-visible:outline-2 focus-visible:outline-[var(--interactive-accent)] focus-visible:outline-offset-2",
-          "transition-all duration-200",
+          "transition-[box-shadow,border-color] duration-200",
           className,
         )}
         onClick={onClick}

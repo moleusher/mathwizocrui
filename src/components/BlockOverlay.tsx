@@ -49,7 +49,7 @@ export const BlockOverlay = React.forwardRef<HTMLDivElement, BlockOverlayProps>(
                 : undefined
             }
             className={cn(
-              "absolute pointer-events-auto cursor-pointer transition-all border-2 rounded-sm",
+              "absolute pointer-events-auto cursor-pointer transition-colors border-2 rounded-sm",
               block.color || "border-(--interactive-accent)", // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
               block.active
                 ? "border-(--interactive-accent) bg-(--interactive-accent)/10"

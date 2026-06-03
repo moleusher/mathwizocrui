@@ -50,7 +50,7 @@ export const PipelineStageCard = React.forwardRef<HTMLDivElement, PipelineStageC
         data-status={status}
         data-dimmed={dimmed || undefined}
         className={cn(
-          "flex gap-3 rounded-(--radius-lg) p-3 transition-all",
+          "flex gap-3 rounded-(--radius-lg) p-3 transition-[colors,opacity,shadow]",
           isMinimalist && "bg-(--background-primary)",
           !isMinimalist && isActive && "border border-(--interactive-accent) bg-(--background-hover) shadow-(--shadow-sm)",
           !isMinimalist && !isActive && "border border-(--border-primary) bg-(--background-primary)",

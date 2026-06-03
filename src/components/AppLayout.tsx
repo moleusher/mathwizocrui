@@ -38,7 +38,7 @@ export const AppLayout = React.forwardRef<HTMLDivElement, AppLayoutProps>(
             data-slot="app-sidebar"
             data-collapsed={sidebarCollapsed || undefined}
             className={cn(
-              "flex-shrink-0 border-r border-(--border-primary) bg-(--background-primary) transition-all duration-200 overflow-hidden",
+              "flex-shrink-0 border-r border-(--border-primary) bg-(--background-primary) transition-[width] duration-200 overflow-hidden",
               sidebarCollapsed ? "w-0" : "",
             )}
             style={{ width: sidebarCollapsed ? 0 : sidebarWidth }}

@@ -72,7 +72,7 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
           <div
             className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
             style={{
-              background: "linear-gradient(to top, var(--background-primary) 0%, transparent 100%)",
+              background: "linear-gradient(to top, var(--background-secondary) 0%, transparent 100%)",
             }}
           />
         )}

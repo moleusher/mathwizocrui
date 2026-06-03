@@ -243,6 +243,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
           data-slot="flow-item"
           data-status={status}
           data-active={isActive}
+          aria-current={isActive ? "true" : undefined}
           role="button"
           tabIndex={0}
           aria-label={`题目 ${q.question_index}`}

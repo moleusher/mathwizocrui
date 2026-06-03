@@ -60,7 +60,7 @@ export const MathButton = React.forwardRef<HTMLButtonElement, MathButtonProps>(
         disabled={disabled || loading} // eslint-disable-line @typescript-eslint/prefer-nullish-coalescing
         className={cn(
           // Base
-          "inline-flex items-center justify-center font-medium transition-all duration-150",
+          "inline-flex items-center justify-center font-medium transition-colors duration-150",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--interactive-accent)",
           "disabled:pointer-events-none disabled:opacity-50",
           // Variant + Size
