@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════
+   decisions-spacing.css — 语义间距
+   Layer: decisions  |  Scope: public
+   The public API. Components import from here.
+   ═══════════════════════════════════════════════════ */
+
+@import './options-spacing.css';
+
+:root {
+  --space-gutter:   var(--options-space-4);    /* 16px */
+  --space-section:  var(--options-space-6);    /* 24px */
+  --space-inline:   var(--options-space-2);    /* 8px */
+  --space-stack:    var(--options-space-3);    /* 12px */
+  --space-inset-xs: var(--options-space-1);    /* 4px */
+  --space-inset-sm: var(--options-space-2);    /* 8px */
+  --space-inset-md: var(--options-space-4);    /* 16px */
+  --space-inset-lg: var(--options-space-6);    /* 24px */
+}

@@ -1,0 +1,18 @@
+/* ═══════════════════════════════════════════════════
+   options-spacing.css — 4px 基准间距尺
+   Layer: options  |  Scope: private
+   Only referenced by decisions-*.css. Components MUST NOT import.
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --options-space-1:  4px;
+  --options-space-2:  8px;
+  --options-space-3:  12px;
+  --options-space-4:  16px;
+  --options-space-5:  20px;
+  --options-space-6:  24px;
+  --options-space-8:  32px;
+  --options-space-10: 40px;
+  --options-space-12: 48px;
+  --options-space-16: 64px;
+}

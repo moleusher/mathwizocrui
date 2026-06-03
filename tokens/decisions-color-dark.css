@@ -1,0 +1,40 @@
+/* ═══════════════════════════════════════════════════
+   decisions-color-dark.css — 暗色语义令牌
+   Layer: decisions  |  Scope: public
+   The public API. Components import from here.
+   ═══════════════════════════════════════════════════ */
+
+@import './options-colors.css';
+
+:root,
+[data-theme="dark"] {
+  /* Surfaces */
+  --background-primary:   var(--options-dark-base);
+  --background-secondary: var(--options-dark-surface-0);
+  --background-tertiary:  var(--options-dark-surface-1);
+  --background-hover:     var(--options-dark-surface-2);
+
+  /* Text */
+  --text-primary:   var(--options-dark-text);
+  --text-secondary: var(--options-dark-subtext-0);
+  --text-muted:     var(--options-dark-overlay-0);
+  --text-faint:     var(--options-dark-overlay-1);
+  --text-inverse:   var(--options-dark-base);
+
+  /* Interactive */
+  --interactive-accent:       var(--options-dark-mauve);
+  --interactive-accent-hover: oklch(from var(--options-dark-mauve) calc(l + 0.08) c h);
+
+  /* Semantic */
+  --color-success: var(--options-dark-green);
+  --color-warning: var(--options-dark-yellow);
+  --color-error:   var(--options-dark-red);
+  --color-info:    var(--options-dark-blue);
+
+  /* Borders */
+  --border-primary:   var(--options-dark-surface-1);
+  --border-secondary: var(--options-dark-surface-2);
+
+  /* Focus */
+  --focus-ring: 0 0 0 2px var(--options-dark-mauve);
+}

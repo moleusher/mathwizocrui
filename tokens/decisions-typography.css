@@ -1,0 +1,30 @@
+/* ═══════════════════════════════════════════════════
+   decisions-typography.css — 语义排版
+   Layer: decisions  |  Scope: public
+   The public API. Components import from here.
+   ═══════════════════════════════════════════════════ */
+
+@import './options-typography.css';
+
+:root {
+  --font-sans: var(--options-font-sans);
+  --font-mono: var(--options-font-mono);
+
+  --text-body:      var(--options-text-md);
+  --text-body-sm:   var(--options-text-base);
+  --text-caption:   var(--options-text-sm);
+  --text-overline:  var(--options-text-xs);
+  --text-heading-1: var(--options-text-3xl);
+  --text-heading-2: var(--options-text-2xl);
+  --text-heading-3: var(--options-text-xl);
+  --text-heading-4: var(--options-text-lg);
+
+  --leading-tight:   var(--options-leading-tight);
+  --leading-normal:  var(--options-leading-normal);
+  --leading-relaxed: var(--options-leading-relaxed);
+
+  --weight-normal:   var(--options-weight-normal);
+  --weight-medium:   var(--options-weight-medium);
+  --weight-semibold: var(--options-weight-semibold);
+  --weight-bold:     var(--options-weight-bold);
+}

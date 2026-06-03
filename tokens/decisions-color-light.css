@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════
+   decisions-color-light.css — 亮色语义令牌
+   Layer: decisions  |  Scope: public
+   The public API. Components import from here.
+   ═══════════════════════════════════════════════════ */
+
+@import './options-colors.css';
+
+[data-theme="light"] {
+  /* Surfaces */
+  --background-primary:   var(--options-light-base);
+  --background-secondary: var(--options-light-surface-0);
+  --background-tertiary:  var(--options-light-surface-1);
+  --background-hover:     var(--options-light-surface-2);
+
+  /* Text */
+  --text-primary:   var(--options-light-text);
+  --text-secondary: var(--options-light-subtext-0);
+  --text-muted:     var(--options-light-overlay-0);
+  --text-faint:     var(--options-light-overlay-1);
+  --text-inverse:   var(--options-light-base);
+
+  /* Interactive */
+  --interactive-accent:       var(--options-light-accent);
+  --interactive-accent-hover: oklch(from var(--options-light-accent) calc(l - 0.08) c h);
+
+  /* Semantic */
+  --color-success: var(--options-light-green);
+  --color-warning: var(--options-light-yellow);
+  --color-error:   var(--options-light-red);
+  --color-info:    var(--options-light-blue);
+
+  /* Borders */
+  --border-primary:   var(--options-light-surface-1);
+  --border-secondary: var(--options-light-surface-2);
+
+  /* Focus */
+  --focus-ring: 0 0 0 2px var(--options-light-accent);
+}

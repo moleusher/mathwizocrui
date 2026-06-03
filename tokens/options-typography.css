@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════════════════
+   options-typography.css — 系统字体栈 + 字号尺
+   Layer: options  |  Scope: private
+   Only referenced by decisions-*.css. Components MUST NOT import.
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  /* Font families */
+  --options-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --options-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Font sizes */
+  --options-text-xs:   11px;
+  --options-text-sm:   12px;
+  --options-text-base: 14px;
+  --options-text-md:   16px;
+  --options-text-lg:   18px;
+  --options-text-xl:   20px;
+  --options-text-2xl:  24px;
+  --options-text-3xl:  32px;
+
+  /* Font weights */
+  --options-weight-normal:   400;
+  --options-weight-medium:   500;
+  --options-weight-semibold: 600;
+  --options-weight-bold:     700;
+
+  /* Line heights */
+  --options-leading-tight:    1.2;
+  --options-leading-normal:   1.5;
+  --options-leading-relaxed:  1.75;
+}
