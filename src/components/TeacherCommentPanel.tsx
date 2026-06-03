@@ -19,7 +19,7 @@ export const TeacherCommentPanel: React.FC<TeacherCommentPanelProps> = ({ commen
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 mb-1">
+      <div className="flex items-center gap-1.5" style={{marginBottom: 'var(--space-inset-xs)'}}>
         <MessageSquare className="w-4 h-4 text-[var(--color-error)]" />
         <span className="text-xs font-medium text-[var(--color-error)]">教师批注</span>
       </div>

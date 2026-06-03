@@ -17,6 +17,8 @@ export const ExpandToggle: React.FC<ExpandToggleProps> = ({
   controlsId,
   className,
 }) => {
+  if (!onClick) return null;
+
   const displayLabel = label ?? (isExpanded ? "收起" : "展开更多");
 
   return (
@@ -26,9 +28,10 @@ export const ExpandToggle: React.FC<ExpandToggleProps> = ({
       aria-expanded={isExpanded}
       aria-controls={controlsId}
       className={cn(
-        "inline-flex items-center gap-1 text-sm text-[var(--interactive-accent)] cursor-pointer hover:underline",
+        "inline-flex items-center text-sm text-[var(--interactive-accent)] cursor-pointer hover:underline",
         className,
       )}
+      style={{gap: 'var(--space-inset-xs)'}}
     >
       {displayLabel}
       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}

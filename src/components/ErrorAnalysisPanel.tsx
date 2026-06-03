@@ -28,19 +28,20 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
   return (
     <div
       className={cn(
-        "rounded-lg p-3",
+        "rounded-lg",
         isMinimalist
           ? "bg-[var(--background-secondary)]"
           : "border-l-2 border-l-[var(--color-error)] border border-dashed border-[var(--border-primary)] bg-[var(--background-secondary)]",
         className,
       )}
+      style={{padding: "var(--space-stack)"}}
     >
       {/* Header */}
-      <div className="flex items-center gap-1.5 mb-2">
+      <div className="flex items-center gap-1.5" style={{marginBottom: "var(--space-inset-sm)"}}>
         <AlertTriangle className="w-4 h-4 text-[var(--color-error)]" />
         <span className="text-xs font-medium text-[var(--color-error)]">错因分析</span>
         {/* Error type badge */}
-        <span className="ml-auto text-xs bg-[var(--color-error)]/10 px-2 py-0.5 rounded">
+        <span className="ml-auto text-xs bg-[var(--color-error)]/10 py-0.5 rounded" style={{paddingLeft: "var(--space-inset-sm)", paddingRight: "var(--space-inset-sm)"}}>
           {analysis.type}
         </span>
       </div>
@@ -52,11 +53,11 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
         style={{ maxHeight: isExpanded ? "none" : `${maxHeight}px`, overflow: "hidden" }}
       >
         {/* Cause text */}
-        <p className="text-sm text-[var(--text-primary)] mb-1">{analysis.cause}</p>
+        <p className="text-sm text-[var(--text-primary)]" style={{marginBottom: "var(--space-inset-xs)"}}>{analysis.cause}</p>
 
         {/* Suggestion */}
         {analysis.suggestion && (
-          <p className="text-sm text-[var(--text-primary)] mb-1">
+          <p className="text-sm text-[var(--text-primary)]" style={{marginBottom: "var(--space-inset-xs)"}}>
             <span role="img" aria-label="建议">
               💡
             </span>{" "}
@@ -65,7 +66,7 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
         )}
 
         {/* AI disclaimer */}
-        <p className="text-xs text-[var(--text-muted)] mt-2">⚠️ AI 生成，仅供参考</p>
+        <p className="text-xs text-[var(--text-muted)]" style={{marginTop: "var(--space-inset-sm)"}}>⚠️ AI 生成，仅供参考</p>
 
         {/* Gradient mask overlay — only when collapsed */}
         {!isExpanded && (
@@ -79,7 +80,7 @@ export const ErrorAnalysisPanel: React.FC<ErrorAnalysisPanelProps> = ({
       </div>
 
       {/* Toggle */}
-      <div className="flex justify-center mt-1">
+      <div className="flex justify-center" style={{marginTop: "var(--space-inset-xs)"}}>
         <ExpandToggle
           isExpanded={isExpanded}
           onClick={() => {

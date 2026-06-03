@@ -37,9 +37,11 @@ export interface TypeBadgeProps {
 }
 
 export const TypeBadge: React.FC<TypeBadgeProps> = ({ type }) => {
+  if (!type) return null;
+  const label = TYPE_LABEL_MAP[type] ?? "未知";
   return (
-    <span className="inline-block bg-[var(--background-primary)] border border-[var(--border-primary)] text-xs px-2 py-0.5 rounded text-[var(--text-primary)]">
-      {TYPE_LABEL_MAP[type]}
+    <span className="inline-block bg-[var(--background-primary)] border border-[var(--border-primary)] text-xs py-0.5 rounded text-[var(--text-primary)]" style={{paddingLeft: 'var(--space-inset-sm)', paddingRight: 'var(--space-inset-sm)'}}>
+      {label}
     </span>
   );
 };
@@ -107,8 +109,9 @@ export interface KnowledgeBadgeProps {
 }
 
 export const KnowledgeBadge: React.FC<KnowledgeBadgeProps> = ({ label }) => {
+  if (!label) return null;
   return (
-    <span className="inline-block bg-[var(--interactive-accent)]/10 text-[var(--interactive-accent)] border border-[var(--interactive-accent)]/20 text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--interactive-accent)]/10 text-[var(--interactive-accent)] border border-[var(--interactive-accent)]/20 text-xs py-0.5 rounded" style={{paddingLeft: 'var(--space-inset-sm)', paddingRight: 'var(--space-inset-sm)'}}>
       {label}
     </span>
   );
@@ -123,8 +126,9 @@ export interface PrerequisiteBadgeProps {
 }
 
 export const PrerequisiteBadge: React.FC<PrerequisiteBadgeProps> = ({ label }) => {
+  if (!label) return null;
   return (
-    <span className="inline-block bg-[var(--background-primary)] text-[var(--text-muted)] text-xs px-2 py-0.5 rounded">
+    <span className="inline-block bg-[var(--background-primary)] text-[var(--text-muted)] text-xs py-0.5 rounded" style={{paddingLeft: 'var(--space-inset-sm)', paddingRight: 'var(--space-inset-sm)'}}>
       ← {label}
     </span>
   );

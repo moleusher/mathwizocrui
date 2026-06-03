@@ -34,3 +34,10 @@ export const Unmarked: Story = {
     counts: { all: 12, wrong: 3, unmarked: 2 },
   },
 };
+
+export const Empty: Story = {
+  args: {
+    filter: "all",
+    counts: { all: 0, wrong: 0, unmarked: 0 },
+  },
+};

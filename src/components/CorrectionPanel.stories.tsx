@@ -27,3 +27,9 @@ export const WithMath: Story = {
     text: "重新计算：\n\n$$\\begin{aligned}S &= 2(ab + ah + bh) \\\\ &= 2(3\\times 4 + 3\\times 5 + 4\\times 5) \\\\ &= 2(12 + 15 + 20) \\\\ &= 2 \\times 47 = 94\\end{aligned}$$",
   },
 };
+
+export const Empty: Story = {
+  args: {
+    text: "",
+  },
+};

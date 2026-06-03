@@ -135,19 +135,21 @@ export interface FilterBarProps {
 }
 
 export function FilterBar({ filter, counts, onFilterChange }: FilterBarProps) {
+  if (!counts) return null;
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center" style={{gap: 'var(--space-inset-xs)'}}>
       {FILTER_OPTIONS.map((opt) => (
         <button
           key={opt.key}
           type="button"
           onClick={() => onFilterChange?.(opt.key)}
           className={cn(
-            "px-3 py-1.5 text-sm transition-colors",
+            "py-1.5 text-sm transition-colors",
             filter === opt.key
               ? "text-[var(--interactive-accent)] font-semibold border-b-2 border-[var(--interactive-accent)]"
               : "text-[var(--text-muted)] hover:text-[var(--text-primary)]",
           )}
+          style={{paddingLeft: 'var(--space-stack)', paddingRight: 'var(--space-stack)'}}
         >
           {opt.key === "all"
             ? `全部(${counts.all})`
@@ -255,10 +257,11 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
             }
           }}
           className={cn(
-            "flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors",
+            "flex items-center cursor-pointer transition-colors",
             "border-b border-[var(--border-primary)] last:border-b-0",
             isActive && "bg-[var(--interactive-accent)]/10",
           )}
+          style={{gap: 'var(--space-stack)', padding: 'var(--space-stack) var(--space-gutter)'}}
         >
           {/* Status dot */}
           <span
@@ -284,7 +287,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
 
           {/* Knowledge tags */}
           {q.knowledge_points.length > 0 && (
-            <span className="hidden sm:flex items-center gap-1 shrink-0">
+            <span className="hidden sm:flex items-center shrink-0" style={{gap: 'var(--space-inset-xs)'}}>
               {q.knowledge_points.slice(0, 3).map((kp) => (
                 <span
                   key={kp}
@@ -305,7 +308,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
 
     if (loading) {
       content = (
-        <div className="space-y-3">
+        <div className="flex flex-col" style={{gap: 'var(--space-stack)'}}>
           {[1, 2, 3].map((i) => (
             <div
               key={i}
@@ -318,12 +321,13 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
       content = (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <AlertTriangle className="w-8 h-8 text-[var(--color-error)]" />
-          <p className="mt-3 text-sm text-[var(--text-muted)]">{error}</p>
+          <p className="text-sm text-[var(--text-muted)]" style={{marginTop: 'var(--space-stack)'}}>{error}</p>
           {onRetry && (
             <button
               type="button"
               onClick={onRetry}
-              className="mt-4 px-4 py-2 text-sm bg-[var(--interactive-accent)] text-[var(--text-inverse)] rounded-lg hover:opacity-90 transition-opacity"
+              className="text-sm bg-[var(--interactive-accent)] text-[var(--text-inverse)] rounded-lg hover:opacity-90 transition-opacity"
+              style={{marginTop: 'var(--space-gutter)', padding: 'var(--space-inset-sm) var(--space-gutter)'}}
             >
               重试
             </button>
@@ -345,7 +349,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
     } else if (browseMode === "scroll") {
       /* ── Scroll mode ── */
       content = (
-        <div className="space-y-3">
+        <div className="flex flex-col" style={{gap: 'var(--space-stack)'}}>
           {filteredQuestions.map((q) => (
             <QuestionCard
               key={q.question_index}
@@ -399,7 +403,7 @@ export const QuestionList = React.forwardRef<HTMLDivElement, QuestionListProps>(
     }
 
     return (
-      <div ref={ref} data-slot="question-list" className={cn("space-y-3", className)}>
+      <div ref={ref} data-slot="question-list" className={cn("flex flex-col", className)} style={{gap: 'var(--space-stack)'}}>
         {filterBar}
         {content}
       </div>

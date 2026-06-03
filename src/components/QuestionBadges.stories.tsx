@@ -105,3 +105,12 @@ export const PrerequisiteBadgeAll: StoryObj<typeof PrerequisiteBadge> = {
 };
 
 PrerequisiteBadgeAll.storyName = "PrerequisiteBadge";
+
+export const EmptyLabels: StoryObj<typeof KnowledgeBadge> = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <KnowledgeBadge label="" />
+      <PrerequisiteBadge label="" />
+    </div>
+  ),
+};

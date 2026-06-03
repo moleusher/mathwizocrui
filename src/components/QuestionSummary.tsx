@@ -22,8 +22,9 @@ export const QuestionSummary: React.FC<QuestionSummaryProps> = ({
 
   return (
     <div
-      className={cn("flex items-center gap-3 py-3 px-4 min-h-[44px]", className)}
+      className={cn("flex items-center min-h-[44px]", className)}
       aria-label={`题目 ${question.question_index}`}
+      style={{gap: 'var(--space-stack)', padding: 'var(--space-stack) var(--space-gutter)'}}
     >
       <QuestionHeaderBadges question={question} />
 

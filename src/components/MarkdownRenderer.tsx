@@ -73,8 +73,9 @@ class MarkdownErrorBoundary extends React.Component<
           className={cn(
             "whitespace-pre-wrap break-words rounded-(--radius-md)",
             "bg-(--color-error)/5 border border-(--color-error)/20",
-            "p-3 text-sm text-(--text-primary)",
+            "text-sm text-(--text-primary)",
           )}
+          style={{padding: 'var(--space-stack)'}}
         >
           {this.props.content}
         </pre>

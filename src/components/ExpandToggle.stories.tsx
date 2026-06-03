@@ -32,3 +32,10 @@ export const CustomLabel: Story = {
     label: "显示解题过程",
   },
 };
+
+export const Empty: Story = {
+  args: {
+    isExpanded: false,
+    onClick: undefined as unknown as () => void,
+  },
+};

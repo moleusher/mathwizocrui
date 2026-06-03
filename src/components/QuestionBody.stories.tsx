@@ -60,3 +60,9 @@ $$\\frac{a_1 + a_2 + \\cdots + a_n}{n} \\geq \\sqrt[n]{a_1 a_2 \\cdots a_n}$$
 2. 求函数 $f(x) = x + \\frac{4}{x}$（$x > 0$）的最小值。`,
   },
 };
+
+export const Empty: Story = {
+  args: {
+    text: "",
+  },
+};
