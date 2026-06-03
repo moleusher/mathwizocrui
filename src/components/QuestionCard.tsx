@@ -3,14 +3,11 @@ import { Card, CardHeader, CardContent, CardFooter } from "@heroui/react";
 import { cn } from "../utils/cn";
 import type { ExamQuestion, BBox } from "../types/question";
 import {
-  QuestionBadge,
-  TypeBadge,
-  CorrectionBadge,
-  ScoreDisplay,
   ConfidenceIndicator,
   KnowledgeBadge,
   PrerequisiteBadge,
 } from "./QuestionBadges";
+import { QuestionHeaderBadges } from "./QuestionHeaderBadges";
 import { QuestionBody } from "./QuestionBody";
 import { AnswerComparePanel } from "./AnswerComparePanel";
 import { TeacherCommentPanel } from "./TeacherCommentPanel";
@@ -124,26 +121,12 @@ export const QuestionCard = React.forwardRef<HTMLDivElement, QuestionCardProps>(
           onClick={(e) => e.stopPropagation()}
         />
       )}
-      <QuestionBadge index={question.question_index} />
-      <TypeBadge type={question.question_type} />
-      {question.teacher_correction && (
-        <>
-          {question.teacher_correction.mark && (
-            <CorrectionBadge mark={question.teacher_correction.mark} />
-          )}
-          {question.teacher_correction.max_score != null && (
-            <ScoreDisplay
-              score={question.teacher_correction.score}
-              maxScore={question.teacher_correction.max_score}
-            />
-          )}
-          {question.fusion_meta && (
-            <ConfidenceIndicator
-              confidence={question.fusion_meta.confidence_per_field.is_correct}
-              hasConflict={question.fusion_meta.conflicts.length > 0}
-            />
-          )}
-        </>
+      <QuestionHeaderBadges question={question} />
+      {question.teacher_correction && question.fusion_meta && (
+        <ConfidenceIndicator
+          confidence={question.fusion_meta.confidence_per_field.is_correct}
+          hasConflict={question.fusion_meta.conflicts.length > 0}
+        />
       )}
     </CardHeader>
   );

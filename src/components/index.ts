@@ -66,6 +66,8 @@ export type {
   PrerequisiteBadgeProps,
 } from "./QuestionBadges";
 
+export { QuestionHeaderBadges } from "./QuestionHeaderBadges";
+
 export { QuestionSummary } from "./QuestionSummary";
 export type { QuestionSummaryProps } from "./QuestionSummary";
 

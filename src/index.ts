@@ -87,6 +87,8 @@ export type {
   PrerequisiteBadgeProps,
 } from "./components/QuestionBadges";
 
+export { QuestionHeaderBadges } from "./components/QuestionHeaderBadges";
+
 export { QuestionSummary } from "./components/QuestionSummary";
 export type { QuestionSummaryProps } from "./components/QuestionSummary";
 
