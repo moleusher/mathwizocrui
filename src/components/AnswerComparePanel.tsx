@@ -17,31 +17,31 @@ export interface AnswerComparePanelProps {
 /** Color config per studentVariant */
 const VARIANT_STYLES = {
   correct: {
-    border: "border-[var(--color-success)]/20",
-    bg: "bg-[var(--color-success)]/5",
+    border: "border-l-2 border-l-[var(--color-success)] border border-[var(--border-primary)]",
+    bg: "bg-[var(--background-secondary)]",
     icon: CheckCircle,
     iconColor: "text-[var(--color-success)]",
     labelColor: "text-[var(--color-success)]",
     label: "学生作答",
   },
   wrong: {
-    border: "border-[var(--color-error)]/20",
-    bg: "bg-[var(--color-error)]/5",
+    border: "border-l-2 border-l-[var(--color-error)] border border-[var(--border-primary)]",
+    bg: "bg-[var(--background-secondary)]",
     icon: Pencil,
     iconColor: "text-[var(--color-error)]",
     labelColor: "text-[var(--color-error)]",
     label: "学生作答",
   },
   partial: {
-    border: "border-[var(--color-warning)]/20",
-    bg: "bg-[var(--color-warning)]/5",
+    border: "border-l-2 border-l-[var(--color-warning)] border border-[var(--border-primary)]",
+    bg: "bg-[var(--background-secondary)]",
     icon: Pencil,
     iconColor: "text-[var(--color-warning)]",
     labelColor: "text-[var(--color-warning)]",
     label: "学生作答",
   },
   unmarked: {
-    border: "border-[var(--border-primary)]",
+    border: "border border-[var(--border-primary)]",
     bg: "bg-[var(--background-secondary)]",
     icon: Pencil,
     iconColor: "text-[var(--text-muted)]",
@@ -109,8 +109,8 @@ export const AnswerComparePanel: React.FC<AnswerComparePanelProps> = React.forwa
           className={cn(
             "rounded-lg p-3 min-h-[60px]",
             isMinimalist
-              ? "bg-[var(--color-success)]/5"
-              : "border border-[var(--color-success)]/20 bg-[var(--color-success)]/5",
+              ? "bg-[var(--background-secondary)]"
+              : "border-l-2 border-l-[var(--color-success)] border border-[var(--border-primary)] bg-[var(--background-secondary)]",
           )}
         >
           <div className="flex items-center gap-1.5 mb-1.5">
